@@ -60,6 +60,16 @@ public class Boss1Gun1Logic : MonoBehaviour
 
         Destroy(bullet.gameObject);
     }
+    private void OnBomb(BombLogic bomb)
+    {
+        if (!bomb.Work) return;
+        if (!Boss.IsOnBomb(bomb)) return;
+
+        //+ resistant defense
+        var damage = bomb.Damage;
+        AddDamage(damage);
+    }
+
 
     /// <summary>
     /// Нанесение урона.
@@ -103,6 +113,14 @@ public class Boss1Gun1Logic : MonoBehaviour
             var bullet = other.gameObject.GetComponent<BulletShipLogic>();
             if (!bullet.Work) return;
             OnDamage(bullet);
+            return;
+        }
+        //! бомба
+        if (other.gameObject.tag == "Bomb")
+        {
+            var bomb = other.gameObject.GetComponent<BombLogic>();
+            if (!bomb.Work) return;
+            OnBomb(bomb);
             return;
         }
     }

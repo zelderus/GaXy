@@ -108,6 +108,16 @@ public class Boss1Gun3Logic : MonoBehaviour
 
         Destroy(bullet.gameObject);
     }
+    private void OnBomb(BombLogic bomb)
+    {
+        if (!bomb.Work || !_isEnabled) return;
+        if (!Boss.IsOnBomb(bomb)) return;
+
+        //+ resistant defense
+        var damage = bomb.Damage;
+        AddDamage(damage);
+    }
+
 
     /// <summary>
     /// Нанесение урона.
@@ -115,7 +125,7 @@ public class Boss1Gun3Logic : MonoBehaviour
     /// <param name="count"></param>
     private float AddDamage(float count)
     {
-        if (IsDied) return 0.0f;
+        if (IsDied || !_isEnabled) return 0.0f;
 
         var oldHealth = Health;
         Health -= count;
@@ -150,7 +160,7 @@ public class Boss1Gun3Logic : MonoBehaviour
     #region Collider
     void OnTriggerEnter(Collider other)
     {
-        if (IsDied) return;
+        if (IsDied || !_isEnabled) return;
 
         //! снаряды
         if (other.gameObject.tag == "BulletShip")
@@ -159,6 +169,14 @@ public class Boss1Gun3Logic : MonoBehaviour
             var bullet = other.gameObject.GetComponent<BulletShipLogic>();
             if (!bullet.Work) return;
             OnDamage(bullet);
+            return;
+        }
+        //! бомба
+        if (other.gameObject.tag == "Bomb")
+        {
+            var bomb = other.gameObject.GetComponent<BombLogic>();
+            if (!bomb.Work) return;
+            OnBomb(bomb);
             return;
         }
     }

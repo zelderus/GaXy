@@ -284,6 +284,18 @@ public class Boss1Logic : MonoBehaviour {
     //    Destroy(bullet.gameObject);
     //}
 
+
+    // босс доступен для поражения бомбой
+    private Int32 _bombBitted = -1;
+    public bool IsOnBomb(BombLogic bomb)
+    {
+        if (!bomb.Work) return false;
+        if (bomb.BombId <= _bombBitted) return false;
+        _bombBitted = bomb.BombId;
+        return true;
+    }
+
+
     private void OnGunDestoy()
     {
         if (IsDied) return;
