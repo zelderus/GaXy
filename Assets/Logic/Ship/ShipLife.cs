@@ -99,7 +99,7 @@ public class ShipLife
         ShipBonusShieldTime = 10.0f;
 
         ShipBonusTree = 3.0f;
-        ShipBonusTreeCount = 1;
+        ShipBonusTreeCount = 3;
         ShipBonusTreeTime = 10.0f;
     }
 

@@ -60,6 +60,7 @@ public class LevelController : MonoBehaviour
     private GameObject _enemyBoss3Prefab;
 
     private GameObject _parentBulletShipPrefab;
+    private GameObject _bombPrefab;
     private GameObject _bulletShip1Prefab;
     private GameObject _bulletEnemy1Prefab;
     private GameObject _bulletEnemy2Prefab;
@@ -133,6 +134,7 @@ public class LevelController : MonoBehaviour
         _enemyBoss3Prefab = Resources.Load("Prefabs/Level/Enemies/EnemyBoss3Pref", typeof(GameObject)) as GameObject;
 
         _parentBulletShipPrefab = GameObject.Find("BulletShipParent") as GameObject;
+        _bombPrefab = Resources.Load("Prefabs/Level/BulletShip/BombPref", typeof(GameObject)) as GameObject;
         _bulletShip1Prefab = Resources.Load("Prefabs/Level/BulletShip/BulletShip1Pref", typeof(GameObject)) as GameObject;
         _bulletEnemy1Prefab = Resources.Load("Prefabs/Level/BulletEnemy/BulletEnemy1Pref", typeof(GameObject)) as GameObject;
         _bulletEnemy2Prefab = Resources.Load("Prefabs/Level/BulletEnemy/BulletEnemy2Pref", typeof(GameObject)) as GameObject;
@@ -259,15 +261,18 @@ public class LevelController : MonoBehaviour
          *  10  - Enemy
          *  11  - BulletsShip
          *  12  - BulletsEnemy
+         *  13  - Bomb
         */
         //- ship
         Physics.IgnoreLayerCollision(9, 11, true);
+        Physics.IgnoreLayerCollision(9, 13, true);
         //- enemy
         Physics.IgnoreLayerCollision(10, 12, true);
         Physics.IgnoreLayerCollision(10, 8, true);
-
-        
-
+        //- bullets
+        Physics.IgnoreLayerCollision(11, 8, true);
+        Physics.IgnoreLayerCollision(12, 8, true);
+        Physics.IgnoreLayerCollision(13, 8, true);
 
         // TODO
         
@@ -446,6 +451,18 @@ public class LevelController : MonoBehaviour
         bullet.Init(this, _ship, ShipLogic.transform.position + gunOffsetPos);
     }
 
+    private Int32 _bombId = 0;
+    public void PlaceBomb()
+    {
+        var pref = Instantiate(_bombPrefab, _parentBulletShipPrefab.transform.position, Quaternion.identity) as GameObject;
+        pref.transform.SetParent(_parentBulletShipPrefab.transform);
+        pref.transform.localPosition = ShipLogic.transform.position;
+        pref.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        //- logic
+        var bullet = pref.GetComponent<BombLogic>();
+        bullet.Init(this, _ship, ShipLogic.transform.position, _bombId++);
+    }
+
     #endregion
     #region bullet enemy
 
@@ -618,7 +635,7 @@ public class LevelController : MonoBehaviour
     {
         if (PanelShip.CanAddTree())
         {
-            //ShipLogic.EnableShield(_ship.ShipBonusShield); //?+ !!!!!! TREE
+            PlaceBomb();
             _ship.UseBonusTree();
             //
             PanelShip.TreeUse();

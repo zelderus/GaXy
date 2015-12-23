@@ -293,6 +293,19 @@ public class EnemyLogic : MonoBehaviour {
         Destroy(bullet.gameObject);
     }
 
+    private Int32 _bombBitted = -1;
+    private void OnBomb(BombLogic bomb)
+    {
+        if (!bomb.Work) return;
+        if (bomb.BombId <= _bombBitted) return;
+        _bombBitted = bomb.BombId;
+
+        //+ resistant defense
+        var damage = bomb.Damage;
+
+        AddDamage(damage);
+    }
+
     /// <summary>
     /// Нанесение урона.
     /// </summary>
@@ -333,6 +346,14 @@ public class EnemyLogic : MonoBehaviour {
             var bullet = other.gameObject.GetComponent<BulletShipLogic>();
             if (!bullet.Work) return;
             OnDamage(bullet);
+            return;
+        }
+        //! бомба
+        if (other.gameObject.tag == "Bomb")
+        {
+            var bomb = other.gameObject.GetComponent<BombLogic>();
+            if (!bomb.Work) return;
+            OnBomb(bomb);
             return;
         }
     }
