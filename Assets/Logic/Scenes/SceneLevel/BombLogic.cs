@@ -7,11 +7,11 @@ public class BombLogic : MonoBehaviour {
 
 
     public Boolean Work;
-    public float Damage = 1.0f;
     public float TimeLife = 1.0f;
     public float SpeedFloat = 40.0f;
 
     public Int32 BombId { get; private set; }
+    public float Damage { get; private set; }
 
     private LevelController _controller;
     
@@ -25,6 +25,7 @@ public class BombLogic : MonoBehaviour {
     {
         _controller = controller;
         BombId = bombId;
+        Damage = ship.ShipBonusTree;
         Work = true;
 
         //+ на основе ship
@@ -51,6 +52,8 @@ public class BombLogic : MonoBehaviour {
         // scale
         var scaleDelta = SpeedFloat * Time.deltaTime;
         this.transform.localScale = new Vector3(this.transform.localScale.x + scaleDelta, this.transform.localScale.y + scaleDelta, this.transform.localScale.z + scaleDelta);
-
+        // rot
+        //var rot = 80.0f * Time.deltaTime;
+        //this.transform.Rotate(0, 0, rot);
     }
 }

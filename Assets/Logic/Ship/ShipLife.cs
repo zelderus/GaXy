@@ -68,7 +68,7 @@ public class ShipLife
     public float ShipBonusShieldTime { get; private set; }
 
     /// <summary>
-    /// Покупка 3.
+    /// Покупка бомбы.
     /// </summary>
     public float ShipBonusTree { get; private set; }
     public Int32 ShipBonusTreeCount { get; private set; }
@@ -98,9 +98,9 @@ public class ShipLife
         ShipBonusShieldCount = 4;
         ShipBonusShieldTime = 10.0f;
 
-        ShipBonusTree = 3.0f;
-        ShipBonusTreeCount = 3;
-        ShipBonusTreeTime = 10.0f;
+        ShipBonusTree = 30.0f;
+        ShipBonusTreeCount = 1;
+        ShipBonusTreeTime = 60.0f;
     }
 
 
