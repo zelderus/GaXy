@@ -1,0 +1,213 @@
+fileFormatVersion: 2
+guid: 4b2233d8d9e312e47b8b44f8d6b7a21b
+timeCreated: 1450802689
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: levelSprites1_HpBarBack
+    21300002: levelSprites1_HpBar
+    21300004: levelSprites1_2
+    21300006: levelSprites1_3
+    21300008: levelSprites1_4
+    21300010: levelSprites1_5
+    21300012: levelSprites1_6
+    21300014: levelSprites1_7
+    21300016: levelSprites1_8
+    21300018: levelSprites1_9
+    21300020: levelSprites1_10
+    21300022: levelSprites1_11
+    21300024: levelSprites1_12
+    21300026: levelSprites1_13
+    21300028: levelSprites1_14
+    21300030: levelSprites1_15
+    21300032: levelSprites1_16
+    21300034: levelSprites1_17
+    21300036: levelSprites1_18
+    21300038: levelSprites1_19
+    21300040: levelSprites1_20
+    21300042: levelSprites1_21
+    21300044: levelSprites1_22
+    21300046: levelSprites1_23
+    21300048: levelSprites1_24
+    21300050: levelSprites1_25
+    21300052: levelSprites1_HpBarBack
+    21300054: levelSprites1_Heart
+    21300056: levelSprites1_HpIcon
+    21300058: levelSprites1_ShieldIcon
+    21300060: levelSprites1_TreeIcon
+    21300062: levelSprites1_HpCircleBar
+    21300064: levelSprites1_BonusCountBack
+    21300066: levelSprites1_BonusCount1
+    21300068: levelSprites1_BonusCount2
+    21300070: levelSprites1_BonusCount3
+    21300072: levelSprites1_BonusCount4
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: levelSprites1_HpBarBack
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 770
+        width: 200
+        height: 30
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: levelSprites1_HpBar
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 774
+        width: 196
+        height: 26
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: levelSprites1_Heart
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 740
+        width: 26
+        height: 24
+      alignment: 9
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: levelSprites1_HpIcon
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 656
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: levelSprites1_ShieldIcon
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 656
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: levelSprites1_TreeIcon
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 656
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: levelSprites1_HpCircleBar
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 573
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: levelSprites1_BonusCountBack
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 672
+        width: 92
+        height: 92
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: levelSprites1_BonusCount1
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 750
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: levelSprites1_BonusCount2
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 750
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: levelSprites1_BonusCount3
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 749
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: levelSprites1_BonusCount4
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 708
+        width: 17
+        height: 37
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
