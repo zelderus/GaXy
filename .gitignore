@@ -3,3 +3,7 @@
 /tmp
 /Temp
 /obj
+
+# solutions
+/*.sln
+/*.suo
