@@ -226,17 +226,9 @@ public class Boss1Logic : MonoBehaviour {
         }
         else
         {
-            if (BossRouteNum > 0) // если не самый простой тип врага (улетающий)
-            {
-                SetStartIndex();
-                GetCurrentWaypoint();
-            }
-            else
-            {
-                _disabled = true;
-                Controller.EnemyFloated();
-                Destroy(this.gameObject, 2.0f);
-            }
+            // босс всегда зациклен
+            SetStartIndex();
+            GetCurrentWaypoint();
         }
 
     }

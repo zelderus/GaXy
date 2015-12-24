@@ -243,9 +243,12 @@ public class EnemyLogic : MonoBehaviour {
             }
             else
             {
-                _disabled = true;
-                Controller.EnemyFloated();
-                Destroy(this.gameObject, 2.0f);
+                if (!IsDied)
+                {
+                    _disabled = true;
+                    Controller.EnemyFloated();
+                    Destroy(this.gameObject, 2.0f);
+                }
             }
         }
 
@@ -321,13 +324,17 @@ public class EnemyLogic : MonoBehaviour {
         if (Health <= 0)
         {
             IsDied = true;
-            AnimToLose();
-            //Controller.PlaceMaterial(this.transform.position, UnityEngine.Random.Range(MinMaterials, MaxMaterials+1));
-            var matCount = (Int32)MathHelpers.GetByWeight(_materialWeight);
-            Controller.PlaceMaterial(this.transform.position, matCount);
 
-            Controller.EnemyDied();
-            Destroy(this.gameObject, 1.9f); // взрыв должен уложиться в 2 сек
+            if (!_disabled)
+            {
+                AnimToLose();
+                //Controller.PlaceMaterial(this.transform.position, UnityEngine.Random.Range(MinMaterials, MaxMaterials+1));
+                var matCount = (Int32) MathHelpers.GetByWeight(_materialWeight);
+                Controller.PlaceMaterial(this.transform.position, matCount);
+
+                Controller.EnemyDied();
+                Destroy(this.gameObject, 1.9f); // взрыв должен уложиться в 2 сек
+            }
         }
         
         return oldHealth - Health; // разница

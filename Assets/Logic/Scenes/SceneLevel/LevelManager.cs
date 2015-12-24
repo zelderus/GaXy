@@ -107,7 +107,6 @@ public class LevelManager
             _enemies.AddRange(brunch.Enemies);
         }
 
-
         //_enemies.Add(new EnemyLaunch(EnemyIndexes.Boss1, 0, 1.0f));
 
         //foreach (var en in _enemies)
