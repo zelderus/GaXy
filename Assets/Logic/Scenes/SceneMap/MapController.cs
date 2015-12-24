@@ -120,8 +120,13 @@ public class MapController : MonoBehaviour
     {
         return _mapLife;
     }
+    public ShipLife GetShipLife()
+    {
+        return _shipLife;
+    }
 
 
+    
     #region gex
 
 
@@ -217,7 +222,6 @@ public class MapController : MonoBehaviour
 
     #endregion
 
-
     #region cities
 
     private void InitSelectableItems()
@@ -237,11 +241,13 @@ public class MapController : MonoBehaviour
         //- city model prefab
         //_parentCityMap = GameObject.Find("CityMapParent") as GameObject;
         var cityPref = Resources.Load("Prefabs/Map/CityPref", typeof(GameObject)) as GameObject;
+        var cityJopPref = Resources.Load("Prefabs/Map/CityJopPref", typeof(GameObject)) as GameObject;
 
         //! cities
         foreach (var cityModel in _mapLife.Cities)
         {
-            AddCityToMap(_parentCityMap, cityPref, cityResImgPrefab, cityModel);
+            if (cityModel.Model.IsJopAndCompleted()) continue;
+            AddCityToMap(_parentCityMap, cityModel.Model.IsJop ? cityJopPref : cityPref, cityResImgPrefab, cityModel);
         }
 
     }
@@ -258,8 +264,8 @@ public class MapController : MonoBehaviour
         GameObject pref = Instantiate(cityPref, parentCityMap.transform.position, new Quaternion(UnityEngine.Random.Range(0, 45), 0, 0, 0)) as GameObject;
         pref.transform.SetParent(parentCityMap.transform);
         pref.transform.localPosition = new Vector3(cityModel.Position.x, cityModel.Position.y, 0.0f);
-        pref.transform.localScale = Vector3.one * cityModel.Model.SizeScale;  //? !!!
-        pref.transform.localRotation = Quaternion.AngleAxis(UnityEngine.Random.Range(0, 255), Vector3.right);
+        pref.transform.localScale = Vector3.one * cityModel.Model.SizeScale;
+        pref.transform.localRotation = cityModel.Model.IsJop ? Quaternion.identity : Quaternion.AngleAxis(UnityEngine.Random.Range(0, 255), Vector3.right);
 
         //- img
         //GameObject resImgPref = Instantiate(cityResPref, MainCanvas.transform.position, Quaternion.identity) as GameObject;
@@ -354,6 +360,14 @@ public class MapController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Закончены задачи JOP и объект улетел. Отцепляем от карты и прочее.
+    /// </summary>
+    public void JopCompletedOn(CityMapItem city)
+    {
+        DeselectCities();
+        _mapLife.FreeMapGex(city.CityModel.MapGex);
+    }
     #endregion
     #region ship
     private void InitShip()
@@ -544,9 +558,6 @@ public class MapController : MonoBehaviour
     #endregion
 
 
-    
-
-
     #region play level
     /// <summary>
     /// Запуск текущего уровня.
@@ -592,9 +603,6 @@ public class MapController : MonoBehaviour
     }
 
     #endregion
-
-
-
 
 
     #region Button press

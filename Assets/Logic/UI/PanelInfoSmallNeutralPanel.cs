@@ -55,31 +55,62 @@ public class PanelInfoSmallNeutralPanel : MonoBehaviour
         //+ resources from
         Image img = ResFrom1ResImg;
         Text txt = Res1Txt;
-        foreach (var questRes in model.QuestResources)
+        if (!model.IsJop)   //! NORMAL
         {
-            switch (questRes.Type)
+            foreach (var questRes in model.QuestResources)
             {
-                case CityRecources.Res1: img = ResFrom1ResImg; txt = Res1Txt; break;
-                case CityRecources.Res2: img = ResFrom2ResImg; txt = Res2Txt; break;
-                case CityRecources.Res3: img = ResFrom3ResImg; txt = Res3Txt; break;
-                case CityRecources.Res4: img = ResFrom4ResImg; txt = Res4Txt; break;
+                QuestView(questRes, mapLife, img, txt);
             }
-            if (questRes.MustBeForProduct > 0)
+        }
+        else                //! JOP
+        {
+            var jopQuest = model.GetCurrentJopQuestList();
+            foreach (var questRes in jopQuest)
             {
-                img.gameObject.SetActive(true);
-                txt.gameObject.SetActive(true);
-                txt.text = questRes.MustBeForProduct.ToString();
-                txt.color = ResSuccessColor;
-                if (!mapLife.IsResourceEnough(questRes))
-                {
-                    txt.color = ResNotEnoughColor;
-                }
+                QuestView(questRes, mapLife, img, txt);
             }
-            else
+        }
+
+
+    }
+
+
+    private void QuestView(CityResourceFrom questRes, MapLife mapLife, Image img, Text txt)
+    {
+        switch (questRes.Type)
+        {
+            case CityRecources.Res1:
+                img = ResFrom1ResImg;
+                txt = Res1Txt;
+                break;
+            case CityRecources.Res2:
+                img = ResFrom2ResImg;
+                txt = Res2Txt;
+                break;
+            case CityRecources.Res3:
+                img = ResFrom3ResImg;
+                txt = Res3Txt;
+                break;
+            case CityRecources.Res4:
+                img = ResFrom4ResImg;
+                txt = Res4Txt;
+                break;
+        }
+        if (questRes.MustBeForProduct > 0)
+        {
+            img.gameObject.SetActive(true);
+            txt.gameObject.SetActive(true);
+            txt.text = questRes.MustBeForProduct.ToString();
+            txt.color = ResSuccessColor;
+            if (!mapLife.IsResourceEnough(questRes))
             {
-                img.gameObject.SetActive(false);
-                txt.gameObject.SetActive(false);
+                txt.color = ResNotEnoughColor;
             }
+        }
+        else
+        {
+            img.gameObject.SetActive(false);
+            txt.gameObject.SetActive(false);
         }
     }
 

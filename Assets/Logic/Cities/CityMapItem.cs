@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
-
+using UnityEngine.Experimental.Director;
 
 
 /// <summary>
@@ -20,9 +20,9 @@ public class CityMapItem : MonoBehaviour//, IPointerClickHandler
     public Material Planet2Mat;
     public Material Planet3Mat;
     public Material Planet4Mat;
+    public Material PlanetBlackMat;
 
-
-    private Transform _selectObj;
+    //private Transform _selectObj;
     
 
     //public Transform City1Model;
@@ -36,7 +36,7 @@ public class CityMapItem : MonoBehaviour//, IPointerClickHandler
 
     void Awake()
     {
-        _selectObj = this.transform.Find("SelectObj");
+        //_selectObj = this.transform.Find("SelectObj");
         //_planetModel = this.transform.Find("cityProtModel");
         
     }
@@ -44,6 +44,7 @@ public class CityMapItem : MonoBehaviour//, IPointerClickHandler
 	void Start ()
 	{
         //_selectObj = this.transform.Find("SelectObj");
+
 	}
 
 
@@ -78,19 +79,6 @@ public class CityMapItem : MonoBehaviour//, IPointerClickHandler
     /// </summary>
     public void SetCityView(CityRecources res, Int32 rating)
     {
-        //City1Model.gameObject.SetActive(false);
-        //City2Model.gameObject.SetActive(false);
-        //City3Model.gameObject.SetActive(false);
-        //City4Model.gameObject.SetActive(false);
-
-        //switch (res)
-        //{
-        //    case CityRecources.Res1: City1Model.gameObject.SetActive(true); break;
-        //    case CityRecources.Res2: City2Model.gameObject.SetActive(true); break;
-        //    case CityRecources.Res3: City3Model.gameObject.SetActive(true); break;
-        //    case CityRecources.Res4: City4Model.gameObject.SetActive(true); break;
-        //}
-
         Material mat = Planet1Mat;
         switch (res)
         {
@@ -98,16 +86,45 @@ public class CityMapItem : MonoBehaviour//, IPointerClickHandler
             case CityRecources.Res2: mat = Planet2Mat; break;
             case CityRecources.Res3: mat = Planet3Mat; break;
             case CityRecources.Res4: mat = Planet4Mat; break;
+            case CityRecources.Black: mat = PlanetBlackMat; break;
         }
         PlanetModel.GetComponent<Renderer>().material = mat;
-
     }
-    
 
-	// Update is called once per frame
-	void Update () {
 
-        this.transform.Rotate(0, Time.deltaTime * _speedRot * _rotDir, 0);
+    #region JOP
+    private bool _jopFloatOn = false;
+    /// <summary>
+    /// Выполнены все задачи JOP.
+    /// </summary>
+    public void JopFullCompleted()
+    {
+        if (!CityModel.Model.IsJopAndCompleted()) return;
+        _jopFloatOn = true;
+        //this.GetComponent<BoxCollider>().gameObject.SetActive(false);
+        //+ fly anim
+        //this.GetComponent<Animator>().Play(new Playable(){ state = PlayState.Playing, time = 0.0f});
+        //this.GetComponent<Animator>().StartPlayback();
+        PlanetModel.GetComponent<Animation>().Play();
+
+        //Destroy(this.gameObject, 3.0f);
+    }
+
+    //private void JopUpdate()
+    //{
+    //    if (!_jopFloatOn) return;
+    //    // улетаем как JOP
+
+    //}
+    #endregion
+
+
+
+    // Update is called once per frame
+	void Update () 
+    {
+        if (!CityModel.Model.IsJop) this.transform.Rotate(0, Time.deltaTime * _speedRot * _rotDir, 0);
+	    //JopUpdate();
 	}
 
     public void OnPointerClick()//PointerEventData eventData)

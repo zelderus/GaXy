@@ -32,6 +32,8 @@ public class PanelCitySmallLogic : MonoBehaviour
     public void Show(City city)
     {
         if (city == null) return;
+        if (city.Model.IsJopAndCompleted()) return;
+
         _city = city;
         //ShowContentCity(city);
         ObjectToFollow = _city.CityMap.transform;

@@ -86,6 +86,16 @@ public class City
         IconLogic.SetCityModel(this);
         UpdateCityView();
     }
+    /// <summary>
+    /// Выполнен квест JOP.
+    /// </summary>
+    public void SetJopQuestCompleted()
+    {
+        Model.SetNextJopQuest();
+
+        IconLogic.SetCityModel(this);
+        UpdateCityView();
+    }
 
 
 }

@@ -61,27 +61,36 @@ public class PanelInfoNeutralPanel : MonoBehaviour
         if (_city == null) return;
         var mapLife = _city.CityMap.MainLogicObject.GetMapLife();
 
-        var cityResource = _city.Model.ResourceProduct.Type;// CityRecources.Res1; //?++ конкретно только свой
-        //switch(cityTypeInt)
-        //{
-        //    case 1: cityResource = CityRecources.Res1; break;
-        //    case 2: cityResource = CityRecources.Res2; break;
-        //    case 3: cityResource = CityRecources.Res3; break;
-        //    case 4: cityResource = CityRecources.Res4; break;
-        //}
+        var cityResource = _city.Model.ResourceProduct.Type;
 
-        //+ тратим
-        if (!mapLife.ShipHaveEnoughForQuestCity(_city)) return;
-        mapLife.QuestCityStart(_city.Model);
 
-        //+ строим новый тип
-        _city.SetFriendCityType(cityResource);
+        if (!_city.Model.IsJop) //! NORMAL
+        {
+            //+ тратим
+            if (!mapLife.ShipHaveEnoughForQuestCity(_city)) return;
+            mapLife.QuestCityStart(_city.Model);
+            //+ строим новый тип
+            _city.SetFriendCityType(cityResource);
+        }
+        else    //! JOP
+        {
+            //+ тратим
+            if (!mapLife.ShipHaveEnoughForQuestCity(_city)) return;
+            mapLife.QuestJopStart(_city.Model);
+            //+ следующий
+            _city.SetJopQuestCompleted();
+            //+ если выполнено все
+            if (_city.Model.IsJopCompleted)
+            {
+                _city.CityMap.MainLogicObject.GetShipLife().SetJopCompleted();
+                _city.CityMap.JopFullCompleted();
+                _city.CityMap.MainLogicObject.JopCompletedOn(_city.CityMap);
+            }
+        }
+
 
         //- обновляем все зависящее внешне
         _city.CityMap.MainLogicObject.UpdateMathPanels();
-        //mapLife.UpdateViewDay();
-        //_city.CityMap.MainLogicObject.WorkPanelUpdate();
-        //_actionPanel.UpdateView();
     }
 
 
@@ -94,66 +103,84 @@ public class PanelInfoNeutralPanel : MonoBehaviour
         //+ resources from
         Image img = ResFrom1ResImg;
         Text txt = Res1Txt;
-        foreach (var questRes in model.QuestResources)
+        if (!model.IsJop)   //! NORMAL
         {
-            switch (questRes.Type)
+            foreach (var questRes in model.QuestResources)
             {
-                case CityRecources.Res1: img = ResFrom1ResImg; txt = Res1Txt; break;
-                case CityRecources.Res2: img = ResFrom2ResImg; txt = Res2Txt; break;
-                case CityRecources.Res3: img = ResFrom3ResImg; txt = Res3Txt; break;
-                case CityRecources.Res4: img = ResFrom4ResImg; txt = Res4Txt; break;
-            }
-            if (questRes.MustBeForProduct > 0)
-            {
-                img.gameObject.SetActive(true);
-                txt.gameObject.SetActive(true);
-                txt.text = questRes.MustBeForProduct.ToString();
-                txt.color = ResSuccessColor;
-                if (!mapLife.IsResourceEnough(questRes))
-                {
-                    txt.color = ResNotEnoughColor;
-                }
-            }
-            else
-            {
-                img.gameObject.SetActive(false);
-                txt.gameObject.SetActive(false);
+                QuestView(questRes, mapLife, img, txt);
             }
         }
+        else                //! JOP
+        {
+            var jopQuest = model.GetCurrentJopQuestList();
+            foreach (var questRes in jopQuest)
+            {
+                QuestView(questRes, mapLife, img, txt);
+            }
+        }
+
+
 
         //+ btns
         if (_isCurrent)
         {
             Res1Btn.gameObject.SetActive(true);
-            //Res2Btn.gameObject.SetActive(true);
-            //Res3Btn.gameObject.SetActive(true);
-            //Res4Btn.gameObject.SetActive(true);
 
+            
             if (mapLife.ShipHaveEnoughForQuestCity(_city))
             {
                 Res1Btn.GetComponent<Button>().interactable = true;
-                //Res2Btn.GetComponent<Button>().interactable = true;
-                //Res3Btn.GetComponent<Button>().interactable = true;
-                //Res4Btn.GetComponent<Button>().interactable = true;
             }
             else
             {
                 Res1Btn.GetComponent<Button>().interactable = false;
-                //Res2Btn.GetComponent<Button>().interactable = false;
-                //Res3Btn.GetComponent<Button>().interactable = false;
-                //Res4Btn.GetComponent<Button>().interactable = false;
             }
+            
+            //! JOP (если выполнены все задачи)
+            if (_city.Model.IsJop && _city.Model.IsJopCompleted)
+            {
+                Res1Btn.gameObject.SetActive(false);
+            }
+
+            
 
         }
         else
         {
             Res1Btn.gameObject.SetActive(false);
-            //Res2Btn.gameObject.SetActive(false);
-            //Res3Btn.gameObject.SetActive(false);
-            //Res4Btn.gameObject.SetActive(false);
         }
 
     }
+
+
+
+    private void QuestView(CityResourceFrom questRes, MapLife mapLife, Image img, Text txt)
+    {
+        switch (questRes.Type)
+        {
+            case CityRecources.Res1: img = ResFrom1ResImg; txt = Res1Txt; break;
+            case CityRecources.Res2: img = ResFrom2ResImg; txt = Res2Txt; break;
+            case CityRecources.Res3: img = ResFrom3ResImg; txt = Res3Txt; break;
+            case CityRecources.Res4: img = ResFrom4ResImg; txt = Res4Txt; break;
+        }
+        if (questRes.MustBeForProduct > 0)
+        {
+            img.gameObject.SetActive(true);
+            txt.gameObject.SetActive(true);
+            txt.text = questRes.MustBeForProduct.ToString();
+            txt.color = ResSuccessColor;
+            if (!mapLife.IsResourceEnough(questRes))
+            {
+                txt.color = ResNotEnoughColor;
+            }
+        }
+        else
+        {
+            img.gameObject.SetActive(false);
+            txt.gameObject.SetActive(false);
+        }
+    }
+
 
 
 	// Update is called once per frame

@@ -88,6 +88,7 @@ public class MapLife
 
     private Int32[,] _workGex;
 
+    private ShipLife _ship;
 
     public MapLife()
     {
@@ -95,8 +96,10 @@ public class MapLife
         LevelStatus = FarStatusLevel.Init;
     }
 
-    public void Init()
+    public void Init(ShipLife ship)
     {
+        _ship = ship;
+
         //+ datas
         InitDatas();
         //+ gex
@@ -108,6 +111,13 @@ public class MapLife
     }
 
     #region load/init datas
+
+    public void Load()
+    {
+        // TODO: загрузка из файла
+
+    }
+
     /// <summary>
     /// Загрузка/инициализация параметров.
     /// </summary>
@@ -123,7 +133,7 @@ public class MapLife
     {
         Resources = new List<CityResourceShip>();
         Resources.Add(new CityResourceShip() { Type = CityRecources.Material, CurrentCount = 120 });
-        Resources.Add(new CityResourceShip() { Type = CityRecources.Res1, CurrentCount = 0 });
+        Resources.Add(new CityResourceShip() { Type = CityRecources.Res1, CurrentCount = 5 });
         Resources.Add(new CityResourceShip() { Type = CityRecources.Res2, CurrentCount = 0 });
         Resources.Add(new CityResourceShip() { Type = CityRecources.Res3, CurrentCount = 0 });
         Resources.Add(new CityResourceShip() { Type = CityRecources.Res4, CurrentCount = 0 });
@@ -143,55 +153,59 @@ public class MapLife
         var list = new List<City>();
 
         //! края 1,1 - 17,22
+        //AddCity(list, "Moscow", 5, 5, provider.CreateFiendCity(CityRecources.Res1));
+        if (!_ship.IsJopCompleted) AddCity(list, "JOP", 5, 5, provider.CreateJop());
 
-        //AddCity(list, "Pop", 1, 1, provider.CreateFiendCity(CityRecources.Res1));
-        
-        AddCity(list, "Moscow", 5, 5, provider.CreateFiendCity(CityRecources.Res1));
-        AddCity(list, "Kiev", 7, 4, provider.CreateFiendCity(CityRecources.Res1));
-        AddCity(list, "Riga", 7, 6, provider.CreateFiendCity(CityRecources.Res2));
-        AddCity(list, "Laja", 8, 8, provider.CreateFiendCity(CityRecources.Res3));
+        AddCity(list, "Kiev", 7, 4, provider.CreateFiendCity(CityRecources.Res1, 6));
+        AddCity(list, "Riga", 7, 6, provider.CreateFiendCity(CityRecources.Res2, 2));
+        AddCity(list, "Laja", 8, 8, provider.CreateFiendCity(CityRecources.Res3, 2));
         AddCity(list, "Laja", 6, 8, provider.CreateFiendCity(CityRecources.Res2));
-        AddCity(list, "Opa", 7, 10, provider.CreateFiendCity(CityRecources.Res4));
-        AddCity(list, "Laja", 4, 9, provider.CreateCity(CityType.Neutral, CityRecources.Res1));
-        AddCity(list, "Laja", 10, 6, provider.CreateCity(CityType.Neutral, CityRecources.Res3));
+        AddCity(list, "Opa", 7, 10, provider.CreateFiendCity(CityRecources.Res4, 1));
+        AddCity(list, "Laja", 4, 9, provider.CreateNeutralCity(CityRecources.Res1, 1, 0, 0, 0));
+        AddCity(list, "Laja", 10, 6, provider.CreateNeutralCity(CityRecources.Res3, 10, 2, 0, 0));
 
         AddCity(list, "Asd", 2, 3, provider.CreateFiendCity(CityRecources.Res2));
-        AddCity(list, "Asd", 1, 5, provider.CreateCity(CityType.Neutral, CityRecources.Res3));
-        
-        AddCity(list, "Laja", 13, 6, provider.CreateCity(CityType.Neutral, CityRecources.Res1));
-        AddCity(list, "Laja", 16, 6, provider.CreateCity(CityType.Neutral, CityRecources.Res1));
-        AddCity(list, "Laja", 16, 7, provider.CreateCity(CityType.Neutral, CityRecources.Res2));
-        AddCity(list, "Laja", 15, 4, provider.CreateCity(CityType.Neutral, CityRecources.Res2));
-        AddCity(list, "Laja", 11, 1, provider.CreateCity(CityType.Neutral, CityRecources.Res4));
-        AddCity(list, "Laja", 11, 8, provider.CreateCity(CityType.Neutral, CityRecources.Res1));
-        AddCity(list, "Laja", 13, 9, provider.CreateCity(CityType.Neutral, CityRecources.Res2));
-        AddCity(list, "Laja", 14, 12, provider.CreateCity(CityType.Neutral, CityRecources.Res2));
-        AddCity(list, "Smll", 10, 16, provider.CreateCity(CityType.Neutral, CityRecources.Res2));
-        AddCity(list, "Smll", 16, 19, provider.CreateCity(CityType.Neutral, CityRecources.Res3));
-        AddCity(list, "Laja", 16, 9, provider.CreateCity(CityType.Neutral, CityRecources.Res3));
-        AddCity(list, "Smll", 12, 15, provider.CreateCity(CityType.Neutral, CityRecources.Res3));
-        AddCity(list, "Smll", 17, 2, provider.CreateCity(CityType.Neutral, CityRecources.Res3));
-        AddCity(list, "Smll", 13, 22, provider.CreateCity(CityType.Neutral, CityRecources.Res2));
-        AddCity(list, "Smll", 15, 20, provider.CreateCity(CityType.Neutral, CityRecources.Res2));
+        AddCity(list, "Asd", 1, 5, provider.CreateNeutralCity(CityRecources.Res3, 0, 0, 0, 0));
+
+        AddCity(list, "Laja", 13, 6, provider.CreateNeutralCity(CityRecources.Res1, 0, 0, 0, 0));
+        AddCity(list, "Laja", 16, 6, provider.CreateNeutralCity(CityRecources.Res1, 0, 0, 0, 0));
+        AddCity(list, "Laja", 16, 7, provider.CreateNeutralCity(CityRecources.Res2, 0, 0, 0, 0));
+        AddCity(list, "Laja", 15, 4, provider.CreateNeutralCity(CityRecources.Res2, 0, 0, 0, 0));
+        AddCity(list, "Laja", 11, 1, provider.CreateNeutralCity(CityRecources.Res4, 0, 0, 0, 0));
+        AddCity(list, "Laja", 11, 8, provider.CreateNeutralCity(CityRecources.Res1, 0, 0, 0, 0));
+        AddCity(list, "Laja", 13, 9, provider.CreateNeutralCity(CityRecources.Res2, 0, 0, 0, 0));
+        AddCity(list, "Laja", 14, 12, provider.CreateNeutralCity(CityRecources.Res2, 0, 0, 0, 0));
+        AddCity(list, "Smll", 10, 16, provider.CreateNeutralCity(CityRecources.Res2, 0, 0, 0, 0));
+        AddCity(list, "Smll", 16, 19, provider.CreateNeutralCity(CityRecources.Res3, 0, 0, 0, 0));
+        AddCity(list, "Laja", 16, 9, provider.CreateNeutralCity(CityRecources.Res3, 0, 0, 0, 0));
+        AddCity(list, "Smll", 12, 15, provider.CreateNeutralCity(CityRecources.Res3, 0, 0, 0, 0));
+        AddCity(list, "Smll", 17, 2, provider.CreateNeutralCity(CityRecources.Res3, 0, 0, 0, 0));
+        AddCity(list, "Smll", 13, 22, provider.CreateNeutralCity(CityRecources.Res2, 0, 0, 0, 0));
+        AddCity(list, "Smll", 15, 20, provider.CreateNeutralCity(CityRecources.Res2, 0, 0, 0, 0));
 
 
         // trash
-        AddCity(list, "Smll", 15, 10, provider.CreateCity(CityType.Neutral, CityRecources.Res1));
-        AddCity(list, "Smll", 16, 13, provider.CreateCity(CityType.Neutral, CityRecources.Res1));
-        AddCity(list, "Smll", 16, 16, provider.CreateCity(CityType.Neutral, CityRecources.Res1));
-        AddCity(list, "Smll", 14, 18, provider.CreateCity(CityType.Neutral, CityRecources.Res1));
-        AddCity(list, "Smll", 16, 22, provider.CreateCity(CityType.Neutral, CityRecources.Res1));
-        AddCity(list, "Smll", 10, 11, provider.CreateCity(CityType.Neutral, CityRecources.Res1));
-        AddCity(list, "Smll", 12, 12, provider.CreateCity(CityType.Neutral, CityRecources.Res1));
-        AddCity(list, "Smll", 14, 14, provider.CreateCity(CityType.Neutral, CityRecources.Res1));
-        AddCity(list, "Smll", 13, 20, provider.CreateCity(CityType.Neutral, CityRecources.Res1));
-        AddCity(list, "Smll", 11, 19, provider.CreateCity(CityType.Neutral, CityRecources.Res1));
+        AddCity(list, "Smll", 15, 10, provider.CreateNeutralCity(CityRecources.Res1, 0, 0, 0, 0));
+        AddCity(list, "Smll", 16, 13, provider.CreateNeutralCity(CityRecources.Res1, 0, 0, 0, 0));
+        AddCity(list, "Smll", 16, 16, provider.CreateNeutralCity(CityRecources.Res1, 0, 0, 0, 0));
+        AddCity(list, "Smll", 14, 18, provider.CreateNeutralCity(CityRecources.Res1, 0, 0, 0, 0));
+        AddCity(list, "Smll", 16, 22, provider.CreateNeutralCity(CityRecources.Res1, 0, 0, 0, 0));
+        AddCity(list, "Smll", 10, 11, provider.CreateNeutralCity(CityRecources.Res1, 0, 0, 0, 0));
+        AddCity(list, "Smll", 12, 12, provider.CreateNeutralCity(CityRecources.Res1, 0, 0, 0, 0));
+        AddCity(list, "Smll", 14, 14, provider.CreateNeutralCity(CityRecources.Res1, 0, 0, 0, 0));
+        AddCity(list, "Smll", 13, 20, provider.CreateNeutralCity(CityRecources.Res1, 0, 0, 0, 0));
+        AddCity(list, "Smll", 11, 19, provider.CreateNeutralCity(CityRecources.Res1, 0, 0, 0, 0));
         
         // top left mass
-        AddCity(list, "Addd", 6, 22, provider.CreateFiendCity(CityRecources.Res4));
-        AddCity(list, "Addd", 2, 21, provider.CreateFiendCity(CityRecources.Res2));
-        AddCity(list, "Addd", 4, 19, provider.CreateFiendCity(CityRecources.Res4));
-        AddCity(list, "Fggg", 4, 21, provider.CreateFiendCity(CityRecources.Res3));
+        AddCity(list, "Addd", 6, 22, provider.CreateNeutralCity(CityRecources.Res4, 0, 0, 0, 0));
+        AddCity(list, "Addd", 2, 21, provider.CreateNeutralCity(CityRecources.Res2, 0, 0, 0, 0));
+        AddCity(list, "Addd", 4, 19, provider.CreateNeutralCity(CityRecources.Res4, 0, 0, 0, 0));
+        AddCity(list, "Fggg", 4, 21, provider.CreateNeutralCity(CityRecources.Res3, 0, 0, 0, 0));
+
+
+
+        // JOP
+        if (!_ship.IsJopCompleted) AddCity(list, "JOP", 10, 13, provider.CreateJop());
 
         //AddCity(list, "Popa", 17, 22, provider.CreateFiendCity(CityRecources.Res1));
         return list;
@@ -239,6 +253,20 @@ public class MapLife
         //Gex[1,2].Set(
         //Gex[0, 1].IsBlocked = true;
 
+    }
+
+    /// <summary>
+    /// Освобождение ячейки карты.
+    /// </summary>
+    /// <param name="gex"></param>
+    public void FreeMapGex(MapGex gex)
+    {
+        var x = gex.GexX;
+        var y = gex.GexY;
+
+        var newGex = new MapGex(x, y);
+        newGex.Position = GetMapPositionByGex(x, y);
+        Gex[x, y] = newGex;
     }
 
     #region search route
@@ -453,6 +481,7 @@ public class MapLife
         Day++;
         foreach (var city in Cities)
         {
+            if (city.Model.IsJopAndCompleted()) continue;
             city.NextDay();
         }
     }
@@ -464,6 +493,7 @@ public class MapLife
     {
         foreach (var city in Cities)
         {
+            if (city.Model.IsJopAndCompleted()) continue;
             city.UpdateView();
         }
     }
@@ -587,13 +617,35 @@ public class MapLife
         }
     }
     /// <summary>
+    /// Выполнение квеста в JOP.
+    /// </summary>
+    /// <param name="cityModel"></param>
+    public void QuestJopStart(CityModel cityModel)
+    {
+        var jop = cityModel.GetCurrentJopQuestList();
+        foreach (var res in jop)
+        {
+            var selfRes = GetSelfResource(res.Type);
+            if (selfRes == null || selfRes.CurrentCount <= 0) continue;
+            //- добавляем сколько НАДО
+            var mustBe = res.MustBeForProduct;
+            var selfHave = selfRes.CurrentCount;
+            if (mustBe > selfHave) continue;    // только если есть сколько надо для цикла
+            //var toAddCount = mustBe <= selfHave ? mustBe : selfHave;
+            //- add
+            //res.CurrentCount += toAddCount;
+            selfRes.CurrentCount -= mustBe;
+        }
+    }
+
+    /// <summary>
     /// Достаточно ресурсов для выполнения квеста.
     /// </summary>
     /// <param name="city"></param>
     /// <returns></returns>
     public Boolean ShipHaveEnoughForQuestCity(City city)
     {
-        return ShipHaveEnoughForQuestCity(city.Model);
+        return city.Model.IsJop ? ShipHaveEnoughForQuestJop(city.Model) : ShipHaveEnoughForQuestCity(city.Model);
     }
     public Boolean ShipHaveEnoughForQuestCity(CityModel cityModel)
     {
@@ -603,7 +655,15 @@ public class MapLife
         }
         return true;
     }
-
+    public Boolean ShipHaveEnoughForQuestJop(CityModel cityModel)
+    {
+        var jop = cityModel.GetCurrentJopQuestList();
+        foreach (var res in jop)
+        {
+            if (!IsResourceEnough(res)) return false;
+        }
+        return true;
+    }
 
     /// <summary>
     /// Достаточно ли ресурса в наличии.

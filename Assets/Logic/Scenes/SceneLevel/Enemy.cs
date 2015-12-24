@@ -339,7 +339,6 @@ public class EnemyBrunchProvider
     // возвращаем сколько занимаем времени именно наша пачка
     private float FillBranchLoh(EnemyIndexes enemyIndex, EnemyBrunch brunch, float timeOffsetFromBranch)
     {
-        return FillLoh5(enemyIndex, brunch, timeOffsetFromBranch);
         var bindex = UnityEngine.Random.Range(1, 7+1);
         //?++ возможно делать выбор по сложности города и тайм зоне
         switch (bindex)
@@ -385,8 +384,8 @@ public class EnemyBrunchProvider
     }
     private float FillLoh5(EnemyIndexes enemyIndex, EnemyBrunch brunch, float timeOffsetFromBranch)
     {
-        var route = BrunchRouteNum.Num4;//GetRandomRoute();
-        var routeType = BrunchRouteType.Right;// GetRandomRouteType();
+        var route = GetRandomRoute();
+        var routeType = GetRandomRouteType();
         brunch.AddEnemyLaunch(enemyIndex, route, timeOffsetFromBranch + 1.0f, routeType);
         brunch.AddEnemyLaunch(enemyIndex, route, timeOffsetFromBranch + 2.0f, routeType);
         brunch.AddEnemyLaunch(enemyIndex, route, timeOffsetFromBranch + 3.0f, routeType);

@@ -21,6 +21,10 @@ public class ShipLife
     /// Количество шагов за день.
     /// </summary>
     public Int32 MaxSteps { get; private set; }
+    /// <summary>
+    /// JOP улетел.
+    /// </summary>
+    public Boolean IsJopCompleted { get; private set; }
     #endregion
 
     #region Level
@@ -79,6 +83,7 @@ public class ShipLife
     public ShipLife()
     {
         MaxSteps = 3;
+        IsJopCompleted = false;
 
         MaxHealth = 10.0f;
         IsDied = false;
@@ -113,7 +118,23 @@ public class ShipLife
     }
 
 
-    
+    public void Load()
+    {
+        // TODO: загрузка из файла
+
+    }
+
+
+    #region Map logic
+    /// <summary>
+    /// JOP выполнен.
+    /// </summary>
+    public void SetJopCompleted()
+    {
+        IsJopCompleted = true;
+    }
+    #endregion
+
     #region Level logic
     /// <summary>
     /// Подготовка перед полетом.

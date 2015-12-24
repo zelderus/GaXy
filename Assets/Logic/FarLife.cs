@@ -34,9 +34,11 @@ public static class FarLife
 
         ShipLife = new ShipLife();
         ShipLife.Init();
+        ShipLife.Load();
 
         MapLife = new MapLife();
-        MapLife.Init();
+        MapLife.Init(ShipLife);
+        MapLife.Load();
 
         //if (GameLogic == null)
         //{
@@ -46,7 +48,6 @@ public static class FarLife
         InitLanguage();
         InitSound();
 
-        // TODO: загрузить данные, инициализация ими MapLife и ShipLife
         //+ data
         //if (PlayerData == null)
         //{
