@@ -243,6 +243,21 @@ public class CityModelProvider
     {
         return CreateCity(CityType.Neutral, res, 0, res1, res2, res3, res4);
     }
+    public CityModel CreateNeutralCity(CityRecources res)
+    {
+        Int32 res1 = 0;
+        Int32 res2 = 0;
+        Int32 res3 = 0;
+        Int32 res4 = 0;
+        switch(res)
+        {
+            case CityRecources.Res1: res1 = 10; break;
+            case CityRecources.Res2: res1 = 20; res2 = 10; break;
+            case CityRecources.Res3: res1 = 30; res2 = 20; res3 = 10; break;
+            case CityRecources.Res4: res1 = 100; res2 = 50; res3 = 25; res4 = 1; break;
+        }
+        return CreateCity(CityType.Neutral, res, 0, res1, res2, res3, res4);
+    }
 
     public CityModel CreateFiendCity(CityRecources recources, Int32 resCount = 0)
     {

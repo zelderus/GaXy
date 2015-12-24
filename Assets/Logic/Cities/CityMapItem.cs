@@ -14,8 +14,7 @@ public class CityMapItem : MonoBehaviour//, IPointerClickHandler
     public MapController MainLogicObject;
     public City CityModel;
     public Transform PlanetModel;
-
-
+ 
     public Material Planet1Mat;
     public Material Planet2Mat;
     public Material Planet3Mat;
@@ -103,11 +102,12 @@ public class CityMapItem : MonoBehaviour//, IPointerClickHandler
         _jopFloatOn = true;
         //this.GetComponent<BoxCollider>().gameObject.SetActive(false);
         //+ fly anim
-        //this.GetComponent<Animator>().Play(new Playable(){ state = PlayState.Playing, time = 0.0f});
-        //this.GetComponent<Animator>().StartPlayback();
-        PlanetModel.GetComponent<Animation>().Play();
+        PlanetModel.GetComponent<Animator>().enabled = true;
+        //PlanetModel.GetComponent<Animator>().applyRootMotion = true;
+        PlanetModel.GetComponent<Animator>().applyRootMotion = false;
+        PlanetModel.GetComponent<Animator>().Play(0);
 
-        //Destroy(this.gameObject, 3.0f);
+        Destroy(this.gameObject, 8.0f);
     }
 
     //private void JopUpdate()

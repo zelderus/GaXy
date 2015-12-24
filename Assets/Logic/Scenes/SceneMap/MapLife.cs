@@ -153,8 +153,8 @@ public class MapLife
         var list = new List<City>();
 
         //! края 1,1 - 17,22
-        //AddCity(list, "Moscow", 5, 5, provider.CreateFiendCity(CityRecources.Res1));
-        if (!_ship.IsJopCompleted) AddCity(list, "JOP", 5, 5, provider.CreateJop());
+        AddCity(list, "Moscow", 5, 5, provider.CreateFiendCity(CityRecources.Res1));
+        //if (!_ship.IsJopCompleted) AddCity(list, "JOP", 5, 5, provider.CreateJop());
 
         AddCity(list, "Kiev", 7, 4, provider.CreateFiendCity(CityRecources.Res1, 6));
         AddCity(list, "Riga", 7, 6, provider.CreateFiendCity(CityRecources.Res2, 2));
@@ -162,45 +162,45 @@ public class MapLife
         AddCity(list, "Laja", 6, 8, provider.CreateFiendCity(CityRecources.Res2));
         AddCity(list, "Opa", 7, 10, provider.CreateFiendCity(CityRecources.Res4, 1));
         AddCity(list, "Laja", 4, 9, provider.CreateNeutralCity(CityRecources.Res1, 1, 0, 0, 0));
-        AddCity(list, "Laja", 10, 6, provider.CreateNeutralCity(CityRecources.Res3, 10, 2, 0, 0));
+        AddCity(list, "Laja", 10, 6, provider.CreateNeutralCity(CityRecources.Res3));
 
         AddCity(list, "Asd", 2, 3, provider.CreateFiendCity(CityRecources.Res2));
-        AddCity(list, "Asd", 1, 5, provider.CreateNeutralCity(CityRecources.Res3, 0, 0, 0, 0));
+        AddCity(list, "Asd", 1, 5, provider.CreateNeutralCity(CityRecources.Res3));
 
-        AddCity(list, "Laja", 13, 6, provider.CreateNeutralCity(CityRecources.Res1, 0, 0, 0, 0));
-        AddCity(list, "Laja", 16, 6, provider.CreateNeutralCity(CityRecources.Res1, 0, 0, 0, 0));
-        AddCity(list, "Laja", 16, 7, provider.CreateNeutralCity(CityRecources.Res2, 0, 0, 0, 0));
-        AddCity(list, "Laja", 15, 4, provider.CreateNeutralCity(CityRecources.Res2, 0, 0, 0, 0));
-        AddCity(list, "Laja", 11, 1, provider.CreateNeutralCity(CityRecources.Res4, 0, 0, 0, 0));
-        AddCity(list, "Laja", 11, 8, provider.CreateNeutralCity(CityRecources.Res1, 0, 0, 0, 0));
-        AddCity(list, "Laja", 13, 9, provider.CreateNeutralCity(CityRecources.Res2, 0, 0, 0, 0));
-        AddCity(list, "Laja", 14, 12, provider.CreateNeutralCity(CityRecources.Res2, 0, 0, 0, 0));
-        AddCity(list, "Smll", 10, 16, provider.CreateNeutralCity(CityRecources.Res2, 0, 0, 0, 0));
-        AddCity(list, "Smll", 16, 19, provider.CreateNeutralCity(CityRecources.Res3, 0, 0, 0, 0));
-        AddCity(list, "Laja", 16, 9, provider.CreateNeutralCity(CityRecources.Res3, 0, 0, 0, 0));
-        AddCity(list, "Smll", 12, 15, provider.CreateNeutralCity(CityRecources.Res3, 0, 0, 0, 0));
-        AddCity(list, "Smll", 17, 2, provider.CreateNeutralCity(CityRecources.Res3, 0, 0, 0, 0));
-        AddCity(list, "Smll", 13, 22, provider.CreateNeutralCity(CityRecources.Res2, 0, 0, 0, 0));
-        AddCity(list, "Smll", 15, 20, provider.CreateNeutralCity(CityRecources.Res2, 0, 0, 0, 0));
+        AddCity(list, "Laja", 13, 6, provider.CreateNeutralCity(CityRecources.Res1));
+        AddCity(list, "Laja", 16, 6, provider.CreateNeutralCity(CityRecources.Res1));
+        AddCity(list, "Laja", 16, 7, provider.CreateNeutralCity(CityRecources.Res2));
+        AddCity(list, "Laja", 15, 4, provider.CreateNeutralCity(CityRecources.Res2));
+        AddCity(list, "Laja", 11, 1, provider.CreateNeutralCity(CityRecources.Res4));
+        AddCity(list, "Laja", 11, 8, provider.CreateNeutralCity(CityRecources.Res1));
+        AddCity(list, "Laja", 13, 9, provider.CreateNeutralCity(CityRecources.Res2));
+        AddCity(list, "Laja", 14, 12, provider.CreateNeutralCity(CityRecources.Res2));
+        AddCity(list, "Smll", 10, 16, provider.CreateNeutralCity(CityRecources.Res2));
+        AddCity(list, "Smll", 16, 19, provider.CreateNeutralCity(CityRecources.Res3));
+        AddCity(list, "Laja", 16, 9, provider.CreateNeutralCity(CityRecources.Res3));
+        AddCity(list, "Smll", 12, 15, provider.CreateNeutralCity(CityRecources.Res3));
+        AddCity(list, "Smll", 17, 2, provider.CreateNeutralCity(CityRecources.Res3));
+        AddCity(list, "Smll", 13, 22, provider.CreateNeutralCity(CityRecources.Res2));
+        AddCity(list, "Smll", 15, 20, provider.CreateNeutralCity(CityRecources.Res2));
 
 
         // trash
-        AddCity(list, "Smll", 15, 10, provider.CreateNeutralCity(CityRecources.Res1, 0, 0, 0, 0));
-        AddCity(list, "Smll", 16, 13, provider.CreateNeutralCity(CityRecources.Res1, 0, 0, 0, 0));
-        AddCity(list, "Smll", 16, 16, provider.CreateNeutralCity(CityRecources.Res1, 0, 0, 0, 0));
-        AddCity(list, "Smll", 14, 18, provider.CreateNeutralCity(CityRecources.Res1, 0, 0, 0, 0));
-        AddCity(list, "Smll", 16, 22, provider.CreateNeutralCity(CityRecources.Res1, 0, 0, 0, 0));
-        AddCity(list, "Smll", 10, 11, provider.CreateNeutralCity(CityRecources.Res1, 0, 0, 0, 0));
-        AddCity(list, "Smll", 12, 12, provider.CreateNeutralCity(CityRecources.Res1, 0, 0, 0, 0));
-        AddCity(list, "Smll", 14, 14, provider.CreateNeutralCity(CityRecources.Res1, 0, 0, 0, 0));
-        AddCity(list, "Smll", 13, 20, provider.CreateNeutralCity(CityRecources.Res1, 0, 0, 0, 0));
-        AddCity(list, "Smll", 11, 19, provider.CreateNeutralCity(CityRecources.Res1, 0, 0, 0, 0));
+        AddCity(list, "Smll", 15, 10, provider.CreateNeutralCity(CityRecources.Res1));
+        AddCity(list, "Smll", 16, 13, provider.CreateNeutralCity(CityRecources.Res1));
+        AddCity(list, "Smll", 16, 16, provider.CreateNeutralCity(CityRecources.Res1));
+        AddCity(list, "Smll", 14, 18, provider.CreateNeutralCity(CityRecources.Res1));
+        AddCity(list, "Smll", 16, 22, provider.CreateNeutralCity(CityRecources.Res1));
+        AddCity(list, "Smll", 10, 11, provider.CreateNeutralCity(CityRecources.Res1));
+        AddCity(list, "Smll", 12, 12, provider.CreateNeutralCity(CityRecources.Res1));
+        AddCity(list, "Smll", 14, 14, provider.CreateNeutralCity(CityRecources.Res1));
+        AddCity(list, "Smll", 13, 20, provider.CreateNeutralCity(CityRecources.Res1));
+        AddCity(list, "Smll", 11, 19, provider.CreateNeutralCity(CityRecources.Res1));
         
         // top left mass
-        AddCity(list, "Addd", 6, 22, provider.CreateNeutralCity(CityRecources.Res4, 0, 0, 0, 0));
-        AddCity(list, "Addd", 2, 21, provider.CreateNeutralCity(CityRecources.Res2, 0, 0, 0, 0));
-        AddCity(list, "Addd", 4, 19, provider.CreateNeutralCity(CityRecources.Res4, 0, 0, 0, 0));
-        AddCity(list, "Fggg", 4, 21, provider.CreateNeutralCity(CityRecources.Res3, 0, 0, 0, 0));
+        AddCity(list, "Addd", 6, 22, provider.CreateNeutralCity(CityRecources.Res4));
+        AddCity(list, "Addd", 2, 21, provider.CreateNeutralCity(CityRecources.Res2));
+        AddCity(list, "Addd", 4, 19, provider.CreateNeutralCity(CityRecources.Res4));
+        AddCity(list, "Fggg", 4, 21, provider.CreateNeutralCity(CityRecources.Res3));
 
 
 
