@@ -13,8 +13,8 @@ public class ShipFlyLogic : MonoBehaviour
     public Transform DamageObj;
     public Transform ShieldObj;
 
-    public Transform ShipObj;
-    public Transform ColliderObj;
+    //public Transform ShipObj;
+    //public Transform ColliderObj;
 
     #region damage
     private float _timeInDamage = 2.0f;
@@ -23,17 +23,18 @@ public class ShipFlyLogic : MonoBehaviour
     #endregion
 
 
-    private float _modelRotX = 270.0f;  //?++ начальное вращение модели
+    private float _modelRotX = 0.0f;//270.0f;  //?++ начальное вращение модели
     private float _modelRotY = 0.0f;    //?++ начальное вращение модели
+    private float _modelRotZ = 0.0f;
 
     // Use this for initialization
 	void Start ()
 	{
 
         //transform.rotation = Quaternion.FromToRotation(new Vector3(-1, 0, 0), new Vector3(0, 1, 0));
-	    
-        //_modelRotX = ShipObj.transform.rotation.x;
-        //_modelRotY = ShipObj.transform.rotation.y;
+
+	    //_modelRotX = ShipObj.transform.rotation.x;
+	    //_modelRotY = ShipObj.transform.rotation.y;
 	}
 
     public void Init(ShipLife shipLife, LevelController controller)
@@ -103,8 +104,9 @@ public class ShipFlyLogic : MonoBehaviour
         rot = Mathf.Lerp(_oldCrenY, rot, Time.deltaTime * 8.0f);
         
         _oldCrenY = rot;
-        ShipObj.transform.rotation = Quaternion.Euler(_modelRotX, _modelRotY, -rot);
-        ColliderObj.transform.rotation = Quaternion.Euler(_modelRotX, _modelRotY, -rot);
+        //ShipObj.transform.rotation = Quaternion.Euler(_modelRotX, _modelRotY, -rot);
+        //ColliderObj.transform.rotation = Quaternion.Euler(_modelRotX, _modelRotY, -rot);
+        this.transform.rotation = Quaternion.Euler(_modelRotX, -rot, _modelRotZ);
     }
     #endregion
 
@@ -319,7 +321,7 @@ public class ShipFlyLogic : MonoBehaviour
 	            _inDamage = false;
 	            DisableDamageObj();
 	        }
-	    } 
+	    }
         //- запуск своих снарядов
 	    BulletsLaunchUpdate(Time.deltaTime);
 
