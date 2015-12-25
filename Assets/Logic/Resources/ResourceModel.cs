@@ -51,6 +51,8 @@ public class CityResourceShip : CityResource
     {
         CurrentCount = 0;
     }
+
+
 }
 
 /// <summary>

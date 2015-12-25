@@ -19,11 +19,12 @@ public enum CityType
 /// </summary>
 public class CityModel
 {
-
+    public Int32 Id { get; set; }
     public CityType CityType { get; set; }
     public List<CityResourceFrom> QuestResources { get; private set; }
     public CityResourceProduct ResourceProduct { get; set; }
-    public Int32 DaysToCollect { get { return ResourceProduct.ProductDays - _currentDayCicle; } }
+    public Int32 DaysToCollect { get { return ResourceProduct.ProductDays - CurrentDayCicle; } }
+    public Int32 CurrentDayCicle { get; private set; }
     public Int32 Rating { get; private set; }
     public Int32 Level { get; private set; }
     public Boolean IsJop { get; private set; }
@@ -35,14 +36,14 @@ public class CityModel
     public Int32 RotDir = 1;
     public float SizeScale = 1.0f;
 
-    private Int32 _currentDayCicle;
+    
     private Boolean _flagUpdateCityMapView = false;
-
     private static List<Int32> LevelUpRatings = new List<Int32>() { 10, 20, 50, 100 };
 
     public CityModel()
     {
-        _currentDayCicle = 0;
+        Id = 0;
+        CurrentDayCicle = 0;
         Rating = 0;
         Level = 1;
         CityType = CityType.Neutral;
@@ -53,16 +54,27 @@ public class CityModel
         IsJopCompleted = false;
     }
 
+
+    public void UpdateData(CityType cityType, Int32 currentDayCicle, Int32 rating, Int32 level, Int32 currentJopQuest, bool isJopCompleted)
+    {
+        CurrentDayCicle = currentDayCicle;
+        Rating = rating;
+        Level = level;
+        CityType = cityType;
+        CurrentJopQuest = currentJopQuest;
+        IsJopCompleted = isJopCompleted;
+    }
+
     /// <summary>
     /// Прошел цикл.
     /// </summary>
     public void NextDay()
     {
-        if (HasProcess()) _currentDayCicle++;
+        if (HasProcess()) CurrentDayCicle++;
 
-        if (_currentDayCicle >= ResourceProduct.ProductDays) // + 1
+        if (CurrentDayCicle >= ResourceProduct.ProductDays) // + 1
         {
-            _currentDayCicle = 0;
+            CurrentDayCicle = 0;
             CheckCollect();
         }
         else //-  если собрали 

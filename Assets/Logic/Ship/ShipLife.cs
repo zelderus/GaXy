@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Assets.Scripts.ZelderFramework.FileSystem;
 using UnityEngine;
 using System.Collections;
 
@@ -7,7 +8,7 @@ using System.Collections;
 /// <summary>
 /// Данные и способности корабля.
 /// </summary>
-public class ShipLife
+public class ShipLife : FileManagedClass
 {
     #region Global
     /// <summary>
@@ -82,27 +83,27 @@ public class ShipLife
 
     public ShipLife()
     {
+        // map
         MaxSteps = 3;
         IsJopCompleted = false;
-
+        // level
         MaxHealth = 10.0f;
         IsDied = false;
         MaxMoveSpeed = 10.0f;
         MoveSpeed = MaxMoveSpeed;
-        Bullets = new List<Bullet>();
         ResistantBodyDamage = 1.0f;
         ResistantAir = 1.0f;
         ResistantRocket = 1.0f;
         LuckyForMaterials = 1.0f;
-
+        // bullets
+        Bullets = new List<Bullet>();
+        // bonus
         ShipBonusHealth = 2.0f;
         ShipBonusHealthCount = 2;
         ShipBonusHealthTime = 10.0f;
-
         ShipBonusShield = 3.0f;
         ShipBonusShieldCount = 4;
         ShipBonusShieldTime = 10.0f;
-
         ShipBonusTree = 30.0f;
         ShipBonusTreeCount = 1;
         ShipBonusTreeTime = 60.0f;
@@ -118,10 +119,93 @@ public class ShipLife
     }
 
 
-    public void Load()
-    {
-        // TODO: загрузка из файла
 
+    /// <summary>
+    /// Данные для сохранения.
+    /// </summary>
+    /// <returns></returns>
+    public override List<FileManagerData> ConvertToSaveData()
+    {
+        // TODO: сохранение
+        var datas = new List<FileManagerData>();
+        datas.Add(new FileManagerData(FileManagerTypes.Single, UnityEngine.Random.Range(53.5f, 745.9999f)));
+        datas.Add(new FileManagerData(FileManagerTypes.String, StringHelper.GetRandomString(3, 7)));   //+ rnd
+        datas.Add(new FileManagerData(FileManagerTypes.Int32, UnityEngine.Random.Range(33, 444)));
+        // map
+        datas.Add(new FileManagerData(FileManagerTypes.Int32, MaxSteps));
+        datas.Add(new FileManagerData(FileManagerTypes.Boolean, IsJopCompleted));
+        // level
+        datas.Add(new FileManagerData(FileManagerTypes.Single, MaxHealth));
+        datas.Add(new FileManagerData(FileManagerTypes.Single, MaxMoveSpeed));
+        datas.Add(new FileManagerData(FileManagerTypes.Single, ResistantBodyDamage));
+        datas.Add(new FileManagerData(FileManagerTypes.Single, ResistantAir));
+        datas.Add(new FileManagerData(FileManagerTypes.Single, ResistantRocket));
+        datas.Add(new FileManagerData(FileManagerTypes.Single, LuckyForMaterials));
+        // bullets
+        foreach (var bullet in Bullets)
+        {
+            datas.Add(new FileManagerData(FileManagerTypes.Boolean, bullet.ShipHave));
+            datas.Add(new FileManagerData(FileManagerTypes.Single, bullet.TimeToGo));
+            datas.Add(new FileManagerData(FileManagerTypes.Single, bullet.DamageDif));
+            datas.Add(new FileManagerData(FileManagerTypes.Single, bullet.SpeedDif));
+        }
+        // bonus
+        datas.Add(new FileManagerData(FileManagerTypes.Single, ShipBonusHealth));
+        datas.Add(new FileManagerData(FileManagerTypes.Int32, ShipBonusHealthCount));
+        datas.Add(new FileManagerData(FileManagerTypes.Single, ShipBonusHealthTime));
+        datas.Add(new FileManagerData(FileManagerTypes.Single, ShipBonusShield));
+        datas.Add(new FileManagerData(FileManagerTypes.Int32, ShipBonusShieldCount));
+        datas.Add(new FileManagerData(FileManagerTypes.Single, ShipBonusShieldTime));
+        datas.Add(new FileManagerData(FileManagerTypes.Single, ShipBonusTree));
+        datas.Add(new FileManagerData(FileManagerTypes.Int32, ShipBonusTreeCount));
+        datas.Add(new FileManagerData(FileManagerTypes.Single, ShipBonusTreeTime));
+
+        datas.Add(new FileManagerData(FileManagerTypes.Int32, UnityEngine.Random.Range(1, 10)));
+        return datas;
+    }
+    /// <summary>
+    /// Загрузка данных.
+    /// </summary>
+    /// <param name="datas"></param>
+    public override void LoadFromSaveData(List<FileManagerData> datas)
+    {
+        var ind = 0;
+        // TODO: загрузка
+        var rnd1 = (Single)datas[ind++].DataValue;   //+ rnd
+        var rndStr = (String)datas[ind++].DataValue.ToString();   //+ rnd text
+        var rnd2 = (Int32)datas[ind++].DataValue;   //+ rnd
+        
+        // map
+        MaxSteps = (Int32)datas[ind++].DataValue;
+        IsJopCompleted = (Boolean)datas[ind++].DataValue;
+        // level
+        MaxHealth = (Single)datas[ind++].DataValue;
+        MaxMoveSpeed = (Single)datas[ind++].DataValue;
+        ResistantBodyDamage = (Single)datas[ind++].DataValue;
+        ResistantAir = (Single)datas[ind++].DataValue;
+        ResistantRocket = (Single)datas[ind++].DataValue;
+        LuckyForMaterials = (Single)datas[ind++].DataValue;
+        // bullets
+        foreach (var bullet in Bullets)
+        {
+            var b1 = (Boolean) datas[ind++].DataValue;
+            var b2 = (Single)datas[ind++].DataValue;
+            var b3 = (Single)datas[ind++].DataValue;
+            var b4 = (Single)datas[ind++].DataValue;
+            bullet.LoadData(b1, b2, b3, b4);
+        }
+        // bonus
+        ShipBonusHealth = (Single)datas[ind++].DataValue;
+        ShipBonusHealthCount = (Int32)datas[ind++].DataValue;
+        ShipBonusHealthTime = (Single)datas[ind++].DataValue;
+        ShipBonusShield = (Single)datas[ind++].DataValue;
+        ShipBonusShieldCount = (Int32)datas[ind++].DataValue;
+        ShipBonusShieldTime = (Single)datas[ind++].DataValue;
+        ShipBonusTree = (Single)datas[ind++].DataValue;
+        ShipBonusTreeCount = (Int32)datas[ind++].DataValue;
+        ShipBonusTreeTime = (Single)datas[ind++].DataValue;
+
+        var rnd3 = (Int32)datas[ind++].DataValue;   //+ rnd
     }
 
 

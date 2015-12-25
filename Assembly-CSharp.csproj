@@ -100,12 +100,16 @@
      <Compile Include="Assets\Logic\UI\PanelWorkResourceBlockLogic.cs" />
      <Compile Include="Assets\Logic\ZelderFramework\Animations\EaseAnimations.cs" />
      <Compile Include="Assets\Logic\ZelderFramework\Animations\EaseAnimationsMath.cs" />
+     <Compile Include="Assets\Logic\ZelderFramework\FileSystem\ByteConverter.cs" />
+     <Compile Include="Assets\Logic\ZelderFramework\FileSystem\FileManager.cs" />
+     <Compile Include="Assets\Logic\ZelderFramework\FileSystem\FileSystemObjects.cs" />
      <Compile Include="Assets\Logic\ZelderFramework\GameLife.cs" />
      <Compile Include="Assets\Logic\ZelderFramework\Helpers\DebugHelper.cs" />
      <Compile Include="Assets\Logic\ZelderFramework\Helpers\DisplayHelper.cs" />
      <Compile Include="Assets\Logic\ZelderFramework\Helpers\GestHelpers.cs" />
      <Compile Include="Assets\Logic\ZelderFramework\Helpers\ImageHelper.cs" />
      <Compile Include="Assets\Logic\ZelderFramework\Helpers\MathHelpers.cs" />
+     <Compile Include="Assets\Logic\ZelderFramework\Helpers\StringHelper.cs" />
      <Compile Include="Assets\Logic\ZelderFramework\Math\Vectors.cs" />
      <Compile Include="Assets\Logic\ZelderFramework\MultiPlatforms.cs" />
      <None Include="Assets\Resources\Materials\Level\CountShader.shader" />
@@ -114,6 +118,9 @@
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="WP8Market">
+ <HintPath>D:/Unity/FarF/Assets/Plugins/WP8Market.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>D:/Program Files/Unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>

@@ -104,9 +104,9 @@ namespace ZelderFramework
         /// <returns></returns>
         public GameLanguages GetDeviceLanguageDo()
         {
-            //var culture = WP8Zelder.Device.GetDeviceLanguage();
+            var culture = WP8Zelder.Device.GetDeviceLanguage();
 
-            //if (culture.StartsWith("ru")) return GameLanguages.Russian;
+            if (culture.StartsWith("ru")) return GameLanguages.Russian;
 
             return GameLanguages.English;
         }

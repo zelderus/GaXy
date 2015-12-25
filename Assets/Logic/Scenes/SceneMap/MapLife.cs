@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Collections;
+using Assets.Scripts.ZelderFramework.FileSystem;
 using UnityEngine;
 
 
@@ -62,7 +63,7 @@ public class MapGex
 }
 
 
-public class MapLife
+public class MapLife : FileManagedClass
 {
     /// <summary>
     /// Текущий день.
@@ -89,6 +90,8 @@ public class MapLife
     private Int32[,] _workGex;
 
     private ShipLife _ship;
+    private Int32 _currentCityId = 0;
+    private Int32 _currentNextCityId = 0;
 
     public MapLife()
     {
@@ -112,18 +115,14 @@ public class MapLife
 
     #region load/init datas
 
-    public void Load()
-    {
-        // TODO: загрузка из файла
-
-    }
 
     /// <summary>
     /// Загрузка/инициализация параметров.
     /// </summary>
     private void InitDatas()
     {
-        LevelStatus = FarStatusLevel.Init;  //? загрузить реальный
+        Day = 0;
+        LevelStatus = FarStatusLevel.Init;
     }
 
     /// <summary>
@@ -211,6 +210,7 @@ public class MapLife
         return list;
     }
 
+    private Int32 _cityIdGlobal = 700;
     private void AddCity(List<City> list, String title, Int32 x, Int32 y, CityModel cityModel)
     {
         var gexX = WrapGexX(x);
@@ -218,6 +218,9 @@ public class MapLife
         // гекс
         var gex = Gex[gexX, gexY];
         // город
+        //Debug.Log(_cityIdGlobal);
+        _cityIdGlobal++;
+        cityModel.Id = _cityIdGlobal;
         var city = new City() { Title = title, Position = gex.Position, Model = cityModel };
         city.SetGex(gex);
 
@@ -226,6 +229,83 @@ public class MapLife
         list.Add(city);
     }
     #endregion
+
+    /// <summary>
+    /// Данные для сохранения.
+    /// </summary>
+    /// <returns></returns>
+    public override List<FileManagerData> ConvertToSaveData()
+    {
+        // TODO: сохранение
+        var datas = new List<FileManagerData>();
+        datas.Add(new FileManagerData(FileManagerTypes.Single, UnityEngine.Random.Range(53.5f, 745.9999f)));
+        datas.Add(new FileManagerData(FileManagerTypes.String, StringHelper.GetRandomString(3, 7)));   //+ rnd
+        
+        //
+        datas.Add(new FileManagerData(FileManagerTypes.Int32, (Int32)Day));
+        datas.Add(new FileManagerData(FileManagerTypes.Int32, (Int32)LevelStatus));
+        // resources
+        foreach (var res in Resources)
+        {
+            datas.Add(new FileManagerData(FileManagerTypes.Int32, res.CurrentCount));
+        }
+        // cities
+        datas.Add(new FileManagerData(FileManagerTypes.Int32, _currentCityId));
+        datas.Add(new FileManagerData(FileManagerTypes.Int32, _currentNextCityId));
+        foreach (var city in Cities)
+        {
+            datas.Add(new FileManagerData(FileManagerTypes.Int32, (Int32)city.Model.CityType));
+            datas.Add(new FileManagerData(FileManagerTypes.Int32, city.Model.CurrentDayCicle));
+            datas.Add(new FileManagerData(FileManagerTypes.Int32, city.Model.Rating));
+            datas.Add(new FileManagerData(FileManagerTypes.Int32, city.Model.Level));
+            datas.Add(new FileManagerData(FileManagerTypes.Int32, city.Model.CurrentJopQuest));
+            datas.Add(new FileManagerData(FileManagerTypes.Boolean, city.Model.IsJopCompleted));
+        }
+
+        datas.Add(new FileManagerData(FileManagerTypes.Int32, UnityEngine.Random.Range(1, 10)));
+        datas.Add(new FileManagerData(FileManagerTypes.Int32, UnityEngine.Random.Range(1, 10)));
+        return datas;
+    }
+    /// <summary>
+    /// Загрузка данных.
+    /// </summary>
+    /// <param name="datas"></param>
+    public override void LoadFromSaveData(List<FileManagerData> datas)
+    {
+        var ind = 0;
+        // TODO: загрузка
+        var rnd1 = (Single)datas[ind++].DataValue;   //+ rnd
+        var rndStr = (String)datas[ind++].DataValue.ToString();   //+ rnd text
+
+        //
+        Day = (Int32)datas[ind++].DataValue;
+        LevelStatus = (FarStatusLevel)(Int32)datas[ind++].DataValue;
+        // resources
+        foreach (var res in Resources)
+        {
+            var b1 = (Int32)datas[ind++].DataValue;
+            res.CurrentCount = b1;
+        }
+        // cities
+        _currentCityId = (Int32)datas[ind++].DataValue;
+        _currentNextCityId = (Int32)datas[ind++].DataValue;
+        foreach (var city in Cities)
+        {
+            var c1 = (CityType)(Int32)datas[ind++].DataValue;
+            var c2 = (Int32)datas[ind++].DataValue;
+            var c3 = (Int32)datas[ind++].DataValue;
+            var c4 = (Int32)datas[ind++].DataValue;
+            var c5 = (Int32)datas[ind++].DataValue;
+            var c6 = (Boolean)datas[ind++].DataValue;
+            city.Model.UpdateData(c1, c2, c3, c4, c5, c6);
+        }
+        SetCurrentCity(Cities.FirstOrDefault(f => f.Model.Id == _currentCityId));
+        SetNextCity(Cities.FirstOrDefault(f => f.Model.Id == _currentNextCityId));
+
+
+        var rnd3 = (Int32)datas[ind++].DataValue;   //+ rnd
+        var rnd4 = (Int32)datas[ind++].DataValue;   //+ rnd
+    }
 
 
     #region map sots
@@ -467,10 +547,12 @@ public class MapLife
     public void SetCurrentCity(City city)
     {
         CurrenctCity = city;
+        _currentCityId = city.Model.Id;
     }
     public void SetNextCity(City city)
     {
         NextCity = city;
+        _currentNextCityId = city.Model.Id;
     }
 
     /// <summary>

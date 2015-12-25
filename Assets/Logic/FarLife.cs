@@ -1,15 +1,49 @@
 ﻿using System;
+using System.Collections.Generic;
+using Assets.Scripts.ZelderFramework.FileSystem;
 using UnityEngine;
 using System.Collections;
 using ZelderFramework;
 
 
 
+public class FarLifeGlobalData : FileManagedClass
+{
+    public Int32 FileVersion = 11;
+    public Int32 FileVersionLoaded = 0;
+
+    public FarLifeGlobalData()
+    {
+        
+    }
+
+    /// <summary>
+    /// Данные для сохранения.
+    /// </summary>
+    /// <returns></returns>
+    public override List<FileManagerData> ConvertToSaveData()
+    {
+        var datas = new List<FileManagerData>();
+        datas.Add(new FileManagerData(FileManagerTypes.Int32, FileVersion));
+        return datas;
+    }
+    /// <summary>
+    /// Загрузка данных.
+    /// </summary>
+    /// <param name="datas"></param>
+    public override void LoadFromSaveData(List<FileManagerData> datas)
+    {
+        var ind = 0;
+        FileVersionLoaded = (Int32)datas[ind++].DataValue;
+    }
+}
+
 /// <summary>
 /// Основная логика игры.
 /// </summary>
 public static class FarLife
 {
+    public static FarLifeGlobalData GlobalData { private set; get; }
     public static GameLife GameLife { private set; get; }
     public static ShipLife ShipLife { private set; get; }
     public static GameLanguages Language { private set; get; }
@@ -26,7 +60,8 @@ public static class FarLife
     {
         if (_inited) return;
         
-        
+        GlobalData = new FarLifeGlobalData();
+
         if (GameLife == null)
         {
             GameLife = new GameLife();
@@ -38,11 +73,12 @@ public static class FarLife
 
         ShipLife = new ShipLife();
         ShipLife.Init();
-        ShipLife.Load();
 
         MapLife = new MapLife();
         MapLife.Init(ShipLife);
-        MapLife.Load();
+
+        //! LOAD
+        LoadGame();
 
         //if (GameLogic == null)
         //{
@@ -74,14 +110,36 @@ public static class FarLife
     }
 
 
+    private static Int32 _fileVersion = 10;
+    /// <summary>
+    /// Загрузка.
+    /// </summary>
+    public static void LoadGame()
+    {
+        FileManager.Load("gld.zld", new List<FileManagedClass>() { GlobalData });
+        if (GlobalData.FileVersionLoaded < GlobalData.FileVersion)
+        {
+            FileManager.Delete("gld.zld");
+            FileManager.Delete("sl.zld");
+            FileManager.Delete("ml.zld");
+            return;
+        }
+
+        FileManager.Load("sl.zld", new List<FileManagedClass>() { ShipLife });
+        FileManager.Load("ml.zld", new List<FileManagedClass>() { MapLife });
+    }
+
     /// <summary>
     /// Сохранение.
     /// </summary>
     public static void SaveGame()
     {
-        // TODO
+        FileManager.Save("gld.zld", new List<FileManagedClass>() { GlobalData });
 
+        FileManager.Save("sl.zld", new List<FileManagedClass>() { ShipLife });
+        FileManager.Save("ml.zld", new List<FileManagedClass>() { MapLife });
     }
+
 
     #region Strings
     /// <summary>

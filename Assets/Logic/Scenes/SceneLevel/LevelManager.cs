@@ -93,21 +93,21 @@ public class LevelManager
         _enemies = new List<EnemyLaunch>();
         var lastTime = 0.0f;
 
-        // создаем 6 волн
-        var provider = new EnemyBrunchProvider(_cityIndex, _citFactor);
-        lastTime = provider.CreateBrunch(1, lastTime, _cityIndex, _citFactor, Ship);
-        lastTime = provider.CreateBrunch(2, lastTime, _cityIndex, _citFactor, Ship);
-        lastTime = provider.CreateBrunch(3, lastTime, _cityIndex, _citFactor, Ship);
-        lastTime = provider.CreateBrunch(4, lastTime, _cityIndex, _citFactor, Ship);
-        lastTime = provider.CreateBrunch(5, lastTime, _cityIndex, _citFactor, Ship);
-        lastTime = provider.CreateBrunch(6, lastTime, _cityIndex, _citFactor, Ship);
-        // берем необходимое из всего этого
-        foreach (var brunch in provider.Brunches)
-        {
-            _enemies.AddRange(brunch.Enemies);
-        }
+        //// создаем 6 волн
+        //var provider = new EnemyBrunchProvider(_cityIndex, _citFactor);
+        //lastTime = provider.CreateBrunch(1, lastTime, _cityIndex, _citFactor, Ship);
+        //lastTime = provider.CreateBrunch(2, lastTime, _cityIndex, _citFactor, Ship);
+        //lastTime = provider.CreateBrunch(3, lastTime, _cityIndex, _citFactor, Ship);
+        //lastTime = provider.CreateBrunch(4, lastTime, _cityIndex, _citFactor, Ship);
+        //lastTime = provider.CreateBrunch(5, lastTime, _cityIndex, _citFactor, Ship);
+        //lastTime = provider.CreateBrunch(6, lastTime, _cityIndex, _citFactor, Ship);
+        //// берем необходимое из всего этого
+        //foreach (var brunch in provider.Brunches)
+        //{
+        //    _enemies.AddRange(brunch.Enemies);
+        //}
 
-        //_enemies.Add(new EnemyLaunch(EnemyIndexes.Loh1, 0, 1.0f));
+        _enemies.Add(new EnemyLaunch(EnemyIndexes.Loh1, 0, 1.0f));
         //_enemies.Add(new EnemyLaunch(EnemyIndexes.Boss1, 0, 1.0f));
 
         //foreach (var en in _enemies)
