@@ -629,8 +629,13 @@ public class MapController : MonoBehaviour
             PanelOption.Show();
             return;
         }
+        else
+        {
+            PanelOption.Hide();
+            return;
+        }
         // выйти
-        GoToMenu();
+        //GoToMenu();   // никогда не выходим, только по кнопке в меню
     }
 
     public void GoToMenu()

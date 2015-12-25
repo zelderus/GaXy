@@ -16,7 +16,7 @@ public static class FarLife
     public static MapLife MapLife { private set; get; }
     //public static PlayerData PlayerData { private set; get; }
     public static Boolean SoundEnabled { private set; get; }
-    
+    public static FarStrings Strings { private set; get; }
 
     private static bool _inited = false;
     /// <summary>
@@ -25,12 +25,16 @@ public static class FarLife
     public static void Init()
     {
         if (_inited) return;
-
+        
+        
         if (GameLife == null)
         {
             GameLife = new GameLife();
             GameLife.Init("Images/LoadingTxt");
         }
+
+        Strings = new FarStrings();
+        Strings.Init();
 
         ShipLife = new ShipLife();
         ShipLife.Init();
@@ -79,7 +83,17 @@ public static class FarLife
 
     }
 
-
+    #region Strings
+    /// <summary>
+    /// Текст.
+    /// </summary>
+    /// <param name="strKey"></param>
+    /// <returns></returns>
+    public static String GetText(FarText strKey)
+    {
+        return Strings.GetText(Language, strKey);
+    }
+    #endregion
 
     #region Options
     /// <summary>

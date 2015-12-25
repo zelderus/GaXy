@@ -75,7 +75,7 @@ namespace ZelderFramework
         /// <returns></returns>
         public GameLanguages GetDeviceLanguageDo()
         {
-            return GameLanguages.English;
+            return GameLanguages.Russian;
         }
 #endif
 

@@ -166,11 +166,16 @@ public class EnemyLogic : MonoBehaviour {
     {
         if (!waypoint.WithoutRotate)
         {
-            var newRotation = Quaternion.LookRotation(transform.position - waypointPos, Vector3.forward);
-            newRotation.x = 0.0f;
-            newRotation.y = 0.0f;
-            //x transform.rotation = newRotation;
-            transform.rotation = withSlerp ? Quaternion.Slerp(transform.rotation, newRotation, RotationSpeed * Time.deltaTime) : newRotation;
+            //var newRotation = Quaternion.LookRotation(transform.position - waypointPos, Vector3.forward);
+            var lr = transform.position - waypointPos;
+            if (lr != Vector3.zero)
+            {
+                var newRotation = Quaternion.LookRotation(lr, Vector3.forward);
+                newRotation.x = 0.0f;
+                newRotation.y = 0.0f;
+                //x transform.rotation = newRotation;
+                transform.rotation = withSlerp ? Quaternion.Slerp(transform.rotation, newRotation, RotationSpeed*Time.deltaTime) : newRotation;
+            }
             return true;
         }
         return false;

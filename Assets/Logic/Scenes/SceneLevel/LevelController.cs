@@ -788,8 +788,13 @@ public class LevelController : MonoBehaviour
             ShowOptionPanel();
             return;
         }
+        else
+        {
+            HideOptionPanel();
+            return;
+        }
         // выйти
-        LevelEnd();
+        //LevelEnd();// никогда не выходим, только по кнопке в меню
     }
 
     public void GoToMap()

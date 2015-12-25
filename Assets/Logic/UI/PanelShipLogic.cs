@@ -1,16 +1,24 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
+/// <summary>
+/// Панель коробля. Навыков.
+/// </summary>
 public class PanelShipLogic : MonoBehaviour {
 
     public Boolean IsShowed { get; private set; }
 
 
+    public Text TitleTxt;
+
+
+
     // Use this for initialization
     void Start()
     {
-
+        TitleTxt.text = FarLife.GetText(FarText.Map_SkillTitle);
     }
 
 
