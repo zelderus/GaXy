@@ -126,7 +126,7 @@ public class ShipLife : FileManagedClass
     /// <returns></returns>
     public override List<FileManagerData> ConvertToSaveData()
     {
-        // TODO: сохранение
+        //! сохранение
         var datas = new List<FileManagerData>();
         datas.Add(new FileManagerData(FileManagerTypes.Single, UnityEngine.Random.Range(53.5f, 745.9999f)));
         datas.Add(new FileManagerData(FileManagerTypes.String, StringHelper.GetRandomString(3, 7)));   //+ rnd
@@ -170,7 +170,7 @@ public class ShipLife : FileManagedClass
     public override void LoadFromSaveData(List<FileManagerData> datas)
     {
         var ind = 0;
-        // TODO: загрузка
+        //! загрузка
         var rnd1 = (Single)datas[ind++].DataValue;   //+ rnd
         var rndStr = (String)datas[ind++].DataValue.ToString();   //+ rnd text
         var rnd2 = (Int32)datas[ind++].DataValue;   //+ rnd

@@ -155,10 +155,10 @@ public class MapLife : FileManagedClass
         AddCity(list, "Moscow", 5, 5, provider.CreateFiendCity(CityRecources.Res1));
         //if (!_ship.IsJopCompleted) AddCity(list, "JOP", 5, 5, provider.CreateJop());
 
-        AddCity(list, "Kiev", 7, 4, provider.CreateFiendCity(CityRecources.Res1, 6));
-        AddCity(list, "Riga", 7, 6, provider.CreateFiendCity(CityRecources.Res2, 2));
-        AddCity(list, "Laja", 8, 8, provider.CreateFiendCity(CityRecources.Res3, 2));
-        AddCity(list, "Laja", 6, 8, provider.CreateFiendCity(CityRecources.Res2));
+        AddCity(list, "Kiev", 7, 4, provider.CreateFiendCity(CityRecources.Res1, 9));
+        AddCity(list, "Riga", 7, 6, provider.CreateFiendCity(CityRecources.Res2, 6));
+        AddCity(list, "Laja", 8, 8, provider.CreateFiendCity(CityRecources.Res3, 5));
+        AddCity(list, "Laja", 6, 8, provider.CreateFiendCity(CityRecources.Res2, 1));
         AddCity(list, "Opa", 7, 10, provider.CreateFiendCity(CityRecources.Res4, 1));
         AddCity(list, "Laja", 4, 9, provider.CreateNeutralCity(CityRecources.Res1, 1, 0, 0, 0));
         AddCity(list, "Laja", 10, 6, provider.CreateNeutralCity(CityRecources.Res3));
@@ -236,7 +236,7 @@ public class MapLife : FileManagedClass
     /// <returns></returns>
     public override List<FileManagerData> ConvertToSaveData()
     {
-        // TODO: сохранение
+        //! сохранение
         var datas = new List<FileManagerData>();
         datas.Add(new FileManagerData(FileManagerTypes.Single, UnityEngine.Random.Range(53.5f, 745.9999f)));
         datas.Add(new FileManagerData(FileManagerTypes.String, StringHelper.GetRandomString(3, 7)));   //+ rnd
@@ -281,7 +281,7 @@ public class MapLife : FileManagedClass
     public override void LoadFromSaveData(List<FileManagerData> datas)
     {
         var ind = 0;
-        // TODO: загрузка
+        //! загрузка
         var rnd1 = (Single)datas[ind++].DataValue;   //+ rnd
         var rndStr = (String)datas[ind++].DataValue.ToString();   //+ rnd text
 

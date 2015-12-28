@@ -274,9 +274,6 @@ public class LevelController : MonoBehaviour
         Physics.IgnoreLayerCollision(12, 8, true);
         Physics.IgnoreLayerCollision(13, 8, true);
 
-        // TODO
-        
-
     
     }
 

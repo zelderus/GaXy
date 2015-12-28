@@ -184,23 +184,23 @@ public class CityResourceProduct
         }
         else if (resource == CityRecources.Res2)
         {
-            res.Resources.Add(new CityResourceFrom() { Type = CityRecources.Res1, MustBeForProduct = 6 });
+            res.Resources.Add(new CityResourceFrom() { Type = CityRecources.Res1, MustBeForProduct = 12 });
             res.ProductionCount = 6;
-            res.ProductDays = 6;
+            res.ProductDays = 8;
         }
         else if (resource == CityRecources.Res3)
         {
             res.Resources.Add(new CityResourceFrom() { Type = CityRecources.Res1, MustBeForProduct = 2 });
-            res.Resources.Add(new CityResourceFrom() { Type = CityRecources.Res2, MustBeForProduct = 4 });
+            res.Resources.Add(new CityResourceFrom() { Type = CityRecources.Res2, MustBeForProduct = 5 });
             res.ProductionCount = 3;
-            res.ProductDays = 8;
+            res.ProductDays = 10;
         }
         else if (resource == CityRecources.Res4)
         {
             res.Resources.Add(new CityResourceFrom() { Type = CityRecources.Res2, MustBeForProduct = 2 });
-            res.Resources.Add(new CityResourceFrom() { Type = CityRecources.Res3, MustBeForProduct = 4 });
+            res.Resources.Add(new CityResourceFrom() { Type = CityRecources.Res3, MustBeForProduct = 5 });
             res.ProductionCount = 1;
-            res.ProductDays = 10;
+            res.ProductDays = 20;
         }
         else if (resource == CityRecources.Black)
         {

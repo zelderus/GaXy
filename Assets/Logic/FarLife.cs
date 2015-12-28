@@ -9,8 +9,9 @@ using ZelderFramework;
 
 public class FarLifeGlobalData : FileManagedClass
 {
-    public Int32 FileVersion = 11;
+    public Int32 FileVersion = 12;
     public Int32 FileVersionLoaded = 0;
+    public Boolean IsNewGame = false;
 
     public FarLifeGlobalData()
     {
@@ -25,6 +26,7 @@ public class FarLifeGlobalData : FileManagedClass
     {
         var datas = new List<FileManagerData>();
         datas.Add(new FileManagerData(FileManagerTypes.Int32, FileVersion));
+        datas.Add(new FileManagerData(FileManagerTypes.Boolean, IsNewGame));
         return datas;
     }
     /// <summary>
@@ -35,6 +37,7 @@ public class FarLifeGlobalData : FileManagedClass
     {
         var ind = 0;
         FileVersionLoaded = (Int32)datas[ind++].DataValue;
+        IsNewGame = (Boolean)datas[ind++].DataValue;
     }
 }
 
@@ -124,9 +127,11 @@ public static class FarLife
             FileManager.Delete("ml.zld");
             return;
         }
-
-        FileManager.Load("sl.zld", new List<FileManagedClass>() { ShipLife });
-        FileManager.Load("ml.zld", new List<FileManagedClass>() { MapLife });
+        if (!GlobalData.IsNewGame)
+        {
+            FileManager.Load("sl.zld", new List<FileManagedClass>() {ShipLife});
+            FileManager.Load("ml.zld", new List<FileManagedClass>() {MapLife});
+        }
     }
 
     /// <summary>
@@ -134,8 +139,9 @@ public static class FarLife
     /// </summary>
     public static void SaveGame()
     {
-        FileManager.Save("gld.zld", new List<FileManagedClass>() { GlobalData });
+        GlobalData.IsNewGame = false;
 
+        FileManager.Save("gld.zld", new List<FileManagedClass>() { GlobalData });
         FileManager.Save("sl.zld", new List<FileManagedClass>() { ShipLife });
         FileManager.Save("ml.zld", new List<FileManagedClass>() { MapLife });
     }

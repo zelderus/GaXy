@@ -600,7 +600,15 @@ public class MapController : MonoBehaviour
 
     private void StartLevel()
     {
-        FarLife.GoToLevel();
+        debugStartLevel(); // TODO: debug
+        //FarLife.GoToLevel();
+    }
+    private void debugStartLevel()
+    {
+        _mapLife.SetLevelStatus(FarStatusLevel.LevelWin);
+        _mapLife.AddMaterial(120);
+        FarLife.SaveGame(); // сохраняем по завершении миссии
+        FarLife.GoToMap();
     }
 
     private void LevelEnd(Boolean isWin)
