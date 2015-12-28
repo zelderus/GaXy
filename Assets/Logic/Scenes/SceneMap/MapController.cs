@@ -22,6 +22,10 @@ public class MapController : MonoBehaviour
     public WorldMap WorldMap;
     public LogScript Log;
 
+
+    public Text DayNumTxt;
+
+
     //private List<CityListItem> _cities;
     private City _currenctSelectCity = null;
     private CityMapItem _currenctCityMap = null;
@@ -32,7 +36,7 @@ public class MapController : MonoBehaviour
 
     private GameObject _shipPrefab;
     private GameObject _parentCityMap;
-    private GameObject _gexPrefab;
+    //private GameObject _gexPrefab;
     private GameObject _gexActivePrefab;
     private GameObject _parentGexMap;
     private GameObject _cometPrefab;
@@ -61,8 +65,8 @@ public class MapController : MonoBehaviour
 
         //
         _parentGexMap = GameObject.Find("CityMapGexParent") as GameObject;
-        _gexPrefab = Resources.Load("Prefabs/Map/GexPref", typeof(GameObject)) as GameObject;
-        //_gexActivePrefab = Resources.Load("Prefabs/Map/GexActivePref", typeof(GameObject)) as GameObject;
+        //_gexPrefab = Resources.Load("Prefabs/Map/GexPref", typeof(GameObject)) as GameObject;
+        //x _gexActivePrefab = Resources.Load("Prefabs/Map/GexActivePref", typeof(GameObject)) as GameObject;
         _gexActivePrefab = Resources.Load("Prefabs/Map/GexAcPref", typeof(GameObject)) as GameObject;
         _cometPrefab = Resources.Load("Prefabs/Map/CometPref", typeof(GameObject)) as GameObject;
         _parentCityMap = GameObject.Find("CityMapParent") as GameObject;
@@ -82,6 +86,7 @@ public class MapController : MonoBehaviour
         _currenctSelectCity = _mapLife.CurrenctCity;
         InitShip();
 
+        
         //+ с учетом, прилетели ли с уровня
         if (_mapLife.LevelStatus == FarStatusLevel.Init)
         {
@@ -99,6 +104,9 @@ public class MapController : MonoBehaviour
         ShowCurrentGex();
         //- центрируем карту
         CenterMapOnCity(_currenctSelectCity);
+
+        //
+        UpdateDayNum();
 
 
         GestHelpers.ClearMove();
@@ -521,6 +529,12 @@ public class MapController : MonoBehaviour
 
     #endregion
     #region update working panels
+
+    private void UpdateDayNum()
+    {
+        DayNumTxt.text = _mapLife.Day.ToString();
+    }
+
     /// <summary>
     /// Обновление данных общей панели ресурсов.
     /// </summary>

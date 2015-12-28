@@ -260,6 +260,14 @@ public class MapLife : FileManagedClass
             datas.Add(new FileManagerData(FileManagerTypes.Int32, city.Model.Level));
             datas.Add(new FileManagerData(FileManagerTypes.Int32, city.Model.CurrentJopQuest));
             datas.Add(new FileManagerData(FileManagerTypes.Boolean, city.Model.IsJopCompleted));
+            //- trash
+            datas.Add(new FileManagerData(FileManagerTypes.Single, city.Model.SpeedRot));
+            datas.Add(new FileManagerData(FileManagerTypes.Int32, city.Model.RotDir));
+            datas.Add(new FileManagerData(FileManagerTypes.Single, city.Model.SizeScale));
+            //
+            datas.Add(new FileManagerData(FileManagerTypes.Int32, city.Model.ResourceProduct.CurrentCount));
+            datas.Add(new FileManagerData(FileManagerTypes.Int32, city.Model.ResourceProduct.MaxProcesses));
+            datas.Add(new FileManagerData(FileManagerTypes.Int32, city.Model.ResourceProduct.ProcessStarted));
         }
 
         datas.Add(new FileManagerData(FileManagerTypes.Int32, UnityEngine.Random.Range(1, 10)));
@@ -298,6 +306,17 @@ public class MapLife : FileManagedClass
             var c5 = (Int32)datas[ind++].DataValue;
             var c6 = (Boolean)datas[ind++].DataValue;
             city.Model.UpdateData(c1, c2, c3, c4, c5, c6);
+            var t1 = (Single)datas[ind++].DataValue;
+            var t2 = (Int32)datas[ind++].DataValue;
+            var t3 = (Single)datas[ind++].DataValue;
+            city.Model.SpeedRot = t1;
+            city.Model.RotDir = t2;
+            city.Model.SizeScale = t3;
+            //
+            var r1 = (Int32)datas[ind++].DataValue;
+            var r2 = (Int32)datas[ind++].DataValue;
+            var r3 = (Int32)datas[ind++].DataValue;
+            city.Model.ResourceProduct.UpdateData(r1, r2, r3);
         }
         SetCurrentCity(Cities.FirstOrDefault(f => f.Model.Id == _currentCityId));
         SetNextCity(Cities.FirstOrDefault(f => f.Model.Id == _currentNextCityId));
@@ -551,6 +570,12 @@ public class MapLife : FileManagedClass
     }
     public void SetNextCity(City city)
     {
+        if (city == null || city.Model == null)
+        {
+            NextCity = CurrenctCity;
+            return;
+        }
+
         NextCity = city;
         _currentNextCityId = city.Model.Id;
     }
@@ -783,6 +808,8 @@ public class MapLife : FileManagedClass
     /// <param name="isWin"></param>
     public void LevelEnd(Boolean isWin)
     {
+        LevelStatus = FarStatusLevel.Init;
+
         //+ следующий день (подсчет ресурсов)
         this.AddDay();
 

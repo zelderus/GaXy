@@ -125,6 +125,13 @@ public class CityResourceProduct
         ProcessStarted = 0;
     }
 
+    public void UpdateData(Int32 currentCount, Int32 maxProcesses, Int32 processStarted)
+    {
+        CurrentCount = currentCount;
+        MaxProcesses = maxProcesses;
+        ProcessStarted = processStarted;
+    }
+
     /// <summary>
     /// Есть свободный слот для запуска процесса.
     /// </summary>
