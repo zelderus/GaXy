@@ -1,9 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 using ZelderFramework.Helpers;
 
-public class MenuController : MonoBehaviour {
+public class MenuController : MonoBehaviour
+{
 
+
+    public Button PlayBtn;
+    public Button OptionBtn;
+    public MenuOptionPanelLogic OptionPanel;
+    
 
     void Awake()
     {
@@ -37,14 +44,30 @@ public class MenuController : MonoBehaviour {
     /// </summary>
     private void BackPressed()
     {
-        //if (_isOptionsShowed)
-        //{
-        //    CloseOptionsPanel();
-        //}
-        //else
+        if (OptionPanel.IsShowed)
+        {
+            HideOptionPanel();
+        }
+        else
         {
             Application.Quit();
         }
+    }
+
+
+
+    public void ShowOptionPanel()
+    {
+        PlayBtn.enabled = false;
+        OptionBtn.enabled = false;
+        OptionPanel.Show();
+
+    }
+    public void HideOptionPanel()
+    {
+        PlayBtn.enabled = true;
+        OptionBtn.enabled = true;
+        OptionPanel.Hide();
     }
 
 
@@ -54,6 +77,8 @@ public class MenuController : MonoBehaviour {
         FarLife.GoToMap();
     }
 
+
+    
 
 
 	

@@ -14,6 +14,8 @@ public class PanelShipLogic : MonoBehaviour {
     public Text TitleTxt;
 
 
+    private bool _hasChange = false;
+
 
     // Use this for initialization
     void Start()
@@ -23,15 +25,25 @@ public class PanelShipLogic : MonoBehaviour {
 
 
 
+    private void OnHide()
+    {
+        if (!_hasChange) return;
+        FarLife.SaveGame();
+    }
+
+
     public void Hide()
     {
         IsShowed = false;
+        OnHide();
+
         this.gameObject.SetActive(false);
     }
 
     public void Show()
     {
         IsShowed = true;
+        _hasChange = false;
         this.gameObject.SetActive(true);
     }
 

@@ -600,8 +600,8 @@ public class MapController : MonoBehaviour
 
     private void StartLevel()
     {
-        debugStartLevel(); // TODO: debug
-        //FarLife.GoToLevel();
+        //debugStartLevel(); // TODO: debug
+        FarLife.GoToLevel();
     }
     private void debugStartLevel()
     {

@@ -146,6 +146,10 @@ public static class FarLife
         FileManager.Save("ml.zld", new List<FileManagedClass>() { MapLife });
     }
 
+    public static void SaveGlobalOnly()
+    {
+        FileManager.Save("gld.zld", new List<FileManagedClass>() { GlobalData });
+    }
 
     #region Strings
     /// <summary>

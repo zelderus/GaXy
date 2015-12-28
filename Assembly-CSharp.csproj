@@ -83,10 +83,12 @@
      <Compile Include="Assets\Logic\Trash\FPSDisplay.cs" />
      <Compile Include="Assets\Logic\Trash\LogScript.cs" />
      <Compile Include="Assets\Logic\Trash\TestScript.cs" />
+     <Compile Include="Assets\Logic\UI\Controls\UIButtonLng.cs" />
      <Compile Include="Assets\Logic\UI\Level\LevelPanelHealthLogic.cs" />
      <Compile Include="Assets\Logic\UI\Level\LevelPanelOptionLogic.cs" />
      <Compile Include="Assets\Logic\UI\Level\LevelPanelShipLogic.cs" />
      <Compile Include="Assets\Logic\UI\Level\LevelPanelWorkLogic.cs" />
+     <Compile Include="Assets\Logic\UI\Menu\MenuOptionPanelLogic.cs" />
      <Compile Include="Assets\Logic\UI\PanelActionLogic.cs" />
      <Compile Include="Assets\Logic\UI\PanelCityActionLogic.cs" />
      <Compile Include="Assets\Logic\UI\PanelCitySmallLogic.cs" />
