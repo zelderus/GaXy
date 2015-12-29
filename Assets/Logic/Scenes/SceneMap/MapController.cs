@@ -20,7 +20,7 @@ public class MapController : MonoBehaviour
     public PanelShipLogic PanelShip;
 
     public WorldMap WorldMap;
-    public LogScript Log;
+    //public LogScript Log;
 
 
     public Text DayNumTxt;
@@ -588,7 +588,7 @@ public class MapController : MonoBehaviour
     {
         if (_currenctSelectCity == null)
         {
-            Log.SetText("Не выбран город для перелета");
+            //Log.SetText("Не выбран город для перелета");
             return;
         }
         _mapLife.SetNextCity(_currenctSelectCity);

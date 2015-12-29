@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using ZelderFramework;
 using ZelderFramework.Helpers;
 
 public class MenuController : MonoBehaviour
@@ -10,7 +11,9 @@ public class MenuController : MonoBehaviour
     public Button PlayBtn;
     public Button OptionBtn;
     public MenuOptionPanelLogic OptionPanel;
-    
+
+    public Text ResetTxt;
+    public Text SoundTxt;
 
     void Awake()
     {
@@ -22,7 +25,7 @@ public class MenuController : MonoBehaviour
 	// Use this for initialization
 	void Start () {
 
-
+        UpdateLanguage();
 
 
         //- сообщаем движку что готовы к сцене
@@ -55,13 +58,38 @@ public class MenuController : MonoBehaviour
     }
 
 
+    public void OptionSoundToggle(bool isOn)
+    {
+        FarLife.SetSound(isOn);
+    }
+
+
+    public void OptionLanguageRusToggle(bool isOn)
+    {
+        OptionPanel.SetLanguage(GameLanguages.Russian);
+        FarLife.SetLanguage(GameLanguages.Russian);
+        UpdateLanguage();
+    }
+    public void OptionLanguageEngToggle(bool isOn)
+    {
+        OptionPanel.SetLanguage(GameLanguages.English);
+        FarLife.SetLanguage(GameLanguages.English);
+        UpdateLanguage();
+    }
+
+
+    public void UpdateLanguage()
+    {
+        // textes
+        ResetTxt.text = FarLife.GetText(FarText.Main_ResetText);
+        SoundTxt.text = FarLife.GetText(FarText.Main_Sound);
+    }
 
     public void ShowOptionPanel()
     {
         PlayBtn.enabled = false;
         OptionBtn.enabled = false;
         OptionPanel.Show();
-
     }
     public void HideOptionPanel()
     {

@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using ZelderFramework;
 
 public class MenuOptionPanelLogic : MonoBehaviour {
 
@@ -9,11 +10,19 @@ public class MenuOptionPanelLogic : MonoBehaviour {
 
     public Text ResetTimerTxt;
     public Button ResetBtn;
+    public Text ResetTxt;
+
+    public UIToggleSpriteSwap SoundToggle;
+    public UIToggleSpriteSwap LanguageRuToggle;
+    public UIToggleSpriteSwap LanguageEnToggle;
+
 
     // Use this for initialization
     void Start()
     {
         ResetBtn.gameObject.SetActive(!FarLife.GlobalData.IsNewGame);
+        SoundToggle.SetIsOnStyles(FarLife.SoundEnabled);
+        SetLanguage(FarLife.Language);
     }
 
 
@@ -26,8 +35,46 @@ public class MenuOptionPanelLogic : MonoBehaviour {
 
     public void Show()
     {
+        ResetProgressStop();
         IsShowed = true;
         this.gameObject.SetActive(true);
+    }
+
+
+
+    /// <summary>
+    /// Установка текущего языка.
+    /// </summary>
+    /// <param name="lng"></param>
+    public void SetLanguage(GameLanguages lng)
+    {
+        if (lng == GameLanguages.Russian)
+        {
+            //LanguageRuToggle.targetToggle.isOn = true;
+            LanguageRuToggle.SetIsOnStyles(true);
+            //LanguageEnToggle.targetToggle.isOn = false;
+            LanguageEnToggle.SetIsOnStyles(false);
+
+            LanguageRuToggle.SetActive(false);
+            LanguageEnToggle.SetActive(true);
+        }
+        else if (lng == GameLanguages.English)
+        {
+            //LanguageRuToggle.targetToggle.isOn = false;
+            LanguageRuToggle.SetIsOnStyles(false);
+            //LanguageEnToggle.targetToggle.isOn = true;
+            LanguageEnToggle.SetIsOnStyles(true);
+
+            LanguageRuToggle.SetActive(true);
+            LanguageEnToggle.SetActive(false);
+        }
+        UpdateLanguage();
+    }
+
+
+    public void UpdateLanguage()
+    {
+
     }
 
 
@@ -39,12 +86,14 @@ public class MenuOptionPanelLogic : MonoBehaviour {
         _inReset = true;
         _onResetTime = 0.0f;
         ResetTimerTxt.gameObject.SetActive(true);
+        ResetTxt.gameObject.SetActive(false);
     }
     public void ResetProgressStop()
     {
         _inReset = false;
         _onResetTime = 0.0f;
         ResetTimerTxt.gameObject.SetActive(false);
+        ResetTxt.gameObject.SetActive(true);
     }
 
     private void OnReset()

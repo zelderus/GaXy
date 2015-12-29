@@ -10,7 +10,14 @@ using ZelderFramework;
 
 public enum FarText
 {
-    Map_SkillTitle  = 100
+    Main_ResetText = 10,
+    Main_Sound = 11,
+    Main_LanguageRu = 12,
+    Main_LanguageEn = 12,
+    
+    Map_SkillTitle  = 100,
+
+
 }
 
 /// <summary>
@@ -40,7 +47,16 @@ public class FarStrings
         //_strings.Add(GameLanguages.English, _engTextes);
 
         //! +++
+        //+ MAIN
+        AddText(FarText.Main_ResetText, "Нажмите и держите, чтобы сбросить прогресс игры.", "Hold the AtomButton to Reset the game progress.");
+        AddText(FarText.Main_Sound, "ЗВУК", "SOUND");
+        AddText(FarText.Main_LanguageRu, "РУССКИЙ", "RUSSIAN");
+        AddText(FarText.Main_LanguageEn, "АНГЛИЙСКИЙ", "ENGLISH");
+
+        //+ MAP
         AddText(FarText.Map_SkillTitle, "Навыки", "Skills");
+
+        //+ LEVEL
 
 
     }
