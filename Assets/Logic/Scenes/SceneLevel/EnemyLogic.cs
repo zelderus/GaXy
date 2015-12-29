@@ -326,6 +326,9 @@ public class EnemyLogic : MonoBehaviour {
         Health -= count;
         Health = Health < 0 ? 0 : Health > MaxHealth ? MaxHealth : Health;
 
+        // boom anim
+        Controller.PlaceBoomEnemy(0, this.transform.position);
+
         if (Health <= 0)
         {
             IsDied = true;

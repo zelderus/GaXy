@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 using ZelderFramework.Helpers;
 using ZelderFramework.Maths;
 
@@ -19,6 +20,9 @@ public class LevelController : MonoBehaviour
     public Transform MaterialParent;
 
     public Transform HitBlock;
+    
+    public Image BoomImg;
+    public Color BoomColor;
 
 
     public LogScript Log;
@@ -58,6 +62,8 @@ public class LevelController : MonoBehaviour
     private GameObject _enemyBoss1Prefab;
     private GameObject _enemyBoss2Prefab;
     private GameObject _enemyBoss3Prefab;
+
+    private GameObject _bomm1Prefab;
 
     private GameObject _parentBulletShipPrefab;
     private GameObject _bombPrefab;
@@ -132,6 +138,8 @@ public class LevelController : MonoBehaviour
         _enemyBoss1Prefab = Resources.Load("Prefabs/Level/Enemies/EnemyBoss1Pref", typeof(GameObject)) as GameObject;
         _enemyBoss2Prefab = Resources.Load("Prefabs/Level/Enemies/EnemyBoss2Pref", typeof(GameObject)) as GameObject;
         _enemyBoss3Prefab = Resources.Load("Prefabs/Level/Enemies/EnemyBoss3Pref", typeof(GameObject)) as GameObject;
+
+        _bomm1Prefab = Resources.Load("Prefabs/Level/Boom1Pref", typeof(GameObject)) as GameObject;
 
         _parentBulletShipPrefab = GameObject.Find("BulletShipParent") as GameObject;
         _bombPrefab = Resources.Load("Prefabs/Level/BulletShip/BombPref", typeof(GameObject)) as GameObject;
@@ -500,6 +508,24 @@ public class LevelController : MonoBehaviour
     }
 
     #endregion
+    #region booms
+
+    public void PlaceBoomEnemy(Int32 boomIndex, Vector3 pos)
+    {
+        GameObject pref = null;
+        if (boomIndex == 0)
+        {
+            pref = Instantiate(_bomm1Prefab, _parentBulletShipPrefab.transform.position, Quaternion.identity) as GameObject;
+            pref.transform.SetParent(_parentBulletShipPrefab.transform);
+            pref.transform.localPosition = pos;
+            pref.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+        }
+        // TODO: boomIndex
+
+        Destroy(pref, 1.0f);
+    }
+
+    #endregion
     #region ways
     //public Transform GetCurrentRandomWaypoint()
     //{
@@ -574,6 +600,8 @@ public class LevelController : MonoBehaviour
         var dif = _ship.AddHealth(-damage);
         ShipLogic.Damage(dif);
 
+        if (dif > 0.0f) BoomAnimStart();
+
         // panel health
         PanelWork.UpdateHealth();
         PanelShip.UpdateHealth();
@@ -583,6 +611,37 @@ public class LevelController : MonoBehaviour
             OnStartLevelLose();
         }
     }
+
+    private float _boomTime = 1.0f;
+    private bool _bommInAnim = false;
+    //private float _boomAlpha
+    private void BoomAnimStart()
+    {
+        _bommInAnim = true;
+        //BoomImg.color = BoomColor*new Color(1, 1, 1);
+        _boomTime = 1.0f;
+
+        BoomImg.color = BoomColor;// * new Color(1, 1, 1, 1);
+        BoomImg.gameObject.SetActive(true);
+    }
+
+    private void BommAnimStop()
+    {
+        _bommInAnim = false;
+        BoomImg.gameObject.SetActive(false);
+    }
+    private void BoomAnimDo()
+    {
+        if (!_bommInAnim) return;
+        _boomTime -= Time.deltaTime;
+        if (_boomTime <= 0.0f)
+        {
+            BommAnimStop();
+        }
+        BoomImg.color = BoomColor * new Color(1, 1, 1, Mathf.Lerp(0.0f, 1.0f, _boomTime));
+    }
+
+
     /// <summary>
     /// Получение здоровья.
     /// </summary>
@@ -873,6 +932,7 @@ public class LevelController : MonoBehaviour
         {
             Paralax1.Rotate(_ship.FlySpeed);
             Paralax2.Rotate(_ship.FlySpeed);
+            BoomAnimDo();
         }
 
         // концовка

@@ -83,6 +83,9 @@ public class Boss1Gun1Logic : MonoBehaviour
         Health -= count;
         Health = Health < 0 ? 0 : Health > MaxHealth ? MaxHealth : Health;
 
+        // boom anim
+        _controller.PlaceBoomEnemy(0, this.transform.position);
+
         if (Health <= 0)
         {
             IsDied = true;

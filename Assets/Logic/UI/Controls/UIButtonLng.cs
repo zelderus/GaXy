@@ -12,11 +12,19 @@ public class UIButtonLng : MonoBehaviour
 
     
 	// Use this for initialization
-	void Start () 
+	void Start ()
+	{
+	    UpdateLanguage();
+	}
+
+    /// <summary>
+    /// Обновление языка.
+    /// </summary>
+    public void UpdateLanguage()
     {
         this.GetComponent<Image>().sprite = FarLife.Language == GameLanguages.English ? TextureEn : TextureRu; 
     }
-	
+
 	// Update is called once per frame
 	void Update ()
     {

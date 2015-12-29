@@ -9,6 +9,8 @@ public class MenuController : MonoBehaviour
 
 
     public Button PlayBtn;
+    public UIButtonLng PlayUiBtn;
+
     public Button OptionBtn;
     public MenuOptionPanelLogic OptionPanel;
 
@@ -81,6 +83,7 @@ public class MenuController : MonoBehaviour
     public void UpdateLanguage()
     {
         // textes
+        PlayUiBtn.UpdateLanguage();
         ResetTxt.text = FarLife.GetText(FarText.Main_ResetText);
         SoundTxt.text = FarLife.GetText(FarText.Main_Sound);
     }

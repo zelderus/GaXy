@@ -62,6 +62,7 @@
      <Compile Include="Assets\Logic\Resources\ResForCityImgLogic.cs" />
      <Compile Include="Assets\Logic\Resources\ResourceModel.cs" />
      <Compile Include="Assets\Logic\Scenes\SceneLevel\BombLogic.cs" />
+     <Compile Include="Assets\Logic\Scenes\SceneLevel\BoomLogic.cs" />
      <Compile Include="Assets\Logic\Scenes\SceneLevel\Boss1Gun1Logic.cs" />
      <Compile Include="Assets\Logic\Scenes\SceneLevel\Boss1Gun2Logic.cs" />
      <Compile Include="Assets\Logic\Scenes\SceneLevel\Boss1Gun3Logic.cs" />
