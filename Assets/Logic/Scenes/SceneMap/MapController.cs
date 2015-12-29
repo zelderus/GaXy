@@ -648,12 +648,14 @@ public class MapController : MonoBehaviour
         // открываем панель опций
         if (!PanelOption.IsShowed)
         {
-            PanelOption.Show();
+            ShowOptionPanel();
+            //x PanelOption.Show();
             return;
         }
         else
         {
-            PanelOption.Hide();
+            HideOptionPanel();
+            //x PanelOption.Hide();
             return;
         }
         // выйти

@@ -683,6 +683,11 @@ public class LevelController : MonoBehaviour
     #endregion
     #region ship touch panel
 
+    private void RestoreTimeScale()
+    {
+        Time.timeScale = 1.0F;
+    }
+
     private bool _isWeaponPanelShowed = false;
     private bool _inShipPanel = false;
     private bool _inShipPanelClick = false;
@@ -694,14 +699,13 @@ public class LevelController : MonoBehaviour
         Time.timeScale = 0.2F;
         // panel
         PanelShip.Show();
-
     }
     private void HideWeaponPanel()
     {
         if (!_isWeaponPanelShowed) return;
         _isWeaponPanelShowed = false;
         // normal speed
-        Time.timeScale = 1.0F;
+        RestoreTimeScale();
         // panel
         PanelShip.Hide();
     }
@@ -796,6 +800,7 @@ public class LevelController : MonoBehaviour
 
     public void GoToMap()
     {
+        RestoreTimeScale();
         FarLife.GoToMap();
     }
     private bool _isTouchMoving = false;
