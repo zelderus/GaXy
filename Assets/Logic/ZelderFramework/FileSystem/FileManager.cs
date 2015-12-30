@@ -66,6 +66,8 @@ namespace Assets.Scripts.ZelderFramework.FileSystem
 
         private static void SaveDatas(FileStream file, List<FileManagerData> datas)
         {
+            var bigBytes = new List<byte>();
+
             foreach (var data in datas)
             {
                 var bytes = ByteConverter.GetBytes(data);
@@ -73,12 +75,40 @@ namespace Assets.Scripts.ZelderFramework.FileSystem
                 if (data.DataType == FileManagerTypes.String)
                 {
                     var sizeInt = ByteConverter.GetBytes(bytes.Length);
-                    file.Write(sizeInt, 0, sizeInt.Length);
+                    //file.Write(sizeInt, 0, sizeInt.Length);
+                    bigBytes.AddRange(sizeInt);
                 }
                 //- данные
-                file.Write(bytes, 0, bytes.Length);
+                //file.Write(bytes, 0, bytes.Length);
+                bigBytes.AddRange(bytes);
             }
+
+            //+ записываем все разом
+            var bb = bigBytes.ToArray();
+            file.Write(bb, 0, bb.Length);
         }
+        private static byte[] GetSaveDatas(List<FileManagerData> datas)
+        {
+            var bigBytes = new List<byte>();
+
+            foreach (var data in datas)
+            {
+                var bytes = ByteConverter.GetBytes(data);
+                //- размер
+                if (data.DataType == FileManagerTypes.String)
+                {
+                    var sizeInt = ByteConverter.GetBytes(bytes.Length);
+                    //file.Write(sizeInt, 0, sizeInt.Length);
+                    bigBytes.AddRange(sizeInt);
+                }
+                //- данные
+                //file.Write(bytes, 0, bytes.Length);
+                bigBytes.AddRange(bytes);
+            }
+
+            return bigBytes.ToArray();
+        }
+
         /// <summary>
         /// Сохранение файла.
         /// </summary>
@@ -86,8 +116,15 @@ namespace Assets.Scripts.ZelderFramework.FileSystem
         /// <param name="datas"></param>
         public static void Save(String fileName, List<FileManagerData> datas)
         {
+            //FileStream file = File.Create(String.Format("{0}/{1}", Application.persistentDataPath, fileName));
+            //SaveDatas(file, datas);
+            //file.Close();
+
+            //- все данные
+            var saveData = GetSaveDatas(datas);
+            //- одним махом записываем и закрываем файл
             FileStream file = File.Create(String.Format("{0}/{1}", Application.persistentDataPath, fileName));
-            SaveDatas(file, datas);
+            file.Write(saveData, 0, saveData.Length);
             file.Close();
         }
         /// <summary>
@@ -97,13 +134,29 @@ namespace Assets.Scripts.ZelderFramework.FileSystem
         /// <param name="objs"></param>
         public static void Save(String fileName, List<FileManagedClass> objs)
         {
-            FileStream file = File.Create(String.Format("{0}/{1}", Application.persistentDataPath, fileName));
+            //FileStream file = File.Create(String.Format("{0}/{1}", Application.persistentDataPath, fileName));
+            //foreach (var fileManagedClass in objs)
+            //{
+            //    SaveDatas(file, fileManagedClass.ConvertToSaveData());
+            //}
+            //file.Close();
+
+            //- все данные
+            var bigBytes = new List<byte>();
             foreach (var fileManagedClass in objs)
             {
-                SaveDatas(file, fileManagedClass.ConvertToSaveData());
+                bigBytes.AddRange(GetSaveDatas(fileManagedClass.ConvertToSaveData()));
             }
+            var saveData = bigBytes.ToArray();
+
+            //- одним махом записываем и закрываем файл
+            FileStream file = File.Create(String.Format("{0}/{1}", Application.persistentDataPath, fileName));
+            file.Write(saveData, 0, saveData.Length);
             file.Close();
         }
+
+
+
 
         private static void LoadDatas(FileStream file, List<FileManagerData> datas)
         {

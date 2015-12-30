@@ -92,6 +92,9 @@ public class LevelController : MonoBehaviour
 	    _ship = FarLife.ShipLife;
         _ship.PrepareToFly();
 
+        //+ сохраняем
+        FarLife.SaveGame();
+
         InitPrefabs();
 
         _city = _mapLife.NextCity;
@@ -106,7 +109,6 @@ public class LevelController : MonoBehaviour
         PanelShip.Init(_ship);
 
 	    InitLevel();
-
 
         GestHelpers.ClearMove();
         //- сообщаем движку что готовы к сцене
@@ -831,7 +833,7 @@ public class LevelController : MonoBehaviour
     public void LevelEnd()
     {
         _mapLife.SetLevelStatus(_statusLevel);
-        FarLife.SaveGame(); // сохраняем по завершении миссии
+        //FarLife.SaveGame(); // сохраняем по завершении миссии
         GoToMap();
     }
     #endregion

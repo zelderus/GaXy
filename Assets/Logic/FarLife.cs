@@ -55,6 +55,8 @@ public static class FarLife
     public static Boolean SoundEnabled { private set; get; }
     public static FarStrings Strings { private set; get; }
 
+    public static Boolean GameOnRun { private set; get; }
+
     private static bool _inited = false;
     /// <summary>
     /// Инициализация движка. Необходимо выполнить в первой сцене в Awake().
@@ -62,7 +64,9 @@ public static class FarLife
     public static void Init()
     {
         if (_inited) return;
-        
+        GameOnRun = true;
+
+
         GlobalData = new FarLifeGlobalData();
 
         if (GameLife == null)
@@ -112,6 +116,10 @@ public static class FarLife
         GameLife.ScreenInit(onBackPress);
     }
 
+    public static void GameNotInRun()
+    {
+        GameOnRun = false;
+    }
 
     private static Int32 _fileVersion = 10;
     /// <summary>

@@ -27,6 +27,13 @@ public class MenuController : MonoBehaviour
 	// Use this for initialization
 	void Start () {
 
+        //+ сохраняем (если не начальная загрузка игры)
+	    if (!FarLife.GameOnRun)
+	    {
+	        FarLife.SaveGame();
+	    }
+        FarLife.GameNotInRun();
+
         UpdateLanguage();
 
 

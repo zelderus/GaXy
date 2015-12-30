@@ -28,7 +28,7 @@ public class PanelShipLogic : MonoBehaviour {
     private void OnHide()
     {
         if (!_hasChange) return;
-        FarLife.SaveGame();
+        //FarLife.SaveGame();
     }
 
 

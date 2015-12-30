@@ -20,7 +20,7 @@ public class MapController : MonoBehaviour
     public PanelShipLogic PanelShip;
 
     public WorldMap WorldMap;
-    //public LogScript Log;
+    public LogScript Log;
 
 
     public Text DayNumTxt;
@@ -62,6 +62,10 @@ public class MapController : MonoBehaviour
         // загрузка данных игрока
         _mapLife = FarLife.MapLife;
         _shipLife = FarLife.ShipLife;
+
+        //+ сохраняем
+        FarLife.SaveGame();
+
 
         //
         _parentGexMap = GameObject.Find("CityMapGexParent") as GameObject;
@@ -579,7 +583,8 @@ public class MapController : MonoBehaviour
     public void PlayLevel()
     {
         if (_currenctSelectCity == null) return;
-        FarLife.SaveGame();
+        //FarLife.SaveGame();
+
         FlyToCity();
     }
 
@@ -607,7 +612,7 @@ public class MapController : MonoBehaviour
     {
         _mapLife.SetLevelStatus(FarStatusLevel.LevelWin);
         _mapLife.AddMaterial(120);
-        FarLife.SaveGame(); // сохраняем по завершении миссии
+        //FarLife.SaveGame(); // сохраняем по завершении миссии
         FarLife.GoToMap();
     }
 
@@ -664,7 +669,7 @@ public class MapController : MonoBehaviour
 
     public void GoToMenu()
     {
-        FarLife.SaveGame();
+        //FarLife.SaveGame();
         FarLife.GoToMenu();
     }
     private bool _isTouchMoving = false;
