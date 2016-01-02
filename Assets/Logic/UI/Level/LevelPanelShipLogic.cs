@@ -287,6 +287,16 @@ public class LevelPanelShipLogic : MonoBehaviour {
     #endregion
 
 
+    public void UpdateCounters()
+    {
+        UpdateHealthBtn();
+        UpdateShieldBtn();
+        UpdateTreeBtn();
+
+        UpdateHealthCounter();
+        UpdateShieldCounter();
+        UpdateTreeCounter();
+    }
 
 
     public void UpdatePosition()

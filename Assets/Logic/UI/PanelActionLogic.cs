@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using ZelderFramework.Animations;
 
 /// <summary>
 /// Большое окно города.
@@ -20,6 +21,11 @@ public class PanelActionLogic : MonoBehaviour
     private City _city;
     private Boolean _isCurrent;
 
+
+    private float _endRightPosX = 768.0f;
+    private RectTransform _body;
+    private EaseAnimations _animShow;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -32,6 +38,10 @@ public class PanelActionLogic : MonoBehaviour
 
         var t = transform.Find("Title");
         _titleTxt = t.gameObject.GetComponent<Text>();
+
+        _body = this.gameObject.GetComponent<RectTransform>();
+        _endRightPosX = Screen.width;// 768.0f;
+        _animShow = new EaseAnimations(EaseAnimationTypes.EaseOut, _endRightPosX, 0.0f, 0.3f);
     }
 
 
@@ -59,6 +69,10 @@ public class PanelActionLogic : MonoBehaviour
 
 
         this.gameObject.SetActive(true);
+
+        // anim
+        _body.position = new Vector3(_endRightPosX, _body.position.y, _body.position.z);
+        _animShow.Start();
     }
 
 
@@ -109,13 +123,26 @@ public class PanelActionLogic : MonoBehaviour
         }
     }
 
+
+    private void UpdateEaseAnimations()
+    {
+        _animShow.Update(Time.deltaTime);
+        if (_animShow.IsStarted())
+        {
+            var x = _animShow.Value;
+            _body.position = new Vector3(x, _body.position.y, _body.position.z);
+        }
+    }
     
 
     
 
 
 	// Update is called once per frame
-	void Update () {
-	
+	void Update () 
+    {
+        UpdateEaseAnimations();
+
+
 	}
 }

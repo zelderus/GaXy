@@ -230,6 +230,7 @@ public class MapLife : FileManagedClass
     }
     #endregion
 
+    #region file data
     /// <summary>
     /// Данные для сохранения.
     /// </summary>
@@ -325,6 +326,7 @@ public class MapLife : FileManagedClass
         var rnd3 = (Int32)datas[ind++].DataValue;   //+ rnd
         var rnd4 = (Int32)datas[ind++].DataValue;   //+ rnd
     }
+    #endregion
 
 
     #region map sots

@@ -18,6 +18,7 @@ public class MapController : MonoBehaviour
     public PanelCitySmallLogic PanelCitySmall;
     public PanelOptionLogic PanelOption;
     public PanelShipLogic PanelShip;
+    public GameObject BackPanel;
 
     public WorldMap WorldMap;
     public LogScript Log;
@@ -481,26 +482,40 @@ public class MapController : MonoBehaviour
     #endregion
 
     #region panel action
+    private void ShowBackPanel()
+    {
+        BackPanel.SetActive(true);
+    }
+    private void HideBackPanel()
+    {
+        BackPanel.SetActive(false);
+    }
+
+
     public void ShowOptionPanel()
     {
         _mapInTouchControl = false;
         PanelOption.Show();
+        ShowBackPanel();
     }
     public void HideOptionPanel()
     {
-        _mapInTouchControl = true;
+        _mapDoInTouch = true;
         PanelOption.Hide();
+        HideBackPanel();
     }
 
     public void ShowShipPanel()
     {
         _mapInTouchControl = false;
         PanelShip.Show();
+        ShowBackPanel();
     }
     public void HideShipPanel()
     {
-        _mapInTouchControl = true;
+        _mapDoInTouch = true;
         PanelShip.Hide();
+        HideBackPanel();
     }
 
     /// <summary>
@@ -508,13 +523,15 @@ public class MapController : MonoBehaviour
     /// </summary>
     public void HideCityPanel()
     {
-        _mapInTouchControl = true;
         PanelAction.Hide(); //- 
+        _mapDoInTouch = true;
+        HideBackPanel();
     }
     public void ShowCityPanel()
     {
         _mapInTouchControl = false;
         PanelAction.Show(_currenctSelectCity, IsCityCurrent(_currenctSelectCity));
+        ShowBackPanel();
     }
 
 
@@ -529,8 +546,16 @@ public class MapController : MonoBehaviour
     {
        //- PanelAction.Show(_currenctCity);
         PanelCityAction.Show(_currenctSelectCity, IsCityCurrent(_currenctSelectCity));
+        //ShowBackPanel();
     }
 
+    private bool _mapDoInTouch = false;
+    private void MapInTouchInEndUpdate()
+    {
+        _mapInTouchControl = true;
+        _mapDoInTouch = false;
+        GestHelpers.ClearMove();
+    }
     #endregion
     #region update working panels
 
@@ -680,7 +705,7 @@ public class MapController : MonoBehaviour
     {
         FarLife.Update();
         var delta = Time.deltaTime;
-
+        //_mapDoInTouch = false;
 
         //+ comets
         CommetAddLogic();
@@ -736,6 +761,7 @@ public class MapController : MonoBehaviour
         }
         #endregion
 
+        if (_mapDoInTouch) MapInTouchInEndUpdate();
     }
 
 

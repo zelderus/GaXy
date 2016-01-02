@@ -64,6 +64,7 @@ public class ShipLife : FileManagedClass
     public float ShipBonusHealth { get; private set; }      // сам бонус (прибавка или мощность)
     public Int32 ShipBonusHealthCount { get; private set; } // количество бонусов
     public float ShipBonusHealthTime { get; private set; }  // перезарядка бонуса
+    public Int32 ShipBonusHealthCost { get; private set; }  // цена материалов
 
     /// <summary>
     /// Покупка щита.
@@ -71,6 +72,7 @@ public class ShipLife : FileManagedClass
     public float ShipBonusShield { get; private set; }
     public Int32 ShipBonusShieldCount { get; private set; }
     public float ShipBonusShieldTime { get; private set; }
+    public Int32 ShipBonusShieldCost { get; private set; }
 
     /// <summary>
     /// Покупка бомбы.
@@ -78,6 +80,7 @@ public class ShipLife : FileManagedClass
     public float ShipBonusTree { get; private set; }
     public Int32 ShipBonusTreeCount { get; private set; }
     public float ShipBonusTreeTime { get; private set; }
+    public Int32 ShipBonusTreeCost { get; private set; }
     #endregion
 
 
@@ -101,12 +104,17 @@ public class ShipLife : FileManagedClass
         ShipBonusHealth = 2.0f;
         ShipBonusHealthCount = 2;
         ShipBonusHealthTime = 10.0f;
+        ShipBonusHealthCost = 100;
+
         ShipBonusShield = 3.0f;
         ShipBonusShieldCount = 4;
         ShipBonusShieldTime = 10.0f;
+        ShipBonusShieldCost = 100;
+
         ShipBonusTree = 30.0f;
         ShipBonusTreeCount = 1;
         ShipBonusTreeTime = 60.0f;
+        ShipBonusTreeCost = 1500;
     }
 
 
@@ -119,7 +127,7 @@ public class ShipLife : FileManagedClass
     }
 
 
-
+    #region file data
     /// <summary>
     /// Данные для сохранения.
     /// </summary>
@@ -207,6 +215,8 @@ public class ShipLife : FileManagedClass
 
         var rnd3 = (Int32)datas[ind++].DataValue;   //+ rnd
     }
+    #endregion
+
 
 
     #region Map logic
@@ -268,6 +278,10 @@ public class ShipLife : FileManagedClass
     {
         ShipBonusHealthCount--;
     }
+    public void AddBonusHealth()
+    {
+        ShipBonusHealthCount++;
+    }
 
     /// <summary>
     /// Трата бонуса Shield.
@@ -276,6 +290,10 @@ public class ShipLife : FileManagedClass
     {
         ShipBonusShieldCount--;
     }
+    public void AddBonusShield()
+    {
+        ShipBonusShieldCount++;
+    }
 
     /// <summary>
     /// Трата бонуса Tree.
@@ -283,6 +301,10 @@ public class ShipLife : FileManagedClass
     public void UseBonusTree()
     {
         ShipBonusTreeCount--;
+    }
+    public void AddBonusTree()
+    {
+        ShipBonusTreeCount++;
     }
     #endregion
 

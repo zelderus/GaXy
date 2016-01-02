@@ -15,6 +15,7 @@ public class LevelController : MonoBehaviour
     public LevelPanelOptionLogic PanelOption;
     public LevelPanelWorkLogic PanelWork;
     public LevelPanelShipLogic PanelShip;
+    public LevelPanelMarketLogic PanelMarket;
     public ShipFlyLogic ShipLogic;
 
     public Transform MaterialParent;
@@ -107,6 +108,7 @@ public class LevelController : MonoBehaviour
         // panels
         PanelWork.Init(_ship);
         PanelShip.Init(_ship);
+        PanelMarket.Init(_ship);
 
 	    InitLevel();
 
@@ -115,6 +117,9 @@ public class LevelController : MonoBehaviour
         FarLife.OnScreenLoaded();
         _inited = true;
         _manager.Pause(false);
+
+
+        ShowMarketPanel();
 	}
 
     private void InitPrefabs()
@@ -724,6 +729,20 @@ public class LevelController : MonoBehaviour
 
 
     #region panels
+    public void ShowMarketPanel()
+    {
+        _inTouchControl = false;
+        _manager.Pause(true);
+        PanelMarket.Show();
+    }
+    public void HideMarketPanel()
+    {
+        _inTouchControl = true;
+        PanelMarket.Hide();
+        _manager.Pause(false);
+    }
+
+
     public void ShowOptionPanel()
     {
         _inTouchControl = false;
@@ -770,6 +789,10 @@ public class LevelController : MonoBehaviour
         // panel
         PanelShip.Hide();
     }
+    //public void UpdateShipPanelCounters()
+    //{
+    //    PanelShip.UpdateCounters();
+    //}
 
     public void WeaponPanelTouched()
     {
