@@ -66,7 +66,6 @@ public static class FarLife
         if (_inited) return;
         GameOnRun = true;
 
-
         GlobalData = new FarLifeGlobalData();
 
         if (GameLife == null)
@@ -120,6 +119,25 @@ public static class FarLife
     {
         GameOnRun = false;
     }
+
+
+
+    /// <summary>
+    /// Сброс прогресса игры.
+    /// </summary>
+    public static void ResetGameProgress()
+    {
+        GlobalData.IsNewGame = true;
+
+        ShipLife = new ShipLife();
+        ShipLife.Init();
+
+        MapLife = new MapLife();
+        MapLife.Init(ShipLife);
+    }
+
+
+
 
     private static Int32 _fileVersion = 10;
     /// <summary>

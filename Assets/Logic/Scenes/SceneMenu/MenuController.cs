@@ -37,6 +37,11 @@ public class MenuController : MonoBehaviour
         UpdateLanguage();
 
 
+        // preload
+        OptionPanel.Show();
+        OptionPanel.Hide();
+
+
         //- сообщаем движку что готовы к сцене
         FarLife.OnScreenLoaded();
 	}
@@ -91,8 +96,9 @@ public class MenuController : MonoBehaviour
     {
         // textes
         PlayUiBtn.UpdateLanguage();
-        ResetTxt.text = FarLife.GetText(FarText.Main_ResetText);
+        //ResetTxt.text = FarLife.GetText(FarText.Main_ResetText);
         SoundTxt.text = FarLife.GetText(FarText.Main_Sound);
+        OptionPanel.UpdateLanguage();
     }
 
     public void ShowOptionPanel()

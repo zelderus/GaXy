@@ -21,6 +21,8 @@ public class MenuOptionPanelLogic : MonoBehaviour {
     void Start()
     {
         ResetBtn.gameObject.SetActive(!FarLife.GlobalData.IsNewGame);
+        if (FarLife.GlobalData.IsNewGame) ResetTxt.gameObject.SetActive(false);
+
         SoundToggle.SetIsOnStyles(FarLife.SoundEnabled);
         SetLanguage(FarLife.Language);
     }
@@ -72,9 +74,10 @@ public class MenuOptionPanelLogic : MonoBehaviour {
     }
 
 
+
     public void UpdateLanguage()
     {
-
+        ResetTxt.text = FarLife.GetText(_reseted ? FarText.Main_ResetEndText : FarText.Main_ResetText);
     }
 
 
@@ -96,12 +99,17 @@ public class MenuOptionPanelLogic : MonoBehaviour {
         ResetTxt.gameObject.SetActive(true);
     }
 
+    private bool _reseted = false;
     private void OnReset()
     {
+        _reseted = true;
         ResetProgressStop();
-        FarLife.GlobalData.IsNewGame = true;
+        //FarLife.GlobalData.IsNewGame = true;
+        FarLife.ResetGameProgress();
         FarLife.SaveGlobalOnly();
         ResetBtn.gameObject.SetActive(false);
+        //ResetTxt.gameObject.SetActive(false);
+        UpdateLanguage();
     }
 
 	

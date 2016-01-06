@@ -8,8 +8,8 @@ public class LevelPanelMarketLogic : MonoBehaviour {
     public Image BackImg;
     public RectTransform PanelBody;
     public LevelPanelShipLogic ShipPanel;
-
-    public Text TotalMat;
+    public LevelPanelWorkLogic WorkPanel;
+    //public Text TotalMat;
 
     public Text HpCount;
     public Text ShieldCount;
@@ -101,7 +101,8 @@ public class LevelPanelMarketLogic : MonoBehaviour {
 
     private void UpdateView()
     {
-        TotalMat.text = FarLife.MapLife.GetSelfResource(CityRecources.Material).CurrentCount.ToString();
+        //TotalMat.text = FarLife.MapLife.GetSelfResource(CityRecources.Material).CurrentCount.ToString();
+        WorkPanel.UpdateMaterial();
 
         HpCount.text = _ship.ShipBonusHealthCount.ToString();
         ShieldCount.text = _ship.ShipBonusShieldCount.ToString();

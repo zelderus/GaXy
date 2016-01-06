@@ -593,8 +593,8 @@ public class LevelController : MonoBehaviour
     public void AddMaterial(Int32 count)
     {
         _mapLife.AddMaterial(count);
-        // TODO: panel update
-
+        //+ panel update
+        PanelWork.UpdateMaterial();
     }
     /// <summary>
     /// Нанесение урона.
@@ -952,12 +952,14 @@ public class LevelController : MonoBehaviour
         }
         #endregion
 
+        BoomAnimDo();
+
         //// полет (скролим)
         if (!_manager.IsPaused && !_ship.IsDied && !_manager.LevelIsEnded)
         {
             Paralax1.Rotate(_ship.FlySpeed);
             Paralax2.Rotate(_ship.FlySpeed);
-            BoomAnimDo();
+            //BoomAnimDo();
         }
 
         // концовка
