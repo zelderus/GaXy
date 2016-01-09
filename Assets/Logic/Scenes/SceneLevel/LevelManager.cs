@@ -154,6 +154,15 @@ public class LevelManager
         IsPaused = isPause;
     }
 
+    /// <summary>
+    /// Всего времени прошло на уровне.
+    /// </summary>
+    /// <returns></returns>
+    public float TotalTimeGo()
+    {
+        return _timeGo;
+    }
+
 
     #region materials
     private float _timeMaterialInt = 10.0f;

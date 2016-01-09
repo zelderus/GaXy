@@ -58,6 +58,7 @@
      <Compile Include="Assets\Logic\Cities\WorldMap.cs" />
      <Compile Include="Assets\Logic\Factories\FactoryManager.cs" />
      <Compile Include="Assets\Logic\FarLife.cs" />
+     <Compile Include="Assets\Logic\FarStat.cs" />
      <Compile Include="Assets\Logic\FarStrings.cs" />
      <Compile Include="Assets\Logic\Resources\ResForCityImgLogic.cs" />
      <Compile Include="Assets\Logic\Resources\ResourceModel.cs" />
@@ -93,6 +94,7 @@
      <Compile Include="Assets\Logic\UI\Level\LevelPanelShipLogic.cs" />
      <Compile Include="Assets\Logic\UI\Level\LevelPanelWorkLogic.cs" />
      <Compile Include="Assets\Logic\UI\Menu\MenuOptionPanelLogic.cs" />
+     <Compile Include="Assets\Logic\UI\Menu\MenuStatPanelLogic.cs" />
      <Compile Include="Assets\Logic\UI\PanelActionLogic.cs" />
      <Compile Include="Assets\Logic\UI\PanelCityActionLogic.cs" />
      <Compile Include="Assets\Logic\UI\PanelCitySmallLogic.cs" />

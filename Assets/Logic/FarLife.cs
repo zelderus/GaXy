@@ -9,7 +9,7 @@ using ZelderFramework;
 
 public class FarLifeGlobalData : FileManagedClass
 {
-    public Int32 FileVersion = 14;
+    public Int32 FileVersion = 17;
     public Int32 FileVersionLoaded = 0;
     public Boolean IsNewGame = false;
 
@@ -49,6 +49,7 @@ public static class FarLife
     public static FarLifeGlobalData GlobalData { private set; get; }
     public static GameLife GameLife { private set; get; }
     public static ShipLife ShipLife { private set; get; }
+    public static FarStat FarStat { private set; get; }
     public static GameLanguages Language { private set; get; }
     public static MapLife MapLife { private set; get; }
     //public static PlayerData PlayerData { private set; get; }
@@ -82,6 +83,8 @@ public static class FarLife
 
         MapLife = new MapLife();
         MapLife.Init(ShipLife);
+
+        FarStat = new FarStat();
 
         //! LOAD
         LoadGame();
@@ -134,6 +137,8 @@ public static class FarLife
 
         MapLife = new MapLife();
         MapLife.Init(ShipLife);
+
+        FarStat = new FarStat();
     }
 
 
@@ -151,12 +156,14 @@ public static class FarLife
             FileManager.Delete("gld.zld");
             FileManager.Delete("sl.zld");
             FileManager.Delete("ml.zld");
+            FileManager.Delete("stat.zld");
             return;
         }
         if (!GlobalData.IsNewGame)
         {
             FileManager.Load("sl.zld", new List<FileManagedClass>() {ShipLife});
             FileManager.Load("ml.zld", new List<FileManagedClass>() {MapLife});
+            FileManager.Load("stat.zld", new List<FileManagedClass>() { FarStat });
         }
     }
 
@@ -170,6 +177,7 @@ public static class FarLife
         FileManager.Save("gld.zld", new List<FileManagedClass>() { GlobalData });
         FileManager.Save("sl.zld", new List<FileManagedClass>() { ShipLife });
         FileManager.Save("ml.zld", new List<FileManagedClass>() { MapLife });
+        FileManager.Save("stat.zld", new List<FileManagedClass>() { FarStat });
     }
 
     public static void SaveGlobalOnly()

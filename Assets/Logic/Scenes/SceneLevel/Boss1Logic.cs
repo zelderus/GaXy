@@ -326,6 +326,7 @@ public class Boss1Logic : MonoBehaviour {
         Controller.PlaceMaterial(this.transform.position, matCount);
 
         Controller.EnemyDied();
+        Controller.EnemyDiedIsBoss();
 
         Destroy(this.gameObject, 5.0f);
     }

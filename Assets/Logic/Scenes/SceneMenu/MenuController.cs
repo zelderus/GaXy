@@ -12,7 +12,9 @@ public class MenuController : MonoBehaviour
     public UIButtonLng PlayUiBtn;
 
     public Button OptionBtn;
+    public Button StatBtn;
     public MenuOptionPanelLogic OptionPanel;
+    public MenuStatPanelLogic StatPanel;
 
     public Text ResetTxt;
     public Text SoundTxt;
@@ -61,6 +63,12 @@ public class MenuController : MonoBehaviour
     /// </summary>
     private void BackPressed()
     {
+        if (StatPanel.IsShowed)
+        {
+            HideStatPanel();
+            return;
+        }
+
         if (OptionPanel.IsShowed)
         {
             HideOptionPanel();
@@ -105,15 +113,32 @@ public class MenuController : MonoBehaviour
     {
         PlayBtn.enabled = false;
         OptionBtn.enabled = false;
+        StatBtn.enabled = false;
         OptionPanel.Show();
     }
     public void HideOptionPanel()
     {
         PlayBtn.enabled = true;
         OptionBtn.enabled = true;
+        StatBtn.enabled = true;
         OptionPanel.Hide();
     }
 
+
+    public void ShowStatPanel()
+    {
+        PlayBtn.enabled = false;
+        OptionBtn.enabled = false;
+        StatBtn.enabled = false;
+        StatPanel.Show();
+    }
+    public void HideStatPanel()
+    {
+        PlayBtn.enabled = true;
+        OptionBtn.enabled = true;
+        StatBtn.enabled = true;
+        StatPanel.Hide();
+    }
 
 
     public void GoToMap()

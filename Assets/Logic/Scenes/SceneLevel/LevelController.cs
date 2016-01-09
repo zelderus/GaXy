@@ -93,6 +93,10 @@ public class LevelController : MonoBehaviour
 	    _ship = FarLife.ShipLife;
         _ship.PrepareToFly();
 
+
+
+        FarLife.FarStat.OnLevelRun(); // stat
+
         //+ сохраняем
         FarLife.SaveGame();
 
@@ -431,7 +435,15 @@ public class LevelController : MonoBehaviour
     public void EnemyDied()
     {
         ShipLogic.ShipLife.EnemyDestoy();
+        FarLife.FarStat.OnEnemyDie();
         _manager.EnemyRemoved();
+    }
+    /// <summary>
+    /// Уничтожен босс.
+    /// </summary>
+    public void EnemyDiedIsBoss()
+    {
+        FarLife.FarStat.OnBossDie();
     }
     /// <summary>
     /// Враг улетел.
@@ -831,6 +843,7 @@ public class LevelController : MonoBehaviour
     {
         _statusLevel = FarStatusLevel.LevelWin;
         _goingToEnd = true;
+        FarLife.FarStat.OnLevelWin(); // stat
         HideWeaponPanel();
         ShipLogic.AnimToWin();
         ShowEndMessage(true);
@@ -855,6 +868,8 @@ public class LevelController : MonoBehaviour
     /// </summary>
     public void LevelEnd()
     {
+        FarLife.FarStat.OnLevelEndTime(_manager.TotalTimeGo(), _statusLevel == FarStatusLevel.LevelWin);    // stat
+
         _mapLife.SetLevelStatus(_statusLevel);
         //FarLife.SaveGame(); // сохраняем по завершении миссии
         GoToMap();
