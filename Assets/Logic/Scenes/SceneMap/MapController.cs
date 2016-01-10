@@ -17,7 +17,7 @@ public class MapController : MonoBehaviour
     public PanelWorkLogic PanelWork;
     public PanelCitySmallLogic PanelCitySmall;
     public PanelOptionLogic PanelOption;
-    public PanelShipLogic PanelShip;
+    //public PanelShipLogic PanelShip;
     public GameObject BackPanel;
 
     public WorldMap WorldMap;
@@ -494,6 +494,8 @@ public class MapController : MonoBehaviour
 
     public void ShowOptionPanel()
     {
+        if (!_mapInTouchControl) return;
+
         _mapInTouchControl = false;
         PanelOption.Show();
         ShowBackPanel();
@@ -505,18 +507,18 @@ public class MapController : MonoBehaviour
         HideBackPanel();
     }
 
-    public void ShowShipPanel()
-    {
-        _mapInTouchControl = false;
-        PanelShip.Show();
-        ShowBackPanel();
-    }
-    public void HideShipPanel()
-    {
-        _mapDoInTouch = true;
-        PanelShip.Hide();
-        HideBackPanel();
-    }
+    //public void ShowShipPanel()
+    //{
+    //    _mapInTouchControl = false;
+    //    PanelShip.Show();
+    //    ShowBackPanel();
+    //}
+    //public void HideShipPanel()
+    //{
+    //    _mapDoInTouch = true;
+    //    PanelShip.Hide();
+    //    HideBackPanel();
+    //}
 
     /// <summary>
     /// Большая панель города.
@@ -529,6 +531,8 @@ public class MapController : MonoBehaviour
     }
     public void ShowCityPanel()
     {
+        if (!_mapInTouchControl) return;
+
         _mapInTouchControl = false;
         PanelAction.Show(_currenctSelectCity, IsCityCurrent(_currenctSelectCity));
         ShowBackPanel();
@@ -612,7 +616,11 @@ public class MapController : MonoBehaviour
 
         FlyToCity();
     }
-
+    public void PlayLevelFromMap()
+    {
+        if (!IsMapInTouch) return;
+        PlayLevel();
+    }
 
     private void FlyToCity()
     {
@@ -669,12 +677,12 @@ public class MapController : MonoBehaviour
             DeselectCities();
             return;
         }
-        // закрываем панель корабля
-        if (PanelShip.IsShowed)
-        {
-            HideShipPanel();
-            return;
-        }
+        //// закрываем панель корабля
+        //if (PanelShip.IsShowed)
+        //{
+        //    HideShipPanel();
+        //    return;
+        //}
         // открываем панель опций
         if (!PanelOption.IsShowed)
         {

@@ -87,6 +87,8 @@ public class PanelCityActionLogic : MonoBehaviour
     /// </summary>
     public void StartProduct()
     {
+        if (!_city.CityMap.MainLogicObject.IsMapInTouch) return;
+
         if (_city == null) return;
         var mapLife = _city.CityMap.MainLogicObject.GetMapLife();
         //- производим

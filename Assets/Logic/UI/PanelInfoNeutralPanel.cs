@@ -18,6 +18,7 @@ public class PanelInfoNeutralPanel : MonoBehaviour
     public Color ResNotEnoughColor;
 
     public Transform Res1Btn;
+    //private Button _res1Button;
     //public Transform Res2Btn;
     //public Transform Res3Btn;
     //public Transform Res4Btn;
@@ -148,6 +149,7 @@ public class PanelInfoNeutralPanel : MonoBehaviour
         else
         {
             Res1Btn.gameObject.SetActive(false);
+            //Res1Btn.GetComponent<Button>().interactable = false;
         }
 
     }

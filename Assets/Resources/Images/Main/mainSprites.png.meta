@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: e3b4692cfbe35b44e80fc8823aed4edb
-timeCreated: 1451391246
+timeCreated: 1452432143
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -10,6 +10,11 @@ TextureImporter:
     21300006: mainSprites_OptionH
     21300008: mainSprites_Close
     21300010: mainSprites_Play
+    21300012: mainSprites_Info
+    21300014: mainSprites_Product
+    21300016: mainSprites_Exit
+    21300018: mainSprites_Opt
+    21300020: mainSprites_CityBld
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -111,6 +116,56 @@ TextureImporter:
         serializedVersion: 2
         x: 412
         y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: mainSprites_Info
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 196
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: mainSprites_Product
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 87
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: mainSprites_Exit
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 196
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: mainSprites_Opt
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 87
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: mainSprites_CityBld
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 87
         width: 100
         height: 100
       alignment: 0

@@ -16,7 +16,7 @@ public class PanelActionLogic : MonoBehaviour
     public Boolean IsShowed { get; private set; }
 
     private Transform _closeBtn = null;
-    private Text _titleTxt = null;
+    //private Text _titleTxt = null;
 
     private City _city;
     private Boolean _isCurrent;
@@ -36,8 +36,8 @@ public class PanelActionLogic : MonoBehaviour
     {
         _closeBtn = transform.Find("CloseBtn");
 
-        var t = transform.Find("Title");
-        _titleTxt = t.gameObject.GetComponent<Text>();
+        //var t = transform.Find("Title");
+        //_titleTxt = t.gameObject.GetComponent<Text>();
 
         _body = this.gameObject.GetComponent<RectTransform>();
         _endRightPosX = Screen.width;// 768.0f;
@@ -63,7 +63,7 @@ public class PanelActionLogic : MonoBehaviour
         _city = city;
         SetCityAsCurrent(isCurrent);
 
-        _titleTxt.text = city.Title;
+        //_titleTxt.text = city.Title;
 
         UpdateView();
 

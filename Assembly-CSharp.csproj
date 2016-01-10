@@ -103,7 +103,6 @@
      <Compile Include="Assets\Logic\UI\PanelInfoSmallMissionPanel.cs" />
      <Compile Include="Assets\Logic\UI\PanelInfoSmallNeutralPanel.cs" />
      <Compile Include="Assets\Logic\UI\PanelOptionLogic.cs" />
-     <Compile Include="Assets\Logic\UI\PanelShipLogic.cs" />
      <Compile Include="Assets\Logic\UI\PanelWorkLogic.cs" />
      <Compile Include="Assets\Logic\UI\PanelWorkResourceBlockLogic.cs" />
      <Compile Include="Assets\Logic\ZelderFramework\Animations\EaseAnimations.cs" />
