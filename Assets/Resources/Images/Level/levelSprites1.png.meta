@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 4b2233d8d9e312e47b8b44f8d6b7a21b
-timeCreated: 1450802689
+timeCreated: 1452422968
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -41,6 +41,9 @@ TextureImporter:
     21300068: levelSprites1_BonusCount2
     21300070: levelSprites1_BonusCount3
     21300072: levelSprites1_BonusCount4
+    21300074: levelSprites1_PauseBtn1
+    21300076: levelSprites1_PauseBtn2
+    21300078: levelSprites1_MarketBtn
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -204,6 +207,36 @@ TextureImporter:
         y: 708
         width: 17
         height: 37
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: levelSprites1_PauseBtn1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 499
+        width: 64
+        height: 68
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: levelSprites1_PauseBtn2
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 499
+        width: 64
+        height: 68
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: levelSprites1_MarketBtn
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 549
+        width: 204
+        height: 103
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
