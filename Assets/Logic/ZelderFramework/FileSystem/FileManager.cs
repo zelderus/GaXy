@@ -5,7 +5,7 @@ using System.IO;
 //using Polenter.Serialization;
 using UnityEngine;
 
-namespace Assets.Scripts.ZelderFramework.FileSystem
+namespace ZelderFramework.FileSystem
 {
 
     

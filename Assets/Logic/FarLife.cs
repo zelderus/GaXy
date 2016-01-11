@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Assets.Scripts.ZelderFramework.FileSystem;
+using ZelderFramework.FileSystem;
 using UnityEngine;
 using System.Collections;
 using ZelderFramework;
@@ -52,7 +52,6 @@ public static class FarLife
     public static FarStat FarStat { private set; get; }
     public static GameLanguages Language { private set; get; }
     public static MapLife MapLife { private set; get; }
-    //public static PlayerData PlayerData { private set; get; }
     public static Boolean SoundEnabled { private set; get; }
     public static FarStrings Strings { private set; get; }
 
@@ -89,22 +88,11 @@ public static class FarLife
         //! LOAD
         LoadGame();
 
-        //if (GameLogic == null)
-        //{
-        //    GameLogic = new GameLogic();
-        //}
         //+ options
         InitLanguage();
         InitSound();
 
-        //+ data
-        //if (PlayerData == null)
-        //{
-        //    PlayerData = new PlayerData();
-        //}
-        //PlayerData.LoadData();
-        //GameLogic.SetPlayerData(PlayerData);
-        //MapLife.Load
+
 
         _inited = true;
     }
@@ -143,8 +131,6 @@ public static class FarLife
 
 
 
-
-    private static Int32 _fileVersion = 10;
     /// <summary>
     /// Загрузка.
     /// </summary>

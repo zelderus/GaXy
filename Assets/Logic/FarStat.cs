@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Assets.Scripts.ZelderFramework.FileSystem;
+using ZelderFramework.FileSystem;
 using System.Collections.Generic;
 using System;
 
