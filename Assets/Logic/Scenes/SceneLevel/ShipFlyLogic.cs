@@ -13,6 +13,10 @@ public class ShipFlyLogic : MonoBehaviour
     public Transform DamageObj;
     public Transform ShieldObj;
 
+
+    public ParticleSystem PartLeft;
+    public ParticleSystem PartRight;
+
     //public Transform ShipObj;
     //public Transform ColliderObj;
 
@@ -35,6 +39,7 @@ public class ShipFlyLogic : MonoBehaviour
 
 	    //_modelRotX = ShipObj.transform.rotation.x;
 	    //_modelRotY = ShipObj.transform.rotation.y;
+        //ParticlePause();
 	}
 
     public void Init(ShipLife shipLife, LevelController controller)
@@ -43,6 +48,18 @@ public class ShipFlyLogic : MonoBehaviour
         Controller = controller;
 
 
+    }
+
+    public void SetPause(bool isPause)
+    {
+        if (isPause)
+        {
+            ParticlePause();
+        }
+        else
+        {
+            ParticlePlay();
+        }
     }
 
 
@@ -208,6 +225,7 @@ public class ShipFlyLogic : MonoBehaviour
     public void AnimToLose()
     {
         DisableDamageObj();
+        ParticleStop();
         // TODO: анимация взрыва
 
     }
@@ -227,6 +245,24 @@ public class ShipFlyLogic : MonoBehaviour
         //    else EnableDamageObj();
         //}
 
+    }
+    #endregion
+    #region particles
+
+    private void ParticlePlay()
+    {
+        PartLeft.Play();
+        PartRight.Play();
+    }
+    private void ParticlePause()
+    {
+        PartLeft.Pause();
+        PartRight.Pause();
+    }
+    private void ParticleStop()
+    {
+        PartLeft.Stop();
+        PartRight.Stop();
     }
     #endregion
 
@@ -266,6 +302,8 @@ public class ShipFlyLogic : MonoBehaviour
                 this.Controller.AddMaterial(mat.Count);
                 mat.IsFloated = true;
                 this.Controller.PlaceMaterialFloat(mat.transform.position, mat.Count, mat.Speed);
+
+                Destroy(mat.gameObject);
             }
             return;
         }

@@ -120,7 +120,7 @@ public class LevelController : MonoBehaviour
         //- сообщаем движку что готовы к сцене
         FarLife.OnScreenLoaded();
         _inited = true;
-        _manager.Pause(false);
+        SetPause(true);
 
 
         ShowMarketPanel();
@@ -304,24 +304,14 @@ public class LevelController : MonoBehaviour
     {
         FarLife.GameLife.OnApplicationPause(pausing);
         if (!_inited) return;
-        ShowOptionPanel();
+
+        if (!PanelMarket.IsShowed)
+            ShowOptionPanel();
     }
 
 
 
     #region materials
-    private List<MaterialLogic> _materials = new List<MaterialLogic>(); 
-    private void UpdateMaterials()
-    {
-        foreach (var mat in _materials)
-        {
-            if (mat == null) continue;
-            if (mat.IsFloated)
-            {
-                DeleteMaterial(mat.gameObject);
-            }
-        }
-    }
     /// <summary>
     /// Помещение материала.
     /// </summary>
@@ -340,7 +330,7 @@ public class LevelController : MonoBehaviour
         mat.Speed = speed;
         mat.SetPosition(pos);
         //- add
-        _materials.Add(mat);
+        //_materials.Add(mat);
     }
     public void DeleteMaterial(GameObject mat)
     {
@@ -741,31 +731,38 @@ public class LevelController : MonoBehaviour
 
 
     #region panels
+
+    public void SetPause(bool isPause)
+    {
+        _manager.Pause(isPause);
+        ShipLogic.SetPause(isPause);
+    }
+
     public void ShowMarketPanel()
     {
         _inTouchControl = false;
-        _manager.Pause(true);
+        SetPause(true);
         PanelMarket.Show();
     }
     public void HideMarketPanel()
     {
         _inTouchControl = true;
         PanelMarket.Hide();
-        _manager.Pause(false);
+        SetPause(false);
     }
 
 
     public void ShowOptionPanel()
     {
         _inTouchControl = false;
-        _manager.Pause(true);
+        SetPause(true);
         PanelOption.Show();
     }
     public void HideOptionPanel()
     {
         _inTouchControl = true;
         PanelOption.Hide();
-        _manager.Pause(false);
+        SetPause(false);
     }
 
     private void ShowEndMessage(Boolean isWin)
@@ -974,7 +971,6 @@ public class LevelController : MonoBehaviour
         {
             Paralax1.Rotate(_ship.FlySpeed);
             Paralax2.Rotate(_ship.FlySpeed);
-            //BoomAnimDo();
         }
 
         // концовка
@@ -990,9 +986,6 @@ public class LevelController : MonoBehaviour
             Paralax2.Rotate(_ship.FlySpeed);
         }
 
-
-        // остальное
-	    UpdateMaterials();
 
 
         //Log.SetText(_manager._shipPosY.ToString()); //?++ !!!

@@ -66,6 +66,7 @@ public class MaterialLogic : MonoBehaviour
 	    if (nextY <= -5.0f)
 	    {
 	        IsFloated = true;
+            Destroy(this.gameObject, 1.0f);
 	    }
     }
 }

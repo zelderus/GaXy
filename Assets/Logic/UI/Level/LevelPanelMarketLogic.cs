@@ -1,9 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using ZelderFramework.Animations;
 using UnityEngine.UI;
 
 public class LevelPanelMarketLogic : MonoBehaviour {
+
+
+    public Boolean IsShowed { get; private set; }
 
     public Image BackImg;
     public RectTransform PanelBody;
@@ -85,6 +89,7 @@ public class LevelPanelMarketLogic : MonoBehaviour {
     {
         //this.gameObject.SetActive(false);
         BackImg.gameObject.SetActive(false);
+        IsShowed = false;
         _animHide.Start();
     }
     private void OnHide()
@@ -94,6 +99,7 @@ public class LevelPanelMarketLogic : MonoBehaviour {
     public void Show()
     {
         this.gameObject.SetActive(true);
+        IsShowed = true;
         BackImg.gameObject.SetActive(true);
     }
 
