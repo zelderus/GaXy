@@ -19,6 +19,9 @@ public class ShipFlyLogic : MonoBehaviour
     public ParticleSystem PartRight;
     public ParticleSystem LoseBoom;
 
+    public Transform Gun1Left;
+    public Transform Gun1Right;
+
     //public Transform ShipObj;
     //public Transform ColliderObj;
 
@@ -49,6 +52,18 @@ public class ShipFlyLogic : MonoBehaviour
         ShipLife = shipLife;
         Controller = controller;
 
+        // gun1
+        var gun2 = ShipLife.Bullets.Find(f => f.GunIndex == 2);
+        if (gun2 != null && gun2.ShipHave)
+        {
+            Gun1Left.gameObject.SetActive(true);
+            Gun1Right.gameObject.SetActive(true);
+        }
+        else
+        {
+            Gun1Left.gameObject.SetActive(false);
+            Gun1Right.gameObject.SetActive(false);
+        }
 
     }
 

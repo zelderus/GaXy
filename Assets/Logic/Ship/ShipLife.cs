@@ -122,8 +122,8 @@ public class ShipLife : FileManagedClass
     {
         // TODO: инициализация оружия
         //- bullets
-        Bullets.Add(new Bullet(0, true, 0.9f, 1.0f, 1.0f));
-
+        Bullets.Add(new Bullet(1, true, 0.9f, 1.0f, 1.0f));
+        Bullets.Add(new Bullet(2, false, 0.5f, 0.5f, 0.8f));
     }
 
 

@@ -22,6 +22,8 @@ public class BulletShipLogic : MonoBehaviour
     private LevelController _controller;
     private bool _inFloated = false;
 
+    private Vector3 _direction = new Vector3(0, 0.1f, 0);
+
 	// Use this for initialization
 	void Start ()
     {
@@ -29,9 +31,10 @@ public class BulletShipLogic : MonoBehaviour
 	}
 
 
-    public void Init(LevelController controller, ShipLife ship, Vector3 pos)
+    public void Init(LevelController controller, ShipLife ship, Vector3 pos, Vector3 dir)
     {
         _controller = controller;
+        _direction = dir;
         Work = true;
         //Bullet = new Bullet(ship, Damage, Speed, TypeIsAir, TypeIsRocket);
         //+ на основе ship
@@ -75,7 +78,11 @@ public class BulletShipLogic : MonoBehaviour
         //! своя логика полета
         // просто летим по прямой со своей скоростью
         var def = (Time.deltaTime * Speed);
-        var nextY = this.transform.position.y + def;
-        this.transform.position = new Vector3(this.transform.position.x, nextY, 0);
+        //var nextY = this.transform.position.y + def;
+        //this.transform.position = new Vector3(this.transform.position.x, nextY, 0);
+
+        Vector3 n = new Vector3(_direction.x * def, _direction.y * def, 0);
+        var nextPos = this.transform.position + n;
+        this.transform.position = new Vector3(nextPos.x, nextPos.y, 0);
 	}
 }
