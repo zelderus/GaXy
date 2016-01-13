@@ -12,10 +12,12 @@ public class ShipFlyLogic : MonoBehaviour
     public LevelController Controller { get; private set; }
     public Transform DamageObj;
     public Transform ShieldObj;
+    public Transform ShipObj;
 
 
     public ParticleSystem PartLeft;
     public ParticleSystem PartRight;
+    public ParticleSystem LoseBoom;
 
     //public Transform ShipObj;
     //public Transform ColliderObj;
@@ -80,7 +82,7 @@ public class ShipFlyLogic : MonoBehaviour
     {
         // есть ли возможность туда
         pos.x = pos.x < MinX ? MinX : pos.x > MaxX ? MaxX : pos.x;
-        pos.y = pos.y < MinY ? MinY : pos.y > MaxY ? MaxY : pos.y;
+        //pos.y = pos.y < MinY ? MinY : pos.y > MaxY ? MaxY : pos.y;
 
         return pos;
     }
@@ -216,18 +218,30 @@ public class ShipFlyLogic : MonoBehaviour
         // TODO: анимация прихода/убыли энергии
 
     }
+
+    private float _winPosX = 0.0f;
+    private float _winPosY = 20.0f;
+    private bool _winAnimGo = false;
+
     public void AnimToWin()
     {
         DisableDamageObj();
-        // TODO: полет к концу
-
+        // полет к концу
+        _winAnimGo = true;
     }
+    private void AnimWinDo()
+    {
+        if (!_winAnimGo) return;
+        Fly(new Vector3(_winPosX, _winPosY, 0));
+    }
+
     public void AnimToLose()
     {
         DisableDamageObj();
         ParticleStop();
-        // TODO: анимация взрыва
-
+        // анимация взрыва
+        ShipObj.gameObject.SetActive(false);
+        LoseBoom.gameObject.SetActive(true);
     }
 
     private float _dmgTimer = 0.5f;
@@ -373,6 +387,9 @@ public class ShipFlyLogic : MonoBehaviour
 	        }
 	    }
         _isFlying = false;
+
+        // anim
+        AnimWinDo();
     }
 
 

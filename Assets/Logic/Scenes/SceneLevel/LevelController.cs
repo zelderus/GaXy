@@ -28,6 +28,9 @@ public class LevelController : MonoBehaviour
 
     public LogScript Log;
 
+    public LevelEndTextLogic WinText;
+    public LevelEndTextLogic LoseText;
+
 
     private MapLife _mapLife;
     private ShipLife _ship;
@@ -113,6 +116,9 @@ public class LevelController : MonoBehaviour
         PanelWork.Init(_ship);
         PanelShip.Init(_ship);
         PanelMarket.Init(_ship);
+        //
+        WinText.Init(FarLife.GetText(FarText.Level_Win));
+        LoseText.Init(FarLife.GetText(FarText.Level_Lose));
 
 	    InitLevel();
 
@@ -767,7 +773,8 @@ public class LevelController : MonoBehaviour
 
     private void ShowEndMessage(Boolean isWin)
     {
-        // TODO: появление надписи
+        if (isWin) WinText.Show();
+        else LoseText.Show();
     }
     #endregion
     #region ship touch panel

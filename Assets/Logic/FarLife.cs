@@ -53,10 +53,10 @@ public static class FarLife
     public static GameLanguages Language { private set; get; }
     public static MapLife MapLife { private set; get; }
     public static Boolean SoundEnabled { private set; get; }
-    public static FarStrings Strings { private set; get; }
-
+    
     public static Boolean GameOnRun { private set; get; }
 
+    private static FarStrings _strings;
     private static bool _inited = false;
     /// <summary>
     /// Инициализация движка. Необходимо выполнить в первой сцене в Awake().
@@ -74,8 +74,8 @@ public static class FarLife
             GameLife.Init("Images/LoadingTxt");
         }
 
-        Strings = new FarStrings();
-        Strings.Init();
+        _strings = new FarStrings();
+        _strings.Init();
 
         ShipLife = new ShipLife();
         ShipLife.Init();
@@ -179,7 +179,7 @@ public static class FarLife
     /// <returns></returns>
     public static String GetText(FarText strKey)
     {
-        return Strings.GetText(Language, strKey);
+        return _strings.GetText(Language, strKey);
     }
     #endregion
 

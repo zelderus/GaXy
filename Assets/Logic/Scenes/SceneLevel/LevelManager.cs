@@ -116,8 +116,8 @@ public class LevelManager
         var provider = new EnemyBrunchProvider(_cityIndex, _citFactor);
         lastTime = provider.CreateBrunch(1, lastTime, _cityIndex, _citFactor, Ship);
         lastTime = provider.CreateBrunch(2, lastTime, _cityIndex, _citFactor, Ship);
-        //lastTime = provider.CreateBrunch(3, lastTime, _cityIndex, _citFactor, Ship);
-        //lastTime = provider.CreateBrunch(4, lastTime, _cityIndex, _citFactor, Ship);
+        //x lastTime = provider.CreateBrunch(3, lastTime, _cityIndex, _citFactor, Ship);
+        //x lastTime = provider.CreateBrunch(4, lastTime, _cityIndex, _citFactor, Ship);
         lastTime = provider.CreateBrunch(5, lastTime, _cityIndex, _citFactor, Ship);
         lastTime = provider.CreateBrunch(6, lastTime, _cityIndex, _citFactor, Ship);
         // берем необходимое из всего этого

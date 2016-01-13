@@ -16,9 +16,12 @@ public enum FarText
     Main_LanguageRu = 13,
     Main_LanguageEn = 14, //?
     
-    Map_SkillTitle  = 100,
+    Map_SkillTitle  = 1000,
 
 
+
+    Level_Win   = 2000,
+    Level_Lose  = 2001
 }
 
 /// <summary>
@@ -59,7 +62,8 @@ public class FarStrings
         AddText(FarText.Map_SkillTitle, "Навыки", "Skills");
 
         //+ LEVEL
-
+        AddText(FarText.Level_Win, "Уровень пройден!", "You WIN!");
+        AddText(FarText.Level_Lose, "Поражение", "LOSE");
 
     }
 
