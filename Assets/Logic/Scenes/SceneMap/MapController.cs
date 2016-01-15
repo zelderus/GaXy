@@ -87,6 +87,7 @@ public class MapController : MonoBehaviour
         PanelWork.Init();
         PanelCityAction.Init();
 
+        PanelOption.Init();
 
         _currenctSelectCity = _mapLife.CurrenctCity;
         InitShip();

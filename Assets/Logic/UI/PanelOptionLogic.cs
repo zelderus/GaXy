@@ -9,15 +9,22 @@ public class PanelOptionLogic : MonoBehaviour {
 
     public Boolean IsShowed { get; private set; }
 
+    public PanelSkillLogic SkillPanel;
     public Text TitleSkillTxt;
 
 
 	// Use this for initialization
-	void Start () 
+	void Start ()
     {
         TitleSkillTxt.text = FarLife.GetText(FarText.Map_SkillTitle);
 
 	}
+
+
+    public void Init()
+    {
+        SkillPanel.Init();
+    }
 
 
 
@@ -25,12 +32,14 @@ public class PanelOptionLogic : MonoBehaviour {
     {
         IsShowed = false;
         this.gameObject.SetActive(false);
+        SkillPanel.SetShowed(false);
     }
 
     public void Show()
     {
         IsShowed = true;
         this.gameObject.SetActive(true);
+        SkillPanel.SetShowed(true);
     }
 
 
