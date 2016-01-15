@@ -4,6 +4,9 @@ using UnityEngine.EventSystems;
 using System;
 using ZelderFramework.Helpers;
 
+/// <summary>
+/// Панель Скиллов со скроллом.
+/// </summary>
 public class PanelSkillLogic : MonoBehaviour, IDragHandler, IEndDragHandler
 {
 

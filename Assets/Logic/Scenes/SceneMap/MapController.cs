@@ -21,7 +21,7 @@ public class MapController : MonoBehaviour
     public GameObject BackPanel;
 
     public WorldMap WorldMap;
-    public LogScript Log;
+    //public LogScript Log;
 
 
     public Text DayNumTxt;

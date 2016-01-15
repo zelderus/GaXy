@@ -80,6 +80,7 @@
      <Compile Include="Assets\Logic\Scenes\SceneLevel\ShipFlyLogic.cs" />
      <Compile Include="Assets\Logic\Scenes\SceneMap\MapController.cs" />
      <Compile Include="Assets\Logic\Scenes\SceneMap\MapLife.cs" />
+     <Compile Include="Assets\Logic\Scenes\SceneMap\MapSkillBtnLogic.cs" />
      <Compile Include="Assets\Logic\Scenes\SceneMap\ShipLogic.cs" />
      <Compile Include="Assets\Logic\Scenes\SceneMenu\MenuController.cs" />
      <Compile Include="Assets\Logic\Ship\ShipLife.cs" />
@@ -104,6 +105,7 @@
      <Compile Include="Assets\Logic\UI\PanelInfoSmallMissionPanel.cs" />
      <Compile Include="Assets\Logic\UI\PanelInfoSmallNeutralPanel.cs" />
      <Compile Include="Assets\Logic\UI\PanelOptionLogic.cs" />
+     <Compile Include="Assets\Logic\UI\PanelSkillContentLogic.cs" />
      <Compile Include="Assets\Logic\UI\PanelSkillLogic.cs" />
      <Compile Include="Assets\Logic\UI\PanelSkillSkyLogic.cs" />
      <Compile Include="Assets\Logic\UI\PanelWorkLogic.cs" />
