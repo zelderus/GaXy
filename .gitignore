@@ -4,6 +4,11 @@
 /Temp
 /obj
 
+
 # solutions
 /*.sln
 /*.suo
+
+# studio
+/.vs
+/.vs/*
