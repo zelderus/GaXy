@@ -12,12 +12,12 @@ public class PanelSkillContentLogic : MonoBehaviour {
     public Text TitleText;
     public Button BuyBtn;
     public MapController MapController;
-
-
+    
     private Int32 _skillNum = 0;
+    private MapSkillBtnLogic _skillBtn;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
 	
 	}
@@ -38,9 +38,10 @@ public class PanelSkillContentLogic : MonoBehaviour {
         this.gameObject.SetActive(false);
     }
 
-    public void SetView(Int32 num)
+    public void SetView(MapSkillBtnLogic skillBtn)
     {
-        _skillNum = num;
+        _skillBtn = skillBtn;
+        _skillNum = skillBtn.SkillNum;
         UpdateView();
     }
     /// <summary>
@@ -49,10 +50,11 @@ public class PanelSkillContentLogic : MonoBehaviour {
     /// <param name="num"></param>
     public void UpdateView()
     {
-        // TODO: _skillNum
+        var skill = FarLife.ShipLife.GetSkill(_skillNum);
+        if (skill == null) return;
 
         //+ text
-        var txt = "Описание скилла.. олрвылоарыоарыло лывораловыраловы лоывраолывралоырвлаоы рлыоварлыоврал ырлаыоварлыовралоыва рлоыварлывоарл ывлоарывлрло алвыоралоывр ывлоралвыор арлыовралыв авылоар";
+        var txt = skill.GetText();
         TitleText.text = txt;
 
         UpdateBuyBtn();
@@ -60,21 +62,53 @@ public class PanelSkillContentLogic : MonoBehaviour {
 
     private void UpdateBuyBtn()
     {
-        // TODO: _skillNum
-
         //+ btn
-        var isMax = false;
-        if (isMax)
+        var hasAccessBuy = !_skillBtn.IsActivated && _skillBtn.IsAccessible;// false;
+        if (!hasAccessBuy)
         {
             BuyBtn.gameObject.SetActive(false);
         }
         else
         {
             BuyBtn.gameObject.SetActive(true);
-            //- has enought
-            var hasEnought = true;
-            BuyBtn.interactable = hasEnought;
+            BuyBtn.interactable = SkillHasEnough();
         }
+    }
+
+
+    /// <summary>
+    /// Достаточно средств для текущего скилла.
+    /// </summary>
+    /// <returns></returns>
+    private bool SkillHasEnough()
+    {
+        var skill = FarLife.ShipLife.GetSkill(_skillNum);
+        var mapLife = MapController.GetMapLife();
+
+        if (mapLife.IsResourceEnough(skill.Materials)
+            && mapLife.IsResourceEnough(skill.Res1)
+            && mapLife.IsResourceEnough(skill.Res2)
+            && mapLife.IsResourceEnough(skill.Res3)
+            && mapLife.IsResourceEnough(skill.Res4)
+            ) return true;
+
+        return false;
+    }
+    /// <summary>
+    /// Приобритение скилла. Математика.
+    /// </summary>
+    private void SkillBuyDo()
+    {
+        var skill = FarLife.ShipLife.GetSkill(_skillNum);
+        var mapLife = MapController.GetMapLife();
+        //- снимаем ресурсы
+        mapLife.ResourceTrash(skill.Materials);
+        mapLife.ResourceTrash(skill.Res1);
+        mapLife.ResourceTrash(skill.Res2);
+        mapLife.ResourceTrash(skill.Res3);
+        mapLife.ResourceTrash(skill.Res4);
+        //- запоминаем у скилла
+        FarLife.ShipLife.SkillBuy(_skillNum);
     }
 
 
@@ -83,9 +117,10 @@ public class PanelSkillContentLogic : MonoBehaviour {
     /// </summary>
     public void BuyClickDo()
     {
-        // TODO: _skillNum
+        if (!SkillHasEnough()) return;
+        SkillBuyDo();
 
-
+        _skillBtn.Activation();
         UpdateBuyBtn();
         MapController.UpdateMathPanels();
     }

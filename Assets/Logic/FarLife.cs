@@ -9,7 +9,7 @@ using ZelderFramework;
 
 public class FarLifeGlobalData : FileManagedClass
 {
-    public Int32 FileVersion = 19;
+    public Int32 FileVersion = 22;
     public Int32 FileVersionLoaded = 0;
     public Boolean IsNewGame = false;
 
@@ -180,6 +180,16 @@ public static class FarLife
     public static String GetText(FarText strKey)
     {
         return _strings.GetText(Language, strKey);
+    }
+    /// <summary>
+    /// Текст скиллов.
+    /// </summary>
+    /// <param name="lng"></param>
+    /// <param name="skillNum"></param>
+    /// <returns></returns>
+    public static String GetSkillText(Int32 skillNum)
+    {
+        return _strings.GetSkillText(Language, skillNum);
     }
     #endregion
 

@@ -639,6 +639,20 @@ public class MapLife : FileManagedClass
         selfRes.CurrentCount += res.CurrentCount;
         res.CurrentCount = 0;
     }
+    /// <summary>
+    /// Трата ресурса.
+    /// </summary>
+    /// <param name="res"></param>
+    public void ResourceTrash(CityResourceFrom res)
+    {
+        var selfRes = GetSelfResource(res.Type);
+        if (selfRes == null) return;
+
+        var mustRes = res.MustBeForProduct;
+        if (mustRes > selfRes.CurrentCount) return;
+
+        selfRes.CurrentCount -= mustRes;
+    }
 
     /// <summary>
     /// Есть возможность запустить процесс в городе. Достаточно ресурсов и есть слот.

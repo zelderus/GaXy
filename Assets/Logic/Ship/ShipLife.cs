@@ -83,6 +83,10 @@ public class ShipLife : FileManagedClass
     public Int32 ShipBonusTreeCost { get; private set; }
     #endregion
 
+    #region Skills
+    public List<FarSkill> Skills { get; private set; }
+    #endregion
+
 
     public ShipLife()
     {
@@ -115,15 +119,72 @@ public class ShipLife : FileManagedClass
         ShipBonusTreeCount = 1;
         ShipBonusTreeTime = 60.0f;
         ShipBonusTreeCost = 1500;
+        // skills
+        Skills = new List<FarSkill>();
     }
 
 
     public void Init()
     {
-        // TODO: инициализация оружия
+        // TODO: инициализация
         //- bullets
         Bullets.Add(new Bullet(1, true, 0.9f, 1.0f, 1.0f));
         Bullets.Add(new Bullet(2, false, 0.5f, 0.5f, 0.8f));
+        //Bullets.Add(new Bullet(3, false, 0.5f, 0.5f, 0.8f));
+
+        //- skills
+        Skills.Add(new FarSkill(1, true));
+        Skills.Add(new FarSkill(2, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(3, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(4, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(5, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(6, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(7, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(8, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(9, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(10, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(11, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(12, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(13, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(14, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(15, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(16, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(17, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(18, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(19, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(21, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(22, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(23, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(24, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(25, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(26, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(27, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(28, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(29, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(31, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(32, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(33, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(34, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(35, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(36, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(37, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(38, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(39, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(41, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(42, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(43, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(44, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(45, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(46, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(47, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(48, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(49, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(51, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(52, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(53, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(54, 100, 0, 0, 0, 0));
+
+
     }
 
 
@@ -157,6 +218,7 @@ public class ShipLife : FileManagedClass
             datas.Add(new FileManagerData(FileManagerTypes.Single, bullet.DamageDif));
             datas.Add(new FileManagerData(FileManagerTypes.Single, bullet.SpeedDif));
         }
+        datas.Add(new FileManagerData(FileManagerTypes.Int32, UnityEngine.Random.Range(1, 888))); // rnd3
         // bonus
         datas.Add(new FileManagerData(FileManagerTypes.Single, ShipBonusHealth));
         datas.Add(new FileManagerData(FileManagerTypes.Int32, ShipBonusHealthCount));
@@ -167,8 +229,13 @@ public class ShipLife : FileManagedClass
         datas.Add(new FileManagerData(FileManagerTypes.Single, ShipBonusTree));
         datas.Add(new FileManagerData(FileManagerTypes.Int32, ShipBonusTreeCount));
         datas.Add(new FileManagerData(FileManagerTypes.Single, ShipBonusTreeTime));
+        // skills
+        foreach (var skill in Skills)
+        {
+            datas.Add(new FileManagerData(FileManagerTypes.Boolean, skill.IsActivated));
+        }
 
-        datas.Add(new FileManagerData(FileManagerTypes.Int32, UnityEngine.Random.Range(1, 10)));
+        datas.Add(new FileManagerData(FileManagerTypes.Int32, UnityEngine.Random.Range(1, 10)));    // rnd4
         return datas;
     }
     /// <summary>
@@ -202,6 +269,7 @@ public class ShipLife : FileManagedClass
             var b4 = (Single)datas[ind++].DataValue;
             bullet.LoadData(b1, b2, b3, b4);
         }
+        var rnd3 = (Int32)datas[ind++].DataValue;   //+ rnd
         // bonus
         ShipBonusHealth = (Single)datas[ind++].DataValue;
         ShipBonusHealthCount = (Int32)datas[ind++].DataValue;
@@ -212,8 +280,13 @@ public class ShipLife : FileManagedClass
         ShipBonusTree = (Single)datas[ind++].DataValue;
         ShipBonusTreeCount = (Int32)datas[ind++].DataValue;
         ShipBonusTreeTime = (Single)datas[ind++].DataValue;
-
-        var rnd3 = (Int32)datas[ind++].DataValue;   //+ rnd
+        // skills
+        foreach (var skill in Skills)
+        {
+            var b1 = (Boolean)datas[ind++].DataValue;
+            skill.LoadData(b1);
+        }
+        var rnd4 = (Int32)datas[ind++].DataValue;   //+ rnd
     }
     #endregion
 
@@ -308,5 +381,30 @@ public class ShipLife : FileManagedClass
     }
     #endregion
 
+    #region Skills logic
+    public FarSkill GetSkill(Int32 num)
+    {
+        return Skills.Find(f => f.Num == num);
+    }
+    /// <summary>
+    /// Скилл приобретен.
+    /// </summary>
+    /// <param name="skillNum"></param>
+    /// <returns></returns>
+    public bool SkillIsActivated(Int32 skillNum)
+    {
+        var skill = GetSkill(skillNum);
+        return skill.IsActivated;
+    }
+    /// <summary>
+    /// Приобритение скилла.
+    /// </summary>
+    /// <param name="skillNum">от 1</param>
+    public void SkillBuy(Int32 skillNum)
+    {
+        var skill = GetSkill(skillNum);
+        skill.IsActivated = true;
+    }
+    #endregion
 
 }

@@ -18,7 +18,6 @@ public class PanelOptionLogic : MonoBehaviour {
     public PanelSkillLogic SkillPanel;
     public Text TitleSkillTxt;
 
-
     private MapSkillBtnLogic _currentSkillBtn = null;
 
     // Use this for initialization
@@ -34,9 +33,19 @@ public class PanelOptionLogic : MonoBehaviour {
         SkillPanel.Init();
         ContentPanel.Init();
         ContentPanel.Hide();
+        // автоматически привязываем (для избежания вручную в редакторе)
+        var content = transform.Find("SkillPanel/Wrapper/ContentPanel").transform;
+        foreach (Transform child in content)
+        {
+            var skillItem = child.GetComponent<MapSkillBtnLogic>();
+            skillItem.Init(this);
+        }
+        foreach (Transform child in content)
+        {
+            var skillItem = child.GetComponent<MapSkillBtnLogic>();
+            skillItem.InitActivation();
+        }
     }
-
-
 
     public void Hide()
     {
@@ -47,6 +56,9 @@ public class PanelOptionLogic : MonoBehaviour {
     public void Show()
     {
         IsShowed = true;
+
+        if (_currentSkillBtn != null) ContentPanel.UpdateView();
+
         this.gameObject.SetActive(true);
         SkillPanel.SetShowed(true);
     }
@@ -66,7 +78,7 @@ public class PanelOptionLogic : MonoBehaviour {
         _currentSkillBtn = skillBtn;
         skillBtn.ViewAsCurrent();
 
-        ContentPanel.SetView(skillBtn.SkillNum);
+        ContentPanel.SetView(skillBtn);
         ContentPanel.Show();
     }
 
