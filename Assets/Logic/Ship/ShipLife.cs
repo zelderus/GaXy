@@ -112,10 +112,10 @@ public class ShipLife : FileManagedClass
 
         ShipBonusShield = 3.0f;
         ShipBonusShieldCount = 4;
-        ShipBonusShieldTime = 10.0f;
-        ShipBonusShieldCost = 100;
+        ShipBonusShieldTime = 40.0f;
+        ShipBonusShieldCost = 300;
 
-        ShipBonusTree = 30.0f;
+        ShipBonusTree = 10.0f;
         ShipBonusTreeCount = 1;
         ShipBonusTreeTime = 60.0f;
         ShipBonusTreeCost = 1500;
@@ -126,63 +126,73 @@ public class ShipLife : FileManagedClass
 
     public void Init()
     {
-        // TODO: инициализация
+        //! инициализация
         //- bullets
-        Bullets.Add(new Bullet(1, true, 0.9f, 1.0f, 1.0f));
-        Bullets.Add(new Bullet(2, false, 0.5f, 0.5f, 0.8f));
-        //Bullets.Add(new Bullet(3, false, 0.5f, 0.5f, 0.8f));
+        Bullets.Add(new Bullet(1, true, 1.0f));
+        Bullets.Add(new Bullet(2, false, 0.8f));
+        Bullets.Add(new Bullet(3, false, 0.9f));
 
+
+        // skill nums
+        /*
+            G1: 1-5
+            G2: 6-10
+            G3: 11-15
+
+            //: 16-20
+            <>: 21-25
+            X>: 26-30
+
+            HP: 31-35
+            SH: 36-40
+            BB: 41-45
+        */
         //- skills
-        Skills.Add(new FarSkill(1, true));
-        Skills.Add(new FarSkill(2, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(3, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(4, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(5, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(6, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(7, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(8, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(9, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(10, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(11, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(12, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(13, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(14, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(15, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(16, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(17, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(18, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(19, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(21, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(22, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(23, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(24, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(25, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(26, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(27, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(28, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(29, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(31, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(32, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(33, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(34, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(35, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(36, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(37, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(38, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(39, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(41, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(42, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(43, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(44, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(45, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(46, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(47, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(48, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(49, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(51, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(52, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(53, 100, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(54, 100, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(1, true, FarSkillTypes.Gun1));
+        Skills.Add(new FarSkill(2, FarSkillTypes.Gun1, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(3, FarSkillTypes.Gun1, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(4, FarSkillTypes.Gun1, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(5, FarSkillTypes.Gun1, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(6, FarSkillTypes.Gun2, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(7, FarSkillTypes.Gun2, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(8, FarSkillTypes.Gun2, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(9, FarSkillTypes.Gun2, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(10, FarSkillTypes.Gun2, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(11, FarSkillTypes.Gun3, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(12, FarSkillTypes.Gun3, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(13, FarSkillTypes.Gun3, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(14, FarSkillTypes.Gun3, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(15, FarSkillTypes.Gun3, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(16, FarSkillTypes.Block, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(17, FarSkillTypes.Block, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(18, FarSkillTypes.Block, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(19, FarSkillTypes.Block, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(20, FarSkillTypes.Block, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(21, FarSkillTypes.Speed, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(22, FarSkillTypes.Speed, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(23, FarSkillTypes.Speed, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(24, FarSkillTypes.Speed, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(25, FarSkillTypes.Speed, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(26, FarSkillTypes.Parsek, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(27, FarSkillTypes.Parsek, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(28, FarSkillTypes.Parsek, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(29, FarSkillTypes.Parsek, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(30, FarSkillTypes.Parsek, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(31, FarSkillTypes.BonusHealth, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(32, FarSkillTypes.BonusHealth, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(33, FarSkillTypes.BonusHealth, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(34, FarSkillTypes.BonusHealth, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(35, FarSkillTypes.BonusHealth, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(36, FarSkillTypes.BonusShield, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(37, FarSkillTypes.BonusShield, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(38, FarSkillTypes.BonusShield, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(39, FarSkillTypes.BonusShield, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(40, FarSkillTypes.BonusShield, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(41, FarSkillTypes.BonusBomb, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(42, FarSkillTypes.BonusBomb, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(43, FarSkillTypes.BonusBomb, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(44, FarSkillTypes.BonusBomb, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(45, FarSkillTypes.BonusBomb, 1, 0, 0, 0, 0));
 
 
     }
@@ -200,36 +210,36 @@ public class ShipLife : FileManagedClass
         datas.Add(new FileManagerData(FileManagerTypes.Single, UnityEngine.Random.Range(53.5f, 745.9999f)));
         datas.Add(new FileManagerData(FileManagerTypes.String, StringHelper.GetRandomString(3, 7)));   //+ rnd
         datas.Add(new FileManagerData(FileManagerTypes.Int32, UnityEngine.Random.Range(33, 444)));
-        // map
-        datas.Add(new FileManagerData(FileManagerTypes.Int32, MaxSteps));
+        //+ map
+        //datas.Add(new FileManagerData(FileManagerTypes.Int32, MaxSteps));
         datas.Add(new FileManagerData(FileManagerTypes.Boolean, IsJopCompleted));
-        // level
-        datas.Add(new FileManagerData(FileManagerTypes.Single, MaxHealth));
-        datas.Add(new FileManagerData(FileManagerTypes.Single, MaxMoveSpeed));
-        datas.Add(new FileManagerData(FileManagerTypes.Single, ResistantBodyDamage));
-        datas.Add(new FileManagerData(FileManagerTypes.Single, ResistantAir));
-        datas.Add(new FileManagerData(FileManagerTypes.Single, ResistantRocket));
-        datas.Add(new FileManagerData(FileManagerTypes.Single, LuckyForMaterials));
-        // bullets
-        foreach (var bullet in Bullets)
-        {
-            datas.Add(new FileManagerData(FileManagerTypes.Boolean, bullet.ShipHave));
-            datas.Add(new FileManagerData(FileManagerTypes.Single, bullet.TimeToGo));
-            datas.Add(new FileManagerData(FileManagerTypes.Single, bullet.DamageDif));
-            datas.Add(new FileManagerData(FileManagerTypes.Single, bullet.SpeedDif));
-        }
+        //+ level
+        //datas.Add(new FileManagerData(FileManagerTypes.Single, MaxHealth));
+        //datas.Add(new FileManagerData(FileManagerTypes.Single, MaxMoveSpeed));
+        //datas.Add(new FileManagerData(FileManagerTypes.Single, ResistantBodyDamage));
+        //datas.Add(new FileManagerData(FileManagerTypes.Single, ResistantAir));
+        //datas.Add(new FileManagerData(FileManagerTypes.Single, ResistantRocket));
+        //datas.Add(new FileManagerData(FileManagerTypes.Single, LuckyForMaterials));
+        //+ bullets
+        //foreach (var bullet in Bullets)
+        //{
+        //    datas.Add(new FileManagerData(FileManagerTypes.Boolean, bullet.ShipHave));
+        //    datas.Add(new FileManagerData(FileManagerTypes.Single, bullet.TimeToGo));
+        //    datas.Add(new FileManagerData(FileManagerTypes.Single, bullet.DamageDif));
+        //    datas.Add(new FileManagerData(FileManagerTypes.Single, bullet.SpeedDif));
+        //}
         datas.Add(new FileManagerData(FileManagerTypes.Int32, UnityEngine.Random.Range(1, 888))); // rnd3
-        // bonus
-        datas.Add(new FileManagerData(FileManagerTypes.Single, ShipBonusHealth));
+        //+ bonus
+        //datas.Add(new FileManagerData(FileManagerTypes.Single, ShipBonusHealth));
         datas.Add(new FileManagerData(FileManagerTypes.Int32, ShipBonusHealthCount));
-        datas.Add(new FileManagerData(FileManagerTypes.Single, ShipBonusHealthTime));
-        datas.Add(new FileManagerData(FileManagerTypes.Single, ShipBonusShield));
+        //datas.Add(new FileManagerData(FileManagerTypes.Single, ShipBonusHealthTime));
+        //datas.Add(new FileManagerData(FileManagerTypes.Single, ShipBonusShield));
         datas.Add(new FileManagerData(FileManagerTypes.Int32, ShipBonusShieldCount));
-        datas.Add(new FileManagerData(FileManagerTypes.Single, ShipBonusShieldTime));
-        datas.Add(new FileManagerData(FileManagerTypes.Single, ShipBonusTree));
+        //datas.Add(new FileManagerData(FileManagerTypes.Single, ShipBonusShieldTime));
+        //datas.Add(new FileManagerData(FileManagerTypes.Single, ShipBonusTree));
         datas.Add(new FileManagerData(FileManagerTypes.Int32, ShipBonusTreeCount));
-        datas.Add(new FileManagerData(FileManagerTypes.Single, ShipBonusTreeTime));
-        // skills
+        //datas.Add(new FileManagerData(FileManagerTypes.Single, ShipBonusTreeTime));
+        //+ skills
         foreach (var skill in Skills)
         {
             datas.Add(new FileManagerData(FileManagerTypes.Boolean, skill.IsActivated));
@@ -250,37 +260,37 @@ public class ShipLife : FileManagedClass
         var rndStr = (String)datas[ind++].DataValue.ToString();   //+ rnd text
         var rnd2 = (Int32)datas[ind++].DataValue;   //+ rnd
         
-        // map
-        MaxSteps = (Int32)datas[ind++].DataValue;
+        //+ map
+        //MaxSteps = (Int32)datas[ind++].DataValue;
         IsJopCompleted = (Boolean)datas[ind++].DataValue;
-        // level
-        MaxHealth = (Single)datas[ind++].DataValue;
-        MaxMoveSpeed = (Single)datas[ind++].DataValue;
-        ResistantBodyDamage = (Single)datas[ind++].DataValue;
-        ResistantAir = (Single)datas[ind++].DataValue;
-        ResistantRocket = (Single)datas[ind++].DataValue;
-        LuckyForMaterials = (Single)datas[ind++].DataValue;
-        // bullets
-        foreach (var bullet in Bullets)
-        {
-            var b1 = (Boolean) datas[ind++].DataValue;
-            var b2 = (Single)datas[ind++].DataValue;
-            var b3 = (Single)datas[ind++].DataValue;
-            var b4 = (Single)datas[ind++].DataValue;
-            bullet.LoadData(b1, b2, b3, b4);
-        }
+        //+ level
+        //MaxHealth = (Single)datas[ind++].DataValue;
+        //MaxMoveSpeed = (Single)datas[ind++].DataValue;
+        //ResistantBodyDamage = (Single)datas[ind++].DataValue;
+        //ResistantAir = (Single)datas[ind++].DataValue;
+        //ResistantRocket = (Single)datas[ind++].DataValue;
+        //LuckyForMaterials = (Single)datas[ind++].DataValue;
+        //+ bullets
+        //foreach (var bullet in Bullets)
+        //{
+        //    var b1 = (Boolean) datas[ind++].DataValue;
+        //    var b2 = (Single)datas[ind++].DataValue;
+        //    var b3 = (Single)datas[ind++].DataValue;
+        //    var b4 = (Single)datas[ind++].DataValue;
+        //    bullet.LoadData(b1, b2, b3, b4);
+        //}
         var rnd3 = (Int32)datas[ind++].DataValue;   //+ rnd
-        // bonus
-        ShipBonusHealth = (Single)datas[ind++].DataValue;
+        //+ bonus
+        //ShipBonusHealth = (Single)datas[ind++].DataValue;
         ShipBonusHealthCount = (Int32)datas[ind++].DataValue;
-        ShipBonusHealthTime = (Single)datas[ind++].DataValue;
-        ShipBonusShield = (Single)datas[ind++].DataValue;
+        //ShipBonusHealthTime = (Single)datas[ind++].DataValue;
+        //ShipBonusShield = (Single)datas[ind++].DataValue;
         ShipBonusShieldCount = (Int32)datas[ind++].DataValue;
-        ShipBonusShieldTime = (Single)datas[ind++].DataValue;
-        ShipBonusTree = (Single)datas[ind++].DataValue;
+        //ShipBonusShieldTime = (Single)datas[ind++].DataValue;
+        //ShipBonusTree = (Single)datas[ind++].DataValue;
         ShipBonusTreeCount = (Int32)datas[ind++].DataValue;
-        ShipBonusTreeTime = (Single)datas[ind++].DataValue;
-        // skills
+        //ShipBonusTreeTime = (Single)datas[ind++].DataValue;
+        //+ skills
         foreach (var skill in Skills)
         {
             var b1 = (Boolean)datas[ind++].DataValue;
@@ -384,6 +394,7 @@ public class ShipLife : FileManagedClass
     #region Skills logic
     public FarSkill GetSkill(Int32 num)
     {
+        if (num <= 0) return null;
         return Skills.Find(f => f.Num == num);
     }
     /// <summary>
@@ -393,6 +404,7 @@ public class ShipLife : FileManagedClass
     /// <returns></returns>
     public bool SkillIsActivated(Int32 skillNum)
     {
+        if (skillNum <= 0) return false;
         var skill = GetSkill(skillNum);
         return skill.IsActivated;
     }
@@ -402,8 +414,120 @@ public class ShipLife : FileManagedClass
     /// <param name="skillNum">от 1</param>
     public void SkillBuy(Int32 skillNum)
     {
+        if (skillNum <= 0) return;
         var skill = GetSkill(skillNum);
         skill.IsActivated = true;
+        SkillUpdateMath();
+    }
+    /// <summary>
+    /// Обновление данных на основе скиллов.
+    /// </summary>
+    public void SkillUpdateMath()
+    {
+        //+ gun 1
+        var gun1skills = Skills.FindAll(f => f.SkillType == FarSkillTypes.Gun1 && f.IsActivated).Count;
+        var gun1 = Bullets.Find(f => f.GunIndex == 1);
+        if (gun1 != null && gun1skills > 0)
+        {
+            switch (gun1skills)
+            {
+                case 1: gun1.SkillUpdate(true, 1.00f, 1.0f, 1.00f); break;
+                case 2: gun1.SkillUpdate(true, 0.95f, 1.2f, 1.05f); break;
+                case 3: gun1.SkillUpdate(true, 0.80f, 1.4f, 1.10f); break;
+                case 4: gun1.SkillUpdate(true, 0.70f, 1.6f, 1.13f); break;
+                case 5: gun1.SkillUpdate(true, 0.50f, 2.0f, 1.16f); break;
+            }
+        }
+        //+ gun 2
+        var gun2skills = Skills.FindAll(f => f.SkillType == FarSkillTypes.Gun2 && f.IsActivated).Count;
+        var gun2 = Bullets.Find(f => f.GunIndex == 2);
+        if (gun2 != null && gun2skills > 0)
+        {
+            switch (gun2skills)
+            {
+                case 1: gun2.SkillUpdate(true, 0.80f, 1.0f, 1.00f); break;
+                case 2: gun2.SkillUpdate(true, 0.70f, 1.2f, 1.08f); break;
+                case 3: gun2.SkillUpdate(true, 0.60f, 1.4f, 1.13f); break;
+                case 4: gun2.SkillUpdate(true, 0.40f, 1.6f, 1.15f); break;
+                case 5: gun2.SkillUpdate(true, 0.20f, 2.0f, 1.18f); break;
+            }
+        }
+        //+ gun 3
+        var gun3skills = Skills.FindAll(f => f.SkillType == FarSkillTypes.Gun3 && f.IsActivated).Count;
+        var gun3 = Bullets.Find(f => f.GunIndex == 3);
+        if (gun3 != null && gun3skills > 0)
+        {
+            switch (gun3skills)
+            {
+                case 1: gun3.SkillUpdate(true, 0.90f, 1.0f, 1.00f); break;
+                case 2: gun3.SkillUpdate(true, 0.80f, 1.2f, 1.07f); break;
+                case 3: gun3.SkillUpdate(true, 0.70f, 1.4f, 1.12f); break;
+                case 4: gun3.SkillUpdate(true, 0.60f, 1.6f, 1.14f); break;
+                case 5: gun3.SkillUpdate(true, 0.40f, 2.0f, 1.17f); break;
+            }
+        }
+
+        //+ parsek
+        var parseks = Skills.FindAll(f => f.SkillType == FarSkillTypes.Parsek && f.IsActivated).Count;
+        switch(parseks)
+        {
+            case 1: MaxSteps = 4; break;
+            case 2: MaxSteps = 5; break;
+            case 3: MaxSteps = 6; break;
+            case 4: MaxSteps = 8; break;
+            case 5: MaxSteps = 14; break;
+        }
+        //+ speed
+        var speeds = Skills.FindAll(f => f.SkillType == FarSkillTypes.Speed && f.IsActivated).Count;
+        switch (speeds)
+        {
+            case 1: MaxMoveSpeed = 10.5f; break;
+            case 2: MaxMoveSpeed = 11.0f; break;
+            case 3: MaxMoveSpeed = 12.0f; break;
+            case 4: MaxMoveSpeed = 13.0f; break;
+            case 5: MaxMoveSpeed = 18.5f; break;
+        }
+        //+ block
+        var resists = Skills.FindAll(f => f.SkillType == FarSkillTypes.Block && f.IsActivated).Count;
+        switch (resists)
+        {
+            case 1: ResistantBodyDamage = ResistantAir= ResistantRocket = 0.95f; break;
+            case 2: ResistantBodyDamage = ResistantAir= ResistantRocket = 0.9f; break;
+            case 3: ResistantBodyDamage = ResistantAir= ResistantRocket = 0.85f; break;
+            case 4: ResistantBodyDamage = ResistantAir= ResistantRocket = 0.8f; break;
+            case 5: ResistantBodyDamage = ResistantAir = ResistantRocket = 0.6f; break;
+        }
+
+        //+ BonusHealth 
+        var bhps = Skills.FindAll(f => f.SkillType == FarSkillTypes.BonusHealth && f.IsActivated).Count;
+        switch (bhps)
+        {
+            case 1: ShipBonusHealth = 2.5f; ShipBonusHealthTime = 9.5f; break;
+            case 2: ShipBonusHealth = 3.0f; ShipBonusHealthTime = 8.0f; break;
+            case 3: ShipBonusHealth = 4.0f; ShipBonusHealthTime = 6.0f; break;
+            case 4: ShipBonusHealth = 6.0f; ShipBonusHealthTime = 4.0f; break;
+            case 5: ShipBonusHealth = 15.0f; ShipBonusHealthTime = 1.0f; break;
+        }
+        //+ BonusShield 
+        var bshlds = Skills.FindAll(f => f.SkillType == FarSkillTypes.BonusShield && f.IsActivated).Count;
+        switch (bshlds)
+        {
+            case 1: ShipBonusShield = 3.2f; ShipBonusShieldTime = 38.0f; break;
+            case 2: ShipBonusShield = 3.5f; ShipBonusShieldTime = 35.0f; break;
+            case 3: ShipBonusShield = 4.0f; ShipBonusShieldTime = 32.0f; break;
+            case 4: ShipBonusShield = 5.0f; ShipBonusShieldTime = 28.0f; break;
+            case 5: ShipBonusShield = 8.0f; ShipBonusShieldTime = 20.0f; break;
+        }
+        //+ BonusBomb 
+        var bbbs = Skills.FindAll(f => f.SkillType == FarSkillTypes.BonusBomb && f.IsActivated).Count;
+        switch (bbbs)
+        {
+            case 1: ShipBonusTree = 12.0f; ShipBonusTreeTime = 55.0f; break;
+            case 2: ShipBonusTree = 14.0f; ShipBonusTreeTime = 50.0f; break;
+            case 3: ShipBonusTree = 16.0f; ShipBonusTreeTime = 45.0f; break;
+            case 4: ShipBonusTree = 20.0f; ShipBonusTreeTime = 35.0f; break;
+            case 5: ShipBonusTree = 40.0f; ShipBonusTreeTime = 10.0f; break;
+        }
     }
     #endregion
 

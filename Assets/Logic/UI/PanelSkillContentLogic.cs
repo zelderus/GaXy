@@ -83,6 +83,8 @@ public class PanelSkillContentLogic : MonoBehaviour {
     private bool SkillHasEnough()
     {
         var skill = FarLife.ShipLife.GetSkill(_skillNum);
+        if (skill == null) return false;
+
         var mapLife = MapController.GetMapLife();
 
         if (mapLife.IsResourceEnough(skill.Materials)
@@ -100,6 +102,8 @@ public class PanelSkillContentLogic : MonoBehaviour {
     private void SkillBuyDo()
     {
         var skill = FarLife.ShipLife.GetSkill(_skillNum);
+        if (skill == null) return;
+
         var mapLife = MapController.GetMapLife();
         //- снимаем ресурсы
         mapLife.ResourceTrash(skill.Materials);

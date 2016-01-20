@@ -18,7 +18,7 @@ public class PanelSkillLogic : MonoBehaviour, IDragHandler, IEndDragHandler
 
     private float _realOffsetY = 0.0f;
     private float _minOffsetY = 0.0f;
-    private float _maxOffsetY = 220.0f;
+    private float _maxOffsetY = 500.0f;
 
 
     private bool _isShowed = false;

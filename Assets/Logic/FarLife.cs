@@ -9,7 +9,7 @@ using ZelderFramework;
 
 public class FarLifeGlobalData : FileManagedClass
 {
-    public Int32 FileVersion = 22;
+    public Int32 FileVersion = 23;
     public Int32 FileVersionLoaded = 0;
     public Boolean IsNewGame = false;
 
@@ -127,6 +127,8 @@ public static class FarLife
         MapLife.Init(ShipLife);
 
         FarStat = new FarStat();
+
+        ShipLife.SkillUpdateMath(); //- обновляем данные скиллов
     }
 
 
@@ -150,6 +152,8 @@ public static class FarLife
             FileManager.Load("sl.zld", new List<FileManagedClass>() {ShipLife});
             FileManager.Load("ml.zld", new List<FileManagedClass>() {MapLife});
             FileManager.Load("stat.zld", new List<FileManagedClass>() { FarStat });
+
+            ShipLife.SkillUpdateMath(); //- обновляем данные скиллов
         }
     }
 

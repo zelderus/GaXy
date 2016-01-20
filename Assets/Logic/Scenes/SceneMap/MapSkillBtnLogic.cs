@@ -15,6 +15,8 @@ public class MapSkillBtnLogic : MonoBehaviour {
     public Color NormalColor = Color.white;
     public Color CurrentColor = Color.green;
     public Color NotAccessColor = new Color(Color.white.r, Color.white.g, Color.white.b, 0.4f);
+    public Color BtnNormalColor = Color.white;
+    public Color BtnDisabledColor = new Color(Color.white.r, Color.white.g, Color.white.b, 0.4f);
     public List<MapSkillBtnLogic> NearButtons;
 
     public bool IsActivated { get; private set; }
@@ -23,6 +25,7 @@ public class MapSkillBtnLogic : MonoBehaviour {
 
     private PanelOptionLogic _panelOption;
     private Image _backImage;
+    private Image _btnBackImage = null;
 
     // Use this for initialization
     void Start ()
@@ -36,6 +39,13 @@ public class MapSkillBtnLogic : MonoBehaviour {
     {
         _panelOption = panel;
         _backImage = this.gameObject.GetComponent<Image>();
+
+        var btn = this.gameObject.GetComponentInChildren<Button>();
+        if (btn != null)
+        {
+            _btnBackImage = btn.gameObject.GetComponent<Image>();
+        }
+        
     }
 
     public void InitActivation()
@@ -92,14 +102,23 @@ public class MapSkillBtnLogic : MonoBehaviour {
         else
         {
             //+ доступен
-            if (IsAccessible) _backImage.color = NormalColor;
-            else _backImage.color = NotAccessColor;
+            if (IsAccessible)
+            {
+                _backImage.color = NormalColor;
+                //if (_btnBackImage != null) _btnBackImage.color = BtnNormalColor;
+            }
+            else
+            {
+                _backImage.color = NotAccessColor;
+                //if (_btnBackImage != null) _btnBackImage.color = BtnDisabledColor;
+            }
         }
     }
     public void ViewAsCurrent()
     {
         //+ выбран
         _backImage.color = CurrentColor;
+        //if (_btnBackImage != null) _btnBackImage.color = BtnNormalColor;
     }
     public void ViewAsNotCurrent()
     {

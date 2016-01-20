@@ -21,6 +21,10 @@ public class EnemyLogic : MonoBehaviour {
     /// </remarks>
     /// </summary>
     public Int32 BossRouteNum = 0;
+    /// <summary>
+    /// Количество циклов повторения прохождения маршрута.
+    /// </summary>
+    public Int32 RouteCicles = 1;
     public Int32 GunIndex = 0;
 
     public float MaxHealth = 10.0f;
@@ -51,6 +55,7 @@ public class EnemyLogic : MonoBehaviour {
     private readonly List<WeightObject> _materialWeight = new List<WeightObject>();
 
     private bool _disabled = false;
+    private bool _isLastWaypoint = false;
 
 	// Use this for initialization
 	void Start ()
@@ -143,17 +148,30 @@ public class EnemyLogic : MonoBehaviour {
     /// <returns></returns>
     private WaypointModel GetCurrentWaypoint()
     {
+        if (_isLastWaypoint)
+        {
+            _currentWaypoint = null;
+            return null;
+        }
         _currentWaypoint = Controller.GetCurrentWaypoint(_routeIndex, _currentWayIndex, BossRouteNum);
         _currentWayIndex++;
         _inWaypointTime = 0.0f;
         return _currentWaypoint;
     }
+    private WaypointModel GetHomeWaypoint()
+    {
+        _currentWaypoint = Controller.GetCurrentWaypoint(_routeIndex, 0, BossRouteNum);
+        _currentWayIndex = 0;
+        _inWaypointTime = 0.0f;
+        return _currentWaypoint;
+    }
+
     private void SetStartIndex()
     {
         _currentWayIndex = Controller.GetRouteStartIndex(_routeIndex, BossRouteNum);
     }
 
-    
+
     /// <summary>
     /// Вращаем в сторону точки.
     /// </summary>
@@ -243,8 +261,27 @@ public class EnemyLogic : MonoBehaviour {
         {
             if (BossRouteNum > 0) // если не самый простой тип врага (улетающий)
             {
-                SetStartIndex();
-                GetCurrentWaypoint();
+                if (RouteCicles > 0)
+                {
+                    RouteCicles--;
+                    SetStartIndex();
+                    GetCurrentWaypoint();
+                }
+                else if (RouteCicles == 0)
+                {
+                    RouteCicles--;
+                    GetHomeWaypoint();
+                    _isLastWaypoint = true;
+                }
+                else if (RouteCicles < 0)
+                {
+                    if (!IsDied)
+                    {
+                        _disabled = true;
+                        Controller.EnemyFloated();
+                        Destroy(this.gameObject, 2.0f);
+                    }
+                }
             }
             else
             {
@@ -353,6 +390,8 @@ public class EnemyLogic : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         if (IsDied) return;
+
+        //Physics.Linecast(previousPoint, currentPoint)
 
         //! снаряды
         if (other.gameObject.tag == "BulletShip")

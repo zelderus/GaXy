@@ -24,6 +24,8 @@ public class BulletShipLogic : MonoBehaviour
 
     private Vector3 _direction = new Vector3(0, 0.1f, 0);
 
+    //private Vector3 _lastPos = null;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -63,16 +65,22 @@ public class BulletShipLogic : MonoBehaviour
         return _inFloated;
     }
 
-	// Update is called once per frame
-	void Update ()
+
+    //private void FixedUpdate()
+    //{
+        
+    //}
+
+    // Update is called once per frame
+    void Update ()
     {
         if (!Work) return;
         if (_controller.Manager.IsPaused) return;
-	    if (IsFloated(this.transform.position))
-	    {
+        if (IsFloated(this.transform.position))
+        {
             Destroy(this.gameObject, 1.0f);
-	        //x return;
-	    }
+            //x return;
+        }
         // <--- общее для всех снарядов
 
         //! своя логика полета
@@ -84,5 +92,5 @@ public class BulletShipLogic : MonoBehaviour
         Vector3 n = new Vector3(_direction.x * def, _direction.y * def, 0);
         var nextPos = this.transform.position + n;
         this.transform.position = new Vector3(nextPos.x, nextPos.y, 0);
-	}
+    }
 }

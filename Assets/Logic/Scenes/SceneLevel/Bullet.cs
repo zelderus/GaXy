@@ -38,12 +38,19 @@ public class Bullet
         SpeedDif = speedDif;
     }
 
-    public void LoadData(Boolean shipHave, float timeToGo, float damageDif, float speedDif)
+    //public void LoadData(Boolean shipHave, float timeToGo, float damageDif, float speedDif)
+    //{
+    //    ShipHave = shipHave;
+    //    TimeToGo = timeToGo;
+    //    DamageDif = damageDif;
+    //    SpeedDif = speedDif;
+    //}
+
+    public void SkillUpdate(Boolean shipHave, float timeToGo, float damageDif, float speedDif)
     {
         ShipHave = shipHave;
         TimeToGo = timeToGo;
         DamageDif = damageDif;
         SpeedDif = speedDif;
     }
-
 }

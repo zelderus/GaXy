@@ -490,8 +490,18 @@ public class LevelController : MonoBehaviour
             var bullet2 = pref.GetComponent<BulletShipLogic>();
             bullet2.Init(this, _ship, ShipLogic.transform.position + gunOffsetPos, new Vector3(0, 0.1f, 0));
         }
-        // TODO: gunIndex
-
+        // TODO: gun 3
+        if (gunIndex == 3)
+        {
+            pref = Instantiate(_bulletShip1Prefab, _parentBulletShipPrefab.transform.position, Quaternion.identity) as GameObject;
+            pref.transform.SetParent(_parentBulletShipPrefab.transform);
+            pref.transform.localPosition = ShipLogic.transform.position;
+            pref.transform.localScale = new Vector3(0.2f, 0.4f, 1.0f);
+            gunOffsetPos = new Vector3(0.0f, 0.3f, 0.0f);
+            //- logic
+            var bullet = pref.GetComponent<BulletShipLogic>();
+            bullet.Init(this, _ship, ShipLogic.transform.position + gunOffsetPos, new Vector3(0, 0.1f, 0));
+        }
     }
 
     private Int32 _bombId = 0;
