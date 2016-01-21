@@ -71,11 +71,12 @@ public class PanelSkillContentLogic : MonoBehaviour {
         if (!hasAccessBuy)
         {
             BuyBtn.gameObject.SetActive(false);
+            //x BuyBtn.interactable = false;
         }
         else
         {
-            BuyBtn.gameObject.SetActive(true);
             BuyBtn.interactable = SkillHasEnough();
+            BuyBtn.gameObject.SetActive(true);
         }
 
         //+ res
