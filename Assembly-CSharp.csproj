@@ -109,6 +109,8 @@
      <Compile Include="Assets\Logic\UI\PanelSkillContentLogic.cs" />
      <Compile Include="Assets\Logic\UI\PanelSkillLogic.cs" />
      <Compile Include="Assets\Logic\UI\PanelSkillSkyLogic.cs" />
+     <Compile Include="Assets\Logic\UI\PanelSkillWorkLogic.cs" />
+     <Compile Include="Assets\Logic\UI\PanelSkillWorkResourceBlockLogic.cs" />
      <Compile Include="Assets\Logic\UI\PanelWorkLogic.cs" />
      <Compile Include="Assets\Logic\UI\PanelWorkResourceBlockLogic.cs" />
      <Compile Include="Assets\Logic\ZelderFramework\Animations\EaseAnimations.cs" />

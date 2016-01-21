@@ -9,7 +9,7 @@ using ZelderFramework;
 
 public class FarLifeGlobalData : FileManagedClass
 {
-    public Int32 FileVersion = 23;
+    public Int32 FileVersion = 24;
     public Int32 FileVersionLoaded = 0;
     public Boolean IsNewGame = false;
 

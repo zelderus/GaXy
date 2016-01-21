@@ -496,8 +496,11 @@ public class MapController : MonoBehaviour
     public void ShowOptionPanel()
     {
         if (!_mapInTouchControl) return;
+        DeselectCities();
 
         _mapInTouchControl = false;
+        _mapDoInTouch = false;
+                
         PanelOption.Show();
         ShowBackPanel();
     }
@@ -535,6 +538,8 @@ public class MapController : MonoBehaviour
         if (!_mapInTouchControl) return;
 
         _mapInTouchControl = false;
+        _mapDoInTouch = false;
+
         PanelAction.Show(_currenctSelectCity, IsCityCurrent(_currenctSelectCity));
         ShowBackPanel();
     }

@@ -12,7 +12,8 @@ public class PanelSkillContentLogic : MonoBehaviour {
     public Text TitleText;
     public Button BuyBtn;
     public MapController MapController;
-    
+    public PanelSkillWorkLogic ResourceLogic;
+
     private Int32 _skillNum = 0;
     private MapSkillBtnLogic _skillBtn;
 
@@ -57,6 +58,9 @@ public class PanelSkillContentLogic : MonoBehaviour {
         var txt = skill.GetText();
         TitleText.text = txt;
 
+        //+ res
+        ResourceLogic.UpdateBySkill(skill);
+
         UpdateBuyBtn();
     }
 
@@ -73,6 +77,10 @@ public class PanelSkillContentLogic : MonoBehaviour {
             BuyBtn.gameObject.SetActive(true);
             BuyBtn.interactable = SkillHasEnough();
         }
+
+        //+ res
+        if (_skillBtn.IsActivated) ResourceLogic.Hide();
+        else ResourceLogic.Show();
     }
 
 

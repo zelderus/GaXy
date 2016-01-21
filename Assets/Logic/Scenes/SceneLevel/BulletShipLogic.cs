@@ -66,13 +66,7 @@ public class BulletShipLogic : MonoBehaviour
     }
 
 
-    //private void FixedUpdate()
-    //{
-        
-    //}
-
-    // Update is called once per frame
-    void Update ()
+    private void UpdateFlyDo()
     {
         if (!Work) return;
         if (_controller.Manager.IsPaused) return;
@@ -91,6 +85,18 @@ public class BulletShipLogic : MonoBehaviour
 
         Vector3 n = new Vector3(_direction.x * def, _direction.y * def, 0);
         var nextPos = this.transform.position + n;
+
         this.transform.position = new Vector3(nextPos.x, nextPos.y, 0);
+    }
+
+
+    //private void FixedUpdate()
+    //{
+    //    UpdateFlyDo();
+    //}
+
+    void Update ()
+    {
+        UpdateFlyDo();
     }
 }
