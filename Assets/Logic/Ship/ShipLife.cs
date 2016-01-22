@@ -107,7 +107,7 @@ public class ShipLife : FileManagedClass
         // bonus
         ShipBonusHealth = 2.0f;
         ShipBonusHealthCount = 2;
-        ShipBonusHealthTime = 10.0f;
+        ShipBonusHealthTime = 20.0f;
         ShipBonusHealthCost = 100;
 
         ShipBonusShield = 3.0f;
@@ -131,7 +131,9 @@ public class ShipLife : FileManagedClass
         Bullets.Add(new Bullet(1, true, 1.0f));
         Bullets.Add(new Bullet(2, false, 1.0f));
         Bullets.Add(new Bullet(3, false, 1.0f));
-        
+
+        // normal: 287DA6FF
+        // disabled: 879AA5FF
 
         // skill nums
         /*
@@ -517,10 +519,10 @@ public class ShipLife : FileManagedClass
         switch (speeds)
         {
             case 1: MaxMoveSpeed = 10.5f; break;
-            case 2: MaxMoveSpeed = 11.0f; break;
-            case 3: MaxMoveSpeed = 12.0f; break;
-            case 4: MaxMoveSpeed = 13.0f; break;
-            case 5: MaxMoveSpeed = 18.5f; break;
+            case 2: MaxMoveSpeed = 12.0f; break;
+            case 3: MaxMoveSpeed = 14.0f; break;
+            case 4: MaxMoveSpeed = 16.0f; break;
+            case 5: MaxMoveSpeed = 20.0f; break;
         }
         //+ block
         var resists = Skills.FindAll(f => f.SkillType == FarSkillTypes.Block && f.IsActivated).Count;
@@ -537,11 +539,11 @@ public class ShipLife : FileManagedClass
         var bhps = Skills.FindAll(f => f.SkillType == FarSkillTypes.BonusHealth && f.IsActivated).Count;
         switch (bhps)
         {
-            case 1: ShipBonusHealth = 2.5f; ShipBonusHealthTime = 9.5f; break;
-            case 2: ShipBonusHealth = 3.0f; ShipBonusHealthTime = 8.0f; break;
-            case 3: ShipBonusHealth = 4.0f; ShipBonusHealthTime = 6.0f; break;
-            case 4: ShipBonusHealth = 6.0f; ShipBonusHealthTime = 4.0f; break;
-            case 5: ShipBonusHealth = 15.0f; ShipBonusHealthTime = 1.0f; break;
+            case 1: ShipBonusHealth = 2.5f; ShipBonusHealthTime = 19.0f; break;
+            case 2: ShipBonusHealth = 3.0f; ShipBonusHealthTime = 18.0f; break;
+            case 3: ShipBonusHealth = 4.0f; ShipBonusHealthTime = 16.0f; break;
+            case 4: ShipBonusHealth = 6.0f; ShipBonusHealthTime = 14.0f; break;
+            case 5: ShipBonusHealth = 15.0f; ShipBonusHealthTime = 10.0f; break;
         }
         //+ BonusShield 
         var bshlds = Skills.FindAll(f => f.SkillType == FarSkillTypes.BonusShield && f.IsActivated).Count;
@@ -561,7 +563,7 @@ public class ShipLife : FileManagedClass
             case 2: ShipBonusTree = 14.0f; ShipBonusTreeTime = 50.0f; break;
             case 3: ShipBonusTree = 16.0f; ShipBonusTreeTime = 45.0f; break;
             case 4: ShipBonusTree = 20.0f; ShipBonusTreeTime = 35.0f; break;
-            case 5: ShipBonusTree = 40.0f; ShipBonusTreeTime = 10.0f; break;
+            case 5: ShipBonusTree = 40.0f; ShipBonusTreeTime = 20.0f; break;
         }
     }
     #endregion

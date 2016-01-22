@@ -714,6 +714,11 @@ public class MapController : MonoBehaviour
     private bool _isTouchMoving = false;
     #endregion
 
+    private float _diffTimeTap = 0.0f;
+    private bool _difTimeGo = false;
+    private float _diffTimeTapMax = 0.7f;
+    private Int32 _difCurCityId = -1;
+
     // Update is called once per frame
     private void Update()
     {
@@ -750,6 +755,13 @@ public class MapController : MonoBehaviour
                         if (cmap != null)
                         {
                             cmap.OnPointerClick();
+                            //+ pseudo double tap
+                            if (_difCurCityId == cmap.CityModel.Model.Id && _difTimeGo)
+                            {
+                                ShowCityPanel();
+                            }
+                            _difCurCityId = cmap.CityModel.Model.Id;
+                            _difTimeGo = true;
                         }
                     }
                     else
@@ -774,6 +786,19 @@ public class MapController : MonoBehaviour
             }
         }
         #endregion
+
+        //+ double tap timer
+        if (_difTimeGo)
+        {
+            _diffTimeTap += Time.deltaTime;
+            if (_diffTimeTap >= _diffTimeTapMax)
+            {
+                _diffTimeTap = 0.0f;
+                _difCurCityId = -1;
+                _difTimeGo = false;
+            }
+        }
+
 
         if (_mapDoInTouch) MapInTouchInEndUpdate();
     }

@@ -39,6 +39,9 @@ public class PanelActionLogic : MonoBehaviour
         //var t = transform.Find("Title");
         //_titleTxt = t.gameObject.GetComponent<Text>();
 
+        PanelMission.Init();
+        PanelNeutral.Init();
+
         _body = this.gameObject.GetComponent<RectTransform>();
         _endRightPosX = Screen.width;// 768.0f;
         _animShow = new EaseAnimations(EaseAnimationTypes.EaseOut, _endRightPosX, 0.0f, 0.3f);

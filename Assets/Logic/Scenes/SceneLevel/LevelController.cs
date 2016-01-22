@@ -760,7 +760,7 @@ public class LevelController : MonoBehaviour
         //- смещаем корабль
         var slide = ShipLogic.Fly(ray);
         //- смещаем паралаксы
-        var paralOffset = -(slide * 60.0f);
+        var paralOffset = -((slide > 0.0f ? 1 : slide < 0.0f ? -1 : 0) * 4.0f);// -(slide * 60.0f);
         Paralax1.RotY = paralOffset;
         Paralax2.RotY = paralOffset;
     }

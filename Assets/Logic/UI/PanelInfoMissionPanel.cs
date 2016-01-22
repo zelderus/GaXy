@@ -8,12 +8,18 @@ using UnityEngine.UI;
 /// </summary>
 public class PanelInfoMissionPanel : MonoBehaviour
 {
+    public Text DayTitle;
+    public Text MustResourceTitle;
+    public Text ProductTitle;
+
+    public Image ResFrom1Back;
     public Image ResFrom1MatImg;
     public Image ResFrom1Res1Img;
     public Image ResFrom1Res2Img;
     public Image ResFrom1Res3Img;
     public Image ResFrom1Res4Img;
 
+    public Image ResFrom2Back;
     public Image ResFrom2Res1Img;
     public Image ResFrom2Res2Img;
     public Image ResFrom2Res3Img;
@@ -65,6 +71,14 @@ public class PanelInfoMissionPanel : MonoBehaviour
 	}
 
 
+    public void Init()
+    {
+        DayTitle.text = FarLife.GetText(FarText.Map_InfoWnd_DayTitle);
+        MustResourceTitle.text = FarLife.GetText(FarText.Map_InfoWnd_ResTitle);
+        ProductTitle.text = FarLife.GetText(FarText.Map_InfoWnd_ProdTitle);
+    }
+
+
     public void Hide()
     {
         this.gameObject.SetActive(false);
@@ -89,14 +103,16 @@ public class PanelInfoMissionPanel : MonoBehaviour
     private void ShowContentCity(City city)
     {
         var model = city.Model;
-        
+
         //+ resources from
+        ResFrom1Back.gameObject.SetActive(false);
         ResFrom1MatImg.gameObject.SetActive(false);
         ResFrom1Res1Img.gameObject.SetActive(false);
         ResFrom1Res2Img.gameObject.SetActive(false);
         ResFrom1Res3Img.gameObject.SetActive(false);
         ResFrom1Res4Img.gameObject.SetActive(false);
 
+        ResFrom2Back.gameObject.SetActive(false);
         ResFrom2Res1Img.gameObject.SetActive(false);
         ResFrom2Res2Img.gameObject.SetActive(false);
         ResFrom2Res3Img.gameObject.SetActive(false);
@@ -114,6 +130,7 @@ public class PanelInfoMissionPanel : MonoBehaviour
             indx++;
             if (indx == 1)
             {
+                ResFrom1Back.gameObject.SetActive(true);
                 //- icon
                 switch (resFrom.Type)
                 {
@@ -126,6 +143,7 @@ public class PanelInfoMissionPanel : MonoBehaviour
             }
             else if (indx == 2)
             {
+                ResFrom2Back.gameObject.SetActive(true);
                 //- icon
                 switch (resFrom.Type)
                 {

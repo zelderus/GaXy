@@ -17,7 +17,12 @@ public enum FarText
     Main_LanguageEn = 14, //?
     
     Map_SkillTitle  = 1000,
-        
+    Map_InfoWnd_DayTitle = 1010,
+    Map_InfoWnd_ResTitle = 1011,
+    Map_InfoWnd_ProdTitle = 1012,
+    Map_InfoWnd_NeutralTitle = 1021,
+    Map_InfoWnd_ActiveTitle = 1022,
+
     Level_Win   = 2000,
     Level_Lose  = 2001
 
@@ -59,6 +64,12 @@ public class FarStrings
 
         //+ MAP
         AddText(FarText.Map_SkillTitle, "Навыки", "Skills");
+        AddText(FarText.Map_InfoWnd_DayTitle, "Дней на производство", "Days in the production");
+        AddText(FarText.Map_InfoWnd_ResTitle, "Необходимые ресурсы", "Necessary resources");
+        AddText(FarText.Map_InfoWnd_ProdTitle, "Производство", "Production");
+        AddText(FarText.Map_InfoWnd_NeutralTitle, "Необходимые ресурсы", "Necessary resources");
+        AddText(FarText.Map_InfoWnd_ActiveTitle, "Активировать", "Activate");
+
 
         //+ LEVEL
         AddText(FarText.Level_Win, "Уровень пройден!", "You WIN!");

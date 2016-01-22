@@ -1,12 +1,13 @@
 fileFormatVersion: 2
 guid: aa13cdf244215364ba548729d9973e0e
-timeCreated: 1453383021
+timeCreated: 1453450946
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: mapSprites400_0
     21300002: mapSprites400_1
     21300004: mapSprites400_2
+    21300006: mapSprites400_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -79,6 +80,16 @@ TextureImporter:
         x: 0
         y: 700
         width: 155
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: mapSprites400_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 630
+        width: 400
         height: 50
       alignment: 0
       pivot: {x: .5, y: .5}

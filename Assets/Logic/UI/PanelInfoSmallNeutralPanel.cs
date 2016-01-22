@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class PanelInfoSmallNeutralPanel : MonoBehaviour
 {
+    
     public Text Res1Txt;
     public Image ResFrom1ResImg;
     public Text Res2Txt;
@@ -22,6 +23,9 @@ public class PanelInfoSmallNeutralPanel : MonoBehaviour
 	void Start () {
 	
 	}
+
+
+    
 
 
     public void Hide()
