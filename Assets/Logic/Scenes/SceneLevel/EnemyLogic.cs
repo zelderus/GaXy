@@ -392,6 +392,7 @@ public class EnemyLogic : MonoBehaviour {
         if (IsDied) return;
 
         //Physics.Linecast(previousPoint, currentPoint)
+        if (this.transform.position.x <= -4.0f || this.transform.position.x >= 4.0f) return;    //+ слишком за пределами экрана, не реагируем на попадания
 
         //! снаряды
         if (other.gameObject.tag == "BulletShip")

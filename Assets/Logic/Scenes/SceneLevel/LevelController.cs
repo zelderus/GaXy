@@ -73,6 +73,7 @@ public class LevelController : MonoBehaviour
     private GameObject _bombPrefab;
     private GameObject _bulletShip1Prefab;
     private GameObject _bulletShip2Prefab;
+    private GameObject _bulletShip3Prefab;
     private GameObject _bulletEnemy1Prefab;
     private GameObject _bulletEnemy2Prefab;
     private GameObject _bulletEnemy3Prefab;
@@ -164,6 +165,7 @@ public class LevelController : MonoBehaviour
         _bombPrefab = Resources.Load("Prefabs/Level/BulletShip/BombPref", typeof(GameObject)) as GameObject;
         _bulletShip1Prefab = Resources.Load("Prefabs/Level/BulletShip/BulletShip1Pref", typeof(GameObject)) as GameObject;
         _bulletShip2Prefab = Resources.Load("Prefabs/Level/BulletShip/BulletShip2Pref", typeof(GameObject)) as GameObject;
+        _bulletShip3Prefab = Resources.Load("Prefabs/Level/BulletShip/BulletShip3Pref", typeof(GameObject)) as GameObject;
         _bulletEnemy1Prefab = Resources.Load("Prefabs/Level/BulletEnemy/BulletEnemy1Pref", typeof(GameObject)) as GameObject;
         _bulletEnemy2Prefab = Resources.Load("Prefabs/Level/BulletEnemy/BulletEnemy2Pref", typeof(GameObject)) as GameObject;
         _bulletEnemy3Prefab = Resources.Load("Prefabs/Level/BulletEnemy/BulletEnemy3Pref", typeof(GameObject)) as GameObject;
@@ -456,52 +458,60 @@ public class LevelController : MonoBehaviour
 
     public void PlaceBulletShip(Int32 gunIndex)
     {
-        GameObject pref = null;
-        Vector3 gunOffsetPos = Vector3.zero;
         if (gunIndex == 1)
         {
-            pref = Instantiate(_bulletShip1Prefab, _parentBulletShipPrefab.transform.position, Quaternion.identity) as GameObject;
+            var pref = Instantiate(_bulletShip1Prefab, _parentBulletShipPrefab.transform.position, Quaternion.identity) as GameObject;
             pref.transform.SetParent(_parentBulletShipPrefab.transform);
             pref.transform.localPosition = ShipLogic.transform.position;
             pref.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-            gunOffsetPos = new Vector3(0.0f, 0.3f, 0.0f);
+            var gunOffsetPos = new Vector3(0.0f, 0.3f, 0.0f);
             //- logic
             var bullet = pref.GetComponent<BulletShipLogic>();
-            bullet.Init(this, _ship, ShipLogic.transform.position + gunOffsetPos, new Vector3(0, 0.1f, 0));
+            bullet.Init(this, _ship, ShipLogic.transform.position + gunOffsetPos, new Vector3(0, 0.1f, 0), 0);
         }
         if (gunIndex == 2)
         {
             //+ left
-            pref = Instantiate(_bulletShip2Prefab, _parentBulletShipPrefab.transform.position, Quaternion.identity) as GameObject;
+            var pref = Instantiate(_bulletShip2Prefab, _parentBulletShipPrefab.transform.position, Quaternion.identity) as GameObject;
             pref.transform.SetParent(_parentBulletShipPrefab.transform);
             pref.transform.localPosition = ShipLogic.transform.position;
-            pref.transform.localScale = new Vector3(0.15f, 0.2f, 1.0f);
-            gunOffsetPos = new Vector3(-0.31f, -0.0f, 0.2f);
+            pref.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            var gunOffsetPos = new Vector3(-0.31f, -0.0f, 0.2f);
             //- logic
             var bullet = pref.GetComponent<BulletShipLogic>();
-            bullet.Init(this, _ship, ShipLogic.transform.position + gunOffsetPos, new Vector3(0, 0.1f, 0));
+            bullet.Init(this, _ship, ShipLogic.transform.position + gunOffsetPos, new Vector3(0, 0.1f, 0), 1);
 
             //+ right
             pref = Instantiate(_bulletShip2Prefab, _parentBulletShipPrefab.transform.position, Quaternion.identity) as GameObject;
             pref.transform.SetParent(_parentBulletShipPrefab.transform);
             pref.transform.localPosition = ShipLogic.transform.position;
-            pref.transform.localScale = new Vector3(0.15f, 0.2f, 1.0f);
+            pref.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
             gunOffsetPos = new Vector3(0.31f, -0.0f, 0.2f);
             //- logic
             var bullet2 = pref.GetComponent<BulletShipLogic>();
-            bullet2.Init(this, _ship, ShipLogic.transform.position + gunOffsetPos, new Vector3(0, 0.1f, 0));
+            bullet2.Init(this, _ship, ShipLogic.transform.position + gunOffsetPos, new Vector3(0, 0.1f, 0), -1);
         }
-        // TODO: gun 3
         if (gunIndex == 3)
         {
-            pref = Instantiate(_bulletShip1Prefab, _parentBulletShipPrefab.transform.position, Quaternion.identity) as GameObject;
+            //+ left
+            var pref = Instantiate(_bulletShip3Prefab, _parentBulletShipPrefab.transform.position, Quaternion.identity) as GameObject;
             pref.transform.SetParent(_parentBulletShipPrefab.transform);
             pref.transform.localPosition = ShipLogic.transform.position;
-            pref.transform.localScale = new Vector3(0.2f, 0.4f, 1.0f);
-            gunOffsetPos = new Vector3(0.0f, 0.3f, 0.0f);
+            pref.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            var gunOffsetPos = new Vector3(-0.31f, -0.0f, 0.24f);
             //- logic
             var bullet = pref.GetComponent<BulletShipLogic>();
-            bullet.Init(this, _ship, ShipLogic.transform.position + gunOffsetPos, new Vector3(0, 0.1f, 0));
+            bullet.Init(this, _ship, ShipLogic.transform.position + gunOffsetPos, new Vector3(-0.05f, 0.1f, 0), 1);
+
+            //+ right
+            pref = Instantiate(_bulletShip3Prefab, _parentBulletShipPrefab.transform.position, Quaternion.identity) as GameObject;
+            pref.transform.SetParent(_parentBulletShipPrefab.transform);
+            pref.transform.localPosition = ShipLogic.transform.position;
+            pref.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            gunOffsetPos = new Vector3(0.31f, -0.0f, 0.24f);
+            //- logic
+            var bullet2 = pref.GetComponent<BulletShipLogic>();
+            bullet2.Init(this, _ship, ShipLogic.transform.position + gunOffsetPos, new Vector3(0.05f, 0.1f, 0), -1);
         }
     }
 

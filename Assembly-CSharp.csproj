@@ -71,7 +71,6 @@
      <Compile Include="Assets\Logic\Scenes\SceneLevel\Boss1Gun3Logic.cs" />
      <Compile Include="Assets\Logic\Scenes\SceneLevel\Boss1Logic.cs" />
      <Compile Include="Assets\Logic\Scenes\SceneLevel\Bullet.cs" />
-     <Compile Include="Assets\Logic\Scenes\SceneLevel\Bullet2ShipLogic.cs" />
      <Compile Include="Assets\Logic\Scenes\SceneLevel\BulletEnemyLogic.cs" />
      <Compile Include="Assets\Logic\Scenes\SceneLevel\BulletShipLogic.cs" />
      <Compile Include="Assets\Logic\Scenes\SceneLevel\Enemy.cs" />

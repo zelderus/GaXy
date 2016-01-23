@@ -172,16 +172,16 @@ public class ShipLife : FileManagedClass
         Skills.Add(new FarSkill(19, FarSkillTypes.Gun2, 1, 0, 0, 0, 0));
         Skills.Add(new FarSkill(20, FarSkillTypes.Gun2, 1, 0, 0, 0, 0));
 
-        Skills.Add(new FarSkill(21, FarSkillTypes.Gun3, 1000, 1, 0, 0, 0));
-        Skills.Add(new FarSkill(22, FarSkillTypes.Gun3, 1000, 10, 1, 0, 0));
-        Skills.Add(new FarSkill(23, FarSkillTypes.Gun3, 1000, 10, 10, 1, 0));
-        Skills.Add(new FarSkill(24, FarSkillTypes.Gun3, 1000, 10, 10, 10, 1));
-        Skills.Add(new FarSkill(25, FarSkillTypes.Gun3, 1000, 10, 10, 10, 10));
-        Skills.Add(new FarSkill(26, FarSkillTypes.Gun3, 1000, 10, 10, 10, 10));
-        Skills.Add(new FarSkill(27, FarSkillTypes.Gun3, 1000, 10, 10, 10, 10));
-        Skills.Add(new FarSkill(28, FarSkillTypes.Gun3, 1000, 10, 10, 10, 10));
-        Skills.Add(new FarSkill(29, FarSkillTypes.Gun3, 1000, 10, 10, 10, 10));
-        Skills.Add(new FarSkill(30, FarSkillTypes.Gun3, 1000, 10, 10, 10, 10));
+        Skills.Add(new FarSkill(21, FarSkillTypes.Gun3, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(22, FarSkillTypes.Gun3, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(23, FarSkillTypes.Gun3, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(24, FarSkillTypes.Gun3, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(25, FarSkillTypes.Gun3, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(26, FarSkillTypes.Gun3, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(27, FarSkillTypes.Gun3, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(28, FarSkillTypes.Gun3, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(29, FarSkillTypes.Gun3, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(30, FarSkillTypes.Gun3, 1, 0, 0, 0, 0));
 
 
         Skills.Add(new FarSkill(51, FarSkillTypes.Block, 1, 0, 0, 0, 0));
@@ -491,16 +491,16 @@ public class ShipLife : FileManagedClass
         {
             switch (gun3skills)
             {
-                case 1: gun3.SkillUpdate(true, 1.10f, 1.0f, 1.00f); break;
-                case 2: gun3.SkillUpdate(true, 1.05f, 1.1f, 1.02f); break;
-                case 3: gun3.SkillUpdate(true, 1.00f, 1.2f, 1.04f); break;
-                case 4: gun3.SkillUpdate(true, 0.95f, 1.3f, 1.06f); break;
-                case 5: gun3.SkillUpdate(true, 0.90f, 1.4f, 1.08f); break;
-                case 6: gun3.SkillUpdate(true, 0.85f, 1.5f, 1.10f); break;
-                case 7: gun3.SkillUpdate(true, 0.80f, 1.6f, 1.12f); break;
-                case 8: gun3.SkillUpdate(true, 0.75f, 1.7f, 1.13f); break;
-                case 9: gun3.SkillUpdate(true, 0.70f, 1.8f, 1.14f); break;
-                case 10: gun3.SkillUpdate(true, 0.60f, 2.0f, 1.16f); break;
+                case 1: gun3.SkillUpdate(true, 2.10f, 1.0f, 1.00f); break;
+                case 2: gun3.SkillUpdate(true, 2.05f, 1.2f, 1.01f); break;
+                case 3: gun3.SkillUpdate(true, 2.00f, 1.4f, 1.03f); break;
+                case 4: gun3.SkillUpdate(true, 1.95f, 1.6f, 1.04f); break;
+                case 5: gun3.SkillUpdate(true, 1.90f, 1.8f, 1.06f); break;
+                case 6: gun3.SkillUpdate(true, 1.85f, 2.0f, 1.07f); break;
+                case 7: gun3.SkillUpdate(true, 1.80f, 2.2f, 1.08f); break;
+                case 8: gun3.SkillUpdate(true, 1.75f, 2.4f, 1.10f); break;
+                case 9: gun3.SkillUpdate(true, 1.70f, 2.6f, 1.11f); break;
+                case 10: gun3.SkillUpdate(true, 1.60f, 3.0f, 1.12f); break;
             }
         }
 

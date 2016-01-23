@@ -20,11 +20,13 @@ public class BulletShipLogic : MonoBehaviour
 
     //public Bullet Bullet { get; private set; }
 
+    private Action _updateDoFn;
 
     private LevelController _controller;
     private bool _inFloated = false;
 
     private Vector3 _direction = new Vector3(0, 0.1f, 0);
+    private Int32 _tagNum = 0;
 
     //private Vector3 _lastPos = null;
 
@@ -35,10 +37,11 @@ public class BulletShipLogic : MonoBehaviour
 	}
 
 
-    public void Init(LevelController controller, ShipLife ship, Vector3 pos, Vector3 dir)
+    public void Init(LevelController controller, ShipLife ship, Vector3 pos, Vector3 dir, Int32 tagNum)
     {
         _controller = controller;
         _direction = dir;
+        _tagNum = tagNum;
         Work = true;
         //Bullet = new Bullet(ship, Damage, Speed, TypeIsAir, TypeIsRocket);
         //+ на основе ship
@@ -47,6 +50,18 @@ public class BulletShipLogic : MonoBehaviour
         {
             Damage *= gun.DamageDif;
             Speed *= gun.SpeedDif;
+        }
+
+        //+ у типа снаряда своя логика полета
+        _updateDoFn = UpdateFly1Do;
+        if (GunIndex == 2)
+        {
+            _updateDoFn = UpdateFly2Do;
+        }
+        else if (GunIndex == 3)
+        {
+            _updateDoFn = UpdateFly3Do;
+            // TODO: поворачиваем на нужный угол
         }
 
         this.transform.position = new Vector3(pos.x, pos.y, pos.z);
@@ -66,41 +81,74 @@ public class BulletShipLogic : MonoBehaviour
         if (pos.y >= 9.0f) _inFloated = true;
         return _inFloated;
     }
-
-
-    private void UpdateFlyDo()
+    private bool UpdateFlyMainLogic()
     {
-        if (!Work) return;
-        if (_controller.Manager.IsPaused) return;
+        if (!Work) return false;
+        if (_controller.Manager.IsPaused) return false;
         if (IsFloated(this.transform.position))
         {
             Destroy(this.gameObject, 1.0f);
             //x return;
         }
+        return true;
+    }
+
+
+
+    private void UpdateFly1Do()
+    {
+        if (!UpdateFlyMainLogic()) return;
         // <--- общее для всех снарядов
 
-        //! своя логика полета
         // просто летим по прямой со своей скоростью
         var def = (Time.deltaTime * Speed);
-        //var nextY = this.transform.position.y + def;
-        //this.transform.position = new Vector3(this.transform.position.x, nextY, 0);
-
         Vector3 n = new Vector3(_direction.x * def, _direction.y * def, 0);
         var nextPos = this.transform.position + n;
-
+        //
         this.transform.position = new Vector3(nextPos.x, nextPos.y, 0);
-
+        // вращаем модельку
         ModelTransform.transform.Rotate(0, 290.0f * Time.deltaTime, 0);
+    }
+
+
+    private void UpdateFly2Do()
+    {
+        if (!UpdateFlyMainLogic()) return;
+        // <--- общее для всех снарядов
+
+        // просто летим по прямой со своей скоростью
+        var def = (Time.deltaTime * Speed);
+        Vector3 n = new Vector3(_direction.x * def, _direction.y * def, 0);
+        var nextPos = this.transform.position + n;
+        //
+        this.transform.position = new Vector3(nextPos.x, nextPos.y, 0);
+        // вращаем модельку
+        ModelTransform.transform.Rotate(0, 0, 500.0f * _tagNum * Time.deltaTime);
+    }
+
+    private void UpdateFly3Do()
+    {
+        if (!UpdateFlyMainLogic()) return;
+        // <--- общее для всех снарядов
+
+        // просто летим по прямой со своей скоростью
+        var def = (Time.deltaTime * Speed);
+        Vector3 n = new Vector3(_direction.x * def, _direction.y * def, 0);
+        var nextPos = this.transform.position + n;
+        //
+        this.transform.position = new Vector3(nextPos.x, nextPos.y, this.transform.position.z);
+        // вращаем модельку
+        //x ModelTransform.transform.Rotate(0, 0, 500.0f * _tagNum * Time.deltaTime);
     }
 
 
     //private void FixedUpdate()
     //{
-    //    UpdateFlyDo();
+    //    _updateDoFn();
     //}
 
     void Update ()
     {
-        UpdateFlyDo();
+        _updateDoFn();
     }
 }
