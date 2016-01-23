@@ -16,6 +16,8 @@ public class MenuController : MonoBehaviour
     public MenuOptionPanelLogic OptionPanel;
     public MenuStatPanelLogic StatPanel;
 
+    public Text TitleText;
+
     public Text ResetTxt;
     public Text SoundTxt;
 
@@ -37,8 +39,8 @@ public class MenuController : MonoBehaviour
         FarLife.GameNotInRun();
 
         UpdateLanguage();
-
-
+        
+        
         // preload
         OptionPanel.Show();
         OptionPanel.Hide();
@@ -106,6 +108,7 @@ public class MenuController : MonoBehaviour
         PlayUiBtn.UpdateLanguage();
         //ResetTxt.text = FarLife.GetText(FarText.Main_ResetText);
         SoundTxt.text = FarLife.GetText(FarText.Main_Sound);
+        TitleText.text = FarLife.GetText(FarText.Main_Title);
         OptionPanel.UpdateLanguage();
     }
 

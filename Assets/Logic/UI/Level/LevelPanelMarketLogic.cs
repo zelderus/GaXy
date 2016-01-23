@@ -9,6 +9,8 @@ public class LevelPanelMarketLogic : MonoBehaviour {
 
     public Boolean IsShowed { get; private set; }
 
+    public Text TitleText;
+
     public Image BackImg;
     public RectTransform PanelBody;
     public LevelPanelShipLogic ShipPanel;
@@ -42,6 +44,8 @@ public class LevelPanelMarketLogic : MonoBehaviour {
     public void Init(ShipLife ship)
     {
         _ship = ship;
+
+        TitleText.text = FarLife.GetText(FarText.Level_MarketTitle);
 
         HpBtn.Init(_ship.ShipBonusHealthCost);
         ShieldBtn.Init(_ship.ShipBonusShieldCost);

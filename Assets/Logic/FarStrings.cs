@@ -10,11 +10,13 @@ using ZelderFramework;
 
 public enum FarText
 {
+    Main_Title = 1,
     Main_ResetText = 10,
     Main_ResetEndText = 11,
     Main_Sound = 12,
     Main_LanguageRu = 13,
     Main_LanguageEn = 14, //?
+    
     
     Map_SkillTitle  = 1000,
     Map_InfoWnd_DayTitle = 1010,
@@ -24,7 +26,9 @@ public enum FarText
     Map_InfoWnd_ActiveTitle = 1022,
 
     Level_Win   = 2000,
-    Level_Lose  = 2001
+    Level_Lose  = 2001,
+    Level_MarketTitle   = 2010,
+    Level_Pause         = 2011
 
 }
 
@@ -56,6 +60,7 @@ public class FarStrings
 
         //! +++
         //+ MAIN
+        AddText(FarText.Main_Title, "Игра полностью бесплатная и открытая. Используйте ее в равлекательных или позновательных целях, или как вам вздумается", "Full free, open game for fun, for education or what you want for");
         AddText(FarText.Main_ResetText, "Нажмите и держите, чтобы сбросить прогресс игры.", "Hold the AtomButton to Reset the game progress.");
         AddText(FarText.Main_ResetEndText, "Прогресс игры сброшен.", "The game progress has been reseted.");
         AddText(FarText.Main_Sound, "ЗВУК", "SOUND");
@@ -74,6 +79,8 @@ public class FarStrings
         //+ LEVEL
         AddText(FarText.Level_Win, "Уровень пройден!", "You WIN!");
         AddText(FarText.Level_Lose, "Поражение", "LOSE");
+        AddText(FarText.Level_MarketTitle, "Покупка бонусов", "Purchase bonuses");
+        AddText(FarText.Level_Pause, "Пауза", "Pause");
 
         //+ SKILLS
         //- отдельно в своем методе GetSkillText()

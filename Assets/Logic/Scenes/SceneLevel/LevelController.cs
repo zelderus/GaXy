@@ -114,6 +114,7 @@ public class LevelController : MonoBehaviour
 	    ShipLogic.SetPosition(0.0f, 0.0f);
 
         // panels
+        PanelOption.Init();
         PanelWork.Init(_ship);
         PanelShip.Init(_ship);
         PanelMarket.Init(_ship);
@@ -462,7 +463,7 @@ public class LevelController : MonoBehaviour
             pref = Instantiate(_bulletShip1Prefab, _parentBulletShipPrefab.transform.position, Quaternion.identity) as GameObject;
             pref.transform.SetParent(_parentBulletShipPrefab.transform);
             pref.transform.localPosition = ShipLogic.transform.position;
-            pref.transform.localScale = new Vector3(0.2f, 0.4f, 1.0f);
+            pref.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
             gunOffsetPos = new Vector3(0.0f, 0.3f, 0.0f);
             //- logic
             var bullet = pref.GetComponent<BulletShipLogic>();

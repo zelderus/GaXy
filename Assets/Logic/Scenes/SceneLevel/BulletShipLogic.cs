@@ -16,6 +16,8 @@ public class BulletShipLogic : MonoBehaviour
     public Boolean TypeIsAir = true;
     public Boolean TypeIsRocket = false;
 
+    public Transform ModelTransform;
+
     //public Bullet Bullet { get; private set; }
 
 
@@ -87,6 +89,8 @@ public class BulletShipLogic : MonoBehaviour
         var nextPos = this.transform.position + n;
 
         this.transform.position = new Vector3(nextPos.x, nextPos.y, 0);
+
+        ModelTransform.transform.Rotate(0, 290.0f * Time.deltaTime, 0);
     }
 
 
