@@ -21,7 +21,8 @@ public class ShipFlyLogic : MonoBehaviour
 
     public Transform Gun1Left;
     public Transform Gun1Right;
-
+    public Transform Gun3Left;
+    public Transform Gun3Right;
     //public Transform ShipObj;
     //public Transform ColliderObj;
 
@@ -52,7 +53,7 @@ public class ShipFlyLogic : MonoBehaviour
         ShipLife = shipLife;
         Controller = controller;
 
-        // gun1
+        // gun2
         var gun2 = ShipLife.Bullets.Find(f => f.GunIndex == 2);
         if (gun2 != null && gun2.ShipHave)
         {
@@ -64,7 +65,18 @@ public class ShipFlyLogic : MonoBehaviour
             Gun1Left.gameObject.SetActive(false);
             Gun1Right.gameObject.SetActive(false);
         }
-
+        // gun3
+        var gun3 = ShipLife.Bullets.Find(f => f.GunIndex == 3);
+        if (gun3 != null && gun3.ShipHave)
+        {
+            Gun3Left.gameObject.SetActive(true);
+            Gun3Right.gameObject.SetActive(true);
+        }
+        else
+        {
+            Gun3Left.gameObject.SetActive(false);
+            Gun3Right.gameObject.SetActive(false);
+        }
     }
 
     public void SetPause(bool isPause)

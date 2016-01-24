@@ -473,15 +473,15 @@ public class ShipLife : FileManagedClass
             switch (gun2skills)
             {
                 case 1: gun2.SkillUpdate(true, 0.90f, 1.0f, 1.00f); break;
-                case 2: gun2.SkillUpdate(true, 0.85f, 1.2f, 1.02f); break;
-                case 3: gun2.SkillUpdate(true, 0.80f, 1.4f, 1.04f); break;
-                case 4: gun2.SkillUpdate(true, 0.75f, 1.6f, 1.06f); break;
-                case 5: gun2.SkillUpdate(true, 0.70f, 2.0f, 1.08f); break;
-                case 6: gun2.SkillUpdate(true, 0.65f, 2.3f, 1.10f); break;
-                case 7: gun2.SkillUpdate(true, 0.60f, 2.7f, 1.12f); break;
-                case 8: gun2.SkillUpdate(true, 0.55f, 3.0f, 1.13f); break;
-                case 9: gun2.SkillUpdate(true, 0.50f, 3.5f, 1.14f); break;
-                case 10: gun2.SkillUpdate(true, 0.40f, 4.0f, 1.16f); break;
+                case 2: gun2.SkillUpdate(true, 0.85f, 1.1f, 1.02f); break;
+                case 3: gun2.SkillUpdate(true, 0.80f, 1.2f, 1.04f); break;
+                case 4: gun2.SkillUpdate(true, 0.70f, 1.3f, 1.06f); break;
+                case 5: gun2.SkillUpdate(true, 0.60f, 1.4f, 1.08f); break;
+                case 6: gun2.SkillUpdate(true, 0.55f, 1.5f, 1.10f); break;
+                case 7: gun2.SkillUpdate(true, 0.45f, 1.6f, 1.12f); break;
+                case 8: gun2.SkillUpdate(true, 0.40f, 1.7f, 1.13f); break;
+                case 9: gun2.SkillUpdate(true, 0.30f, 1.8f, 1.14f); break;
+                case 10: gun2.SkillUpdate(true, 0.20f, 2.0f, 1.16f); break;
             }
         }
         //+ gun 3
@@ -495,12 +495,12 @@ public class ShipLife : FileManagedClass
                 case 2: gun3.SkillUpdate(true, 2.05f, 1.2f, 1.01f); break;
                 case 3: gun3.SkillUpdate(true, 2.00f, 1.4f, 1.03f); break;
                 case 4: gun3.SkillUpdate(true, 1.95f, 1.6f, 1.04f); break;
-                case 5: gun3.SkillUpdate(true, 1.90f, 1.8f, 1.06f); break;
-                case 6: gun3.SkillUpdate(true, 1.85f, 2.0f, 1.07f); break;
-                case 7: gun3.SkillUpdate(true, 1.80f, 2.2f, 1.08f); break;
-                case 8: gun3.SkillUpdate(true, 1.75f, 2.4f, 1.10f); break;
-                case 9: gun3.SkillUpdate(true, 1.70f, 2.6f, 1.11f); break;
-                case 10: gun3.SkillUpdate(true, 1.60f, 3.0f, 1.12f); break;
+                case 5: gun3.SkillUpdate(true, 1.90f, 1.9f, 1.06f); break;
+                case 6: gun3.SkillUpdate(true, 1.85f, 2.2f, 1.07f); break;
+                case 7: gun3.SkillUpdate(true, 1.80f, 2.5f, 1.08f); break;
+                case 8: gun3.SkillUpdate(true, 1.75f, 2.8f, 1.10f); break;
+                case 9: gun3.SkillUpdate(true, 1.70f, 3.1f, 1.11f); break;
+                case 10: gun3.SkillUpdate(true, 1.60f, 3.5f, 1.12f); break;
             }
         }
 

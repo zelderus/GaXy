@@ -17,6 +17,7 @@ public class BulletShipLogic : MonoBehaviour
     public Boolean TypeIsRocket = false;
 
     public Transform ModelTransform;
+    public ParticleSystem Particles;
 
     //public Bullet Bullet { get; private set; }
 
@@ -61,7 +62,8 @@ public class BulletShipLogic : MonoBehaviour
         else if (GunIndex == 3)
         {
             _updateDoFn = UpdateFly3Do;
-            // TODO: поворачиваем на нужный угол
+            //- поворачиваем по направлению движения
+            this.transform.rotation = Quaternion.FromToRotation(new Vector3(0, 0.1f, 0), _direction);
         }
 
         this.transform.position = new Vector3(pos.x, pos.y, pos.z);
@@ -91,6 +93,38 @@ public class BulletShipLogic : MonoBehaviour
             //x return;
         }
         return true;
+    }
+
+
+
+    public void OnDestroyByEnemy()
+    {
+        if (GunIndex < 3)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
+        // ждем когда кончатся частицы
+        if (GunIndex == 3)
+        {
+            ModelTransform.gameObject.SetActive(false); //- прячем модельку
+
+            //- останавливаем каждую частичку и затухаем 
+            ParticleSystem.Particle[] p = new ParticleSystem.Particle[Particles.particleCount + 1];
+            int l = Particles.GetParticles(p);
+            int i = 0;
+            while (i < l)
+            {
+                p[i].velocity = p[i].velocity / 4;// new Vector3(0, 0, 0);
+                i++;
+            }
+            Particles.SetParticles(p, l);    
+
+
+            Particles.Stop();
+            Destroy(this.gameObject, 2.0f);
+        }
     }
 
 
@@ -136,9 +170,9 @@ public class BulletShipLogic : MonoBehaviour
         Vector3 n = new Vector3(_direction.x * def, _direction.y * def, 0);
         var nextPos = this.transform.position + n;
         //
+        //this.transform.LookAt(new Vector3(this.transform.position.x + nextPos.x, this.transform.position.y + nextPos.y, this.transform.position.z));
         this.transform.position = new Vector3(nextPos.x, nextPos.y, this.transform.position.z);
-        // вращаем модельку
-        //x ModelTransform.transform.Rotate(0, 0, 500.0f * _tagNum * Time.deltaTime);
+        
     }
 
 

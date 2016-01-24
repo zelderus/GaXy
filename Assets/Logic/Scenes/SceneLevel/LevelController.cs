@@ -475,7 +475,7 @@ public class LevelController : MonoBehaviour
             var pref = Instantiate(_bulletShip2Prefab, _parentBulletShipPrefab.transform.position, Quaternion.identity) as GameObject;
             pref.transform.SetParent(_parentBulletShipPrefab.transform);
             pref.transform.localPosition = ShipLogic.transform.position;
-            pref.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            pref.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
             var gunOffsetPos = new Vector3(-0.31f, -0.0f, 0.2f);
             //- logic
             var bullet = pref.GetComponent<BulletShipLogic>();
@@ -485,7 +485,7 @@ public class LevelController : MonoBehaviour
             pref = Instantiate(_bulletShip2Prefab, _parentBulletShipPrefab.transform.position, Quaternion.identity) as GameObject;
             pref.transform.SetParent(_parentBulletShipPrefab.transform);
             pref.transform.localPosition = ShipLogic.transform.position;
-            pref.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            pref.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
             gunOffsetPos = new Vector3(0.31f, -0.0f, 0.2f);
             //- logic
             var bullet2 = pref.GetComponent<BulletShipLogic>();

@@ -104,7 +104,6 @@ public class LevelManager
         //- materials
         _timeMaterialInt = 30.0f * (1 / _citFactor);
         _materialCount = 10;
-
     }
 
     private void InitEnemies()

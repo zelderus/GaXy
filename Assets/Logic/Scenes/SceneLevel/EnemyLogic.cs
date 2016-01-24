@@ -335,7 +335,8 @@ public class EnemyLogic : MonoBehaviour {
 
         AddDamage(damage);
 
-        Destroy(bullet.gameObject);
+        //Destroy(bullet.gameObject);
+        bullet.OnDestroyByEnemy();
     }
 
     private Int32 _bombBitted = -1;
