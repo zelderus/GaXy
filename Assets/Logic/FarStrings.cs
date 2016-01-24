@@ -25,6 +25,15 @@ public enum FarText
     Map_InfoWnd_NeutralTitle = 1021,
     Map_InfoWnd_ActiveTitle = 1022,
 
+    Map_Help_WelcomeTitle       = 1501,
+    Map_Help_WelcomeDesc        = 1502,
+
+    Map_Help_HelpTitle = 1601,
+    Map_Help_HelpDesc1 = 1602,
+    Map_Help_HelpDesc2 = 1603,
+    Map_Help_HelpDesc3 = 1604,
+    Map_Help_HelpDesc4 = 1605,
+
     Level_Win   = 2000,
     Level_Lose  = 2001,
     Level_MarketTitle   = 2010,
@@ -75,7 +84,29 @@ public class FarStrings
         AddText(FarText.Map_InfoWnd_ProdTitle, "Производство", "Production");
         AddText(FarText.Map_InfoWnd_NeutralTitle, "Необходимые ресурсы", "Necessary resources");
         AddText(FarText.Map_InfoWnd_ActiveTitle, "Активировать", "Activate");
+        //- welcome
+        AddText(FarText.Map_Help_WelcomeTitle, "Добро пожаловать!", "Welcome!");
+        AddText(FarText.Map_Help_WelcomeDesc, 
+@"В этой игре Вам предстоит путешествовать от планеты к планете, от планеты к планете, и еще дальше. 
 
+Планеты бывают разного типа. Из-за жесткой нехватки во вселенной природных ресурсов, разные планеты умеют производить некоторый ресурс. Для его производства необходимы материалы с других планет.
+
+Собственно, Вам предстоит доставлять необходимое для планет.
+
+Вперёд!",
+@"In this game you have to travel from planet to planet, from planet to planet, and beyond.
+
+The planets are of different types. Due to the lack of hard in the universe of natural resources, are able to produce different planets some resource. For its production need materials from other planets.
+
+Actually, you will be required to deliver to the planets.
+
+Let's rock!");
+        //- help
+        AddText(FarText.Map_Help_HelpTitle, "Легенда", "Legend");
+        AddText(FarText.Map_Help_HelpDesc1, "В зеленом кружке, обозначено сколько ресурсов уже доступно", "The green circle is indicated how many resources already available");
+        AddText(FarText.Map_Help_HelpDesc2, "Если под планетой есть желтый кружок, значит достаточно ресуров для нее", "If a planet has a yellow circle, then enough resources for it");
+        AddText(FarText.Map_Help_HelpDesc3, "Если под планетой красный кружок, значит НЕдостаточно ресуров", "If a planet has a red circle that means insufficient resources");
+        AddText(FarText.Map_Help_HelpDesc4, "Никто не знает, что будет, если ему обеспечить все необходимое", "Nobody knows what will happen if provide all the necessary to him");
 
         //+ LEVEL
         AddText(FarText.Level_Win, "Уровень пройден!", "You WIN!");

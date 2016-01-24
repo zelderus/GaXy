@@ -101,6 +101,7 @@
      <Compile Include="Assets\Logic\UI\PanelActionLogic.cs" />
      <Compile Include="Assets\Logic\UI\PanelCityActionLogic.cs" />
      <Compile Include="Assets\Logic\UI\PanelCitySmallLogic.cs" />
+     <Compile Include="Assets\Logic\UI\PanelHelpLogic.cs" />
      <Compile Include="Assets\Logic\UI\PanelInfoMissionPanel.cs" />
      <Compile Include="Assets\Logic\UI\PanelInfoNeutralPanel.cs" />
      <Compile Include="Assets\Logic\UI\PanelInfoSmallMissionPanel.cs" />

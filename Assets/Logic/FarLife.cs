@@ -9,9 +9,10 @@ using ZelderFramework;
 
 public class FarLifeGlobalData : FileManagedClass
 {
-    public Int32 FileVersion = 24;
+    public Int32 FileVersion = 25;
     public Int32 FileVersionLoaded = 0;
     public Boolean IsNewGame = false;
+    public Boolean IsFirstRunMap = true;
 
     public FarLifeGlobalData()
     {
@@ -27,6 +28,7 @@ public class FarLifeGlobalData : FileManagedClass
         var datas = new List<FileManagerData>();
         datas.Add(new FileManagerData(FileManagerTypes.Int32, FileVersion));
         datas.Add(new FileManagerData(FileManagerTypes.Boolean, IsNewGame));
+        datas.Add(new FileManagerData(FileManagerTypes.Boolean, IsFirstRunMap));
         return datas;
     }
     /// <summary>
@@ -38,6 +40,7 @@ public class FarLifeGlobalData : FileManagedClass
         var ind = 0;
         FileVersionLoaded = (Int32)datas[ind++].DataValue;
         IsNewGame = (Boolean)datas[ind++].DataValue;
+        IsFirstRunMap = (Boolean)datas[ind++].DataValue;
     }
 }
 
@@ -119,6 +122,7 @@ public static class FarLife
     public static void ResetGameProgress()
     {
         GlobalData.IsNewGame = true;
+        GlobalData.IsFirstRunMap = true;
 
         ShipLife = new ShipLife();
         ShipLife.Init();

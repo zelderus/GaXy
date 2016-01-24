@@ -17,6 +17,7 @@ public class MapController : MonoBehaviour
     public PanelWorkLogic PanelWork;
     public PanelCitySmallLogic PanelCitySmall;
     public PanelOptionLogic PanelOption;
+    public PanelHelpLogic PanelHelp;
     //public PanelShipLogic PanelShip;
     public GameObject BackPanel;
 
@@ -89,6 +90,8 @@ public class MapController : MonoBehaviour
 
         PanelOption.Init();
 
+        PanelHelp.Init();
+
         _currenctSelectCity = _mapLife.CurrenctCity;
         InitShip();
 
@@ -113,6 +116,15 @@ public class MapController : MonoBehaviour
 
         //
         UpdateDayNum();
+
+
+        //+ панель приветствия
+        if (FarLife.GlobalData.IsFirstRunMap)
+        {
+            FarLife.GlobalData.IsFirstRunMap = false;
+            ShowHelpPanel(1);
+            FarLife.SaveGlobalOnly();
+        }
 
 
         GestHelpers.ClearMove();
@@ -546,6 +558,27 @@ public class MapController : MonoBehaviour
 
 
     /// <summary>
+    /// Панель помощи.
+    /// </summary>
+    public void HideHelpPanel()
+    {
+        PanelHelp.Hide(); //- 
+        _mapDoInTouch = true;
+        HideBackPanel();
+    }
+    public void ShowHelpPanel(Int32 tag)
+    {
+        if (!_mapInTouchControl) return;
+
+        _mapInTouchControl = false;
+        _mapDoInTouch = false;
+
+        PanelHelp.Show(tag);
+        ShowBackPanel();
+    }
+
+
+    /// <summary>
     /// Быстрая панель управления внизу.
     /// </summary>
     private void HideActionPanel()
@@ -683,6 +716,13 @@ public class MapController : MonoBehaviour
             DeselectCities();
             return;
         }
+        // закрываем панель помощи
+        if (PanelHelp.IsShowed)
+        {
+            HideHelpPanel();
+            return;
+        }
+
         //// закрываем панель корабля
         //if (PanelShip.IsShowed)
         //{
