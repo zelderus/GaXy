@@ -38,7 +38,7 @@ public class CityModel
 
     
     private Boolean _flagUpdateCityMapView = false;
-    private static List<Int32> LevelUpRatings = new List<Int32>() { 10, 20, 50, 100 };
+    //x private static List<Int32> LevelUpRatings = new List<Int32>() { 10, 20, 50, 100 };
 
     public CityModel()
     {
@@ -159,7 +159,7 @@ public class CityModel
         Rating++;
         Rating = Rating > 900 ? 900 : Rating;
         // check new level
-        var mustForLevel = LevelUpRatings[Level - 1];
+        var mustForLevel = LevelManager.LevelUpRatings[Level - 1];
         if (Rating >= mustForLevel)
         {
             LevelUp();
@@ -291,7 +291,7 @@ public class CityModelProvider
         model.CityType = CityType.Neutral;
         model.ResourceProduct = CityResourceProduct.ProviderFrom(CityRecources.Black, 0);
         model.SetAsJop();
-        // quests
+        // TODO: JOP quests //?++ JOP QUESTs
         model.AddJopQuestes(1, 0, 0, 0);
         model.AddJopQuestes(2, 0, 0, 0);
         //model.AddJopQuestes(100, 10, 10, 0);

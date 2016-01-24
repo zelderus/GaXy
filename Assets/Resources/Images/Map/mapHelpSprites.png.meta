@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 162f81616f25eca4eb7e27530ed730a3
-timeCreated: 1453642035
+timeCreated: 1453655109
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -87,9 +87,9 @@ TextureImporter:
     - name: mapHelpSprites_3
       rect:
         serializedVersion: 2
-        x: 312
-        y: 289
-        width: 84
+        x: 296
+        y: 288
+        width: 97
         height: 111
       alignment: 0
       pivot: {x: .5, y: .5}

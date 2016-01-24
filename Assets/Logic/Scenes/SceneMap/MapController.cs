@@ -11,6 +11,9 @@ public class MapController : MonoBehaviour
     public Canvas MainCanvas;
     public Camera MainCamera;
 
+    public Transform BigBack;
+    public Color BigBackJopedColor = Color.white;
+
     public Transform PanelForWorld;
     public PanelActionLogic PanelAction;
     public PanelCityActionLogic PanelCityAction;
@@ -272,7 +275,11 @@ public class MapController : MonoBehaviour
         //! cities
         foreach (var cityModel in _mapLife.Cities)
         {
-            if (cityModel.Model.IsJopAndCompleted()) continue;
+            if (cityModel.Model.IsJopAndCompleted())
+            {
+                BigBackSetAsJoped();
+                continue;
+            }
             AddCityToMap(_parentCityMap, cityModel.Model.IsJop ? cityJopPref : cityPref, cityResImgPrefab, cityModel);
         }
 
@@ -391,8 +398,14 @@ public class MapController : MonoBehaviour
     /// </summary>
     public void JopCompletedOn(CityMapItem city)
     {
+        BigBackSetAsJoped();
         DeselectCities();
         _mapLife.FreeMapGex(city.CityModel.MapGex);
+    }
+
+    private void BigBackSetAsJoped()
+    {
+        BigBack.GetComponent<Renderer>().material.color = BigBackJopedColor;
     }
     #endregion
     #region ship

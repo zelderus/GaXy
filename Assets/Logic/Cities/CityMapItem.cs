@@ -14,12 +14,14 @@ public class CityMapItem : MonoBehaviour//, IPointerClickHandler
     public MapController MainLogicObject;
     public City CityModel;
     public Transform PlanetModel;
- 
+    public ParticleSystem Particles;
+
     public Material Planet1Mat;
     public Material Planet2Mat;
     public Material Planet3Mat;
     public Material Planet4Mat;
     public Material PlanetBlackMat;
+
 
     //private Transform _selectObj;
     
@@ -78,6 +80,8 @@ public class CityMapItem : MonoBehaviour//, IPointerClickHandler
     /// </summary>
     public void SetCityView(CityRecources res, Int32 rating)
     {
+        if (res == CityRecources.Black) return;
+
         Material mat = Planet1Mat;
         switch (res)
         {
@@ -100,6 +104,8 @@ public class CityMapItem : MonoBehaviour//, IPointerClickHandler
     {
         if (!CityModel.Model.IsJopAndCompleted()) return;
         _jopFloatOn = true;
+
+        Particles.gameObject.SetActive(true);
         //this.GetComponent<BoxCollider>().gameObject.SetActive(false);
         //+ fly anim
         PlanetModel.GetComponent<Animator>().enabled = true;

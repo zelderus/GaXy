@@ -51,7 +51,10 @@ public class LevelManager
         InitEnemies();
     }
 
-
+    /// <summary>
+    /// При каком количестве произведенного планетой - повышается уровень.
+    /// </summary>
+    public static List<Int32> LevelUpRatings = new List<Int32>() { 5, 15, 50, 100 };  // TODO: city level //?++ CITY LEVELS
 
     private void InitLevelObjects()
     {
@@ -78,8 +81,9 @@ public class LevelManager
         //_cityIndex = cityIndex;
         #endregion
         #region city index
-        if (cityRating >= 10) cityIndex = 1;
-        if (cityRating >= 20) cityIndex = 2;
+        // TODO: CityRating //?++ CityRating
+        if (cityRating >= 5) cityIndex = 1;
+        if (cityRating >= 15) cityIndex = 2;
         if (cityRating >= 30) cityIndex = 3;
         if (cityRating >= 40) cityIndex = 4;
         if (cityRating >= 50) cityIndex = 5;
