@@ -9,10 +9,13 @@ using ZelderFramework;
 
 public class FarLifeGlobalData : FileManagedClass
 {
-    public Int32 FileVersion = 25;
+    public Int32 FileVersion = 26;
     public Int32 FileVersionLoaded = 0;
     public Boolean IsNewGame = false;
     public Boolean IsFirstRunMap = true;
+    public Int32 LastRunCity = -1;
+    public Int32 LastCityCountOfRuns = 0;
+
 
     public FarLifeGlobalData()
     {
@@ -29,6 +32,8 @@ public class FarLifeGlobalData : FileManagedClass
         datas.Add(new FileManagerData(FileManagerTypes.Int32, FileVersion));
         datas.Add(new FileManagerData(FileManagerTypes.Boolean, IsNewGame));
         datas.Add(new FileManagerData(FileManagerTypes.Boolean, IsFirstRunMap));
+        datas.Add(new FileManagerData(FileManagerTypes.Int32, LastRunCity));
+        datas.Add(new FileManagerData(FileManagerTypes.Int32, LastCityCountOfRuns));
         return datas;
     }
     /// <summary>
@@ -41,6 +46,8 @@ public class FarLifeGlobalData : FileManagedClass
         FileVersionLoaded = (Int32)datas[ind++].DataValue;
         IsNewGame = (Boolean)datas[ind++].DataValue;
         IsFirstRunMap = (Boolean)datas[ind++].DataValue;
+        LastRunCity = (Int32)datas[ind++].DataValue;
+        LastCityCountOfRuns = (Int32)datas[ind++].DataValue;
     }
 }
 
@@ -56,7 +63,8 @@ public static class FarLife
     public static GameLanguages Language { private set; get; }
     public static MapLife MapLife { private set; get; }
     public static Boolean SoundEnabled { private set; get; }
-    
+    public static Boolean IsJopCompleted { private set; get; }
+
     public static Boolean GameOnRun { private set; get; }
 
     private static FarStrings _strings;
@@ -68,6 +76,7 @@ public static class FarLife
     {
         if (_inited) return;
         GameOnRun = true;
+        IsJopCompleted = false;
 
         GlobalData = new FarLifeGlobalData();
 
@@ -113,7 +122,10 @@ public static class FarLife
     {
         GameOnRun = false;
     }
-
+    public static void JopIsComplete()
+    {
+        IsJopCompleted = true;
+    }
 
 
     /// <summary>
@@ -123,6 +135,7 @@ public static class FarLife
     {
         GlobalData.IsNewGame = true;
         GlobalData.IsFirstRunMap = true;
+        IsJopCompleted = false;
 
         ShipLife = new ShipLife();
         ShipLife.Init();

@@ -20,6 +20,9 @@ public class LevelController : MonoBehaviour
 
     public Transform MaterialParent;
 
+    public Transform BigBack;
+    public Color BigBackJopedColor;
+
     public Transform HitBlock;
     
     public Image BoomImg;
@@ -124,6 +127,7 @@ public class LevelController : MonoBehaviour
         LoseText.Init(FarLife.GetText(FarText.Level_Lose));
 
 	    InitLevel();
+        if (FarLife.IsJopCompleted) BigBackSetAsJoped();
 
         GestHelpers.ClearMove();
         //- сообщаем движку что готовы к сцене
@@ -320,6 +324,11 @@ public class LevelController : MonoBehaviour
             ShowOptionPanel();
     }
 
+
+    private void BigBackSetAsJoped()
+    {
+        BigBack.GetComponent<Renderer>().material.color = BigBackJopedColor;
+    }
 
 
     #region materials

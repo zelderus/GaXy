@@ -399,6 +399,7 @@ public class MapController : MonoBehaviour
     public void JopCompletedOn(CityMapItem city)
     {
         BigBackSetAsJoped();
+        FarLife.JopIsComplete();
         DeselectCities();
         _mapLife.FreeMapGex(city.CityModel.MapGex);
     }
@@ -690,6 +691,17 @@ public class MapController : MonoBehaviour
 
     private void StartLevel()
     {
+        //+ счетчик текущей попытки полета
+        if (FarLife.GlobalData.LastRunCity == FarLife.MapLife.NextCity.Model.Id)
+        {
+            FarLife.GlobalData.LastCityCountOfRuns++;
+        }
+        else
+        {
+            FarLife.GlobalData.LastRunCity = FarLife.MapLife.NextCity.Model.Id;
+            FarLife.GlobalData.LastCityCountOfRuns = 1;
+        }
+
         //debugStartLevel(); // TODO: debug
         FarLife.GoToLevel();
     }

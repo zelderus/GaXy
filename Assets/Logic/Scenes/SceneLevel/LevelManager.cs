@@ -83,10 +83,10 @@ public class LevelManager
         #region city index
         // TODO: CityRating //?++ CityRating
         if (cityRating >= 5) cityIndex = 1;
-        if (cityRating >= 15) cityIndex = 2;
-        if (cityRating >= 30) cityIndex = 3;
-        if (cityRating >= 40) cityIndex = 4;
-        if (cityRating >= 50) cityIndex = 5;
+        if (cityRating >= 10) cityIndex = 2;
+        if (cityRating >= 15) cityIndex = 3;
+        if (cityRating >= 20) cityIndex = 4;
+        if (cityRating >= 35) cityIndex = 5;
         if (cityRating >= 55) cityIndex = 6;
         if (cityRating >= 60) cityIndex = 7;
         if (cityRating >= 65) cityIndex = 8;
@@ -99,9 +99,18 @@ public class LevelManager
         if (cityRating >= 100) cityIndex = 15;
         if (cityRating >= 110) cityIndex = 16;
         _cityIndex = cityIndex;
+        //! если слишком много раз пытается пройти уровень один и тотже - помогаем ему, ставим легкую сложность (за упоротость)
+        if (FarLife.GlobalData.LastCityCountOfRuns >= 10)
+        {
+            _cityIndex = 0;
+        }
         #endregion
 
         _citFactor = GetCityFactor(_cityIndex);
+
+        //?++ !!!!!!!
+        //Debug.Log("Index: " + _cityIndex + "; Factor: " + _citFactor);
+
         // на основе города, уровня и прочего генерирует врагов и прочее
         _shipPosEndY = 180.0f / 10.0f;
 
