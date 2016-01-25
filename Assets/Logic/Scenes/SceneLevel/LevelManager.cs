@@ -100,7 +100,7 @@ public class LevelManager
         if (cityRating >= 110) cityIndex = 16;
         _cityIndex = cityIndex;
         //! если слишком много раз пытается пройти уровень один и тотже - помогаем ему, ставим легкую сложность (за упоротость)
-        if (FarLife.GlobalData.LastCityCountOfRuns >= 10)
+        if (FarLife.GlobalData.LastCityCountOfRuns >= 5)
         {
             _cityIndex = 0;
         }
@@ -141,6 +141,7 @@ public class LevelManager
         //_enemies.Add(new EnemyLaunch(EnemyIndexes.Loh1, 0, 1.0f));
         //_enemies.Add(new EnemyLaunch(EnemyIndexes.Pen1, 0, 1.0f));
         //_enemies.Add(new EnemyLaunch(EnemyIndexes.Boss1, 0, 1.0f));
+
 
         //foreach (var en in _enemies)
         //{

@@ -182,17 +182,20 @@ public class EnemyBrunchProvider
         var hardLevel123 = 1;
         if (cityIndex >= 5) hardLevel123 = 2;
         if (cityIndex >= 11) hardLevel123 = 3;
-
         // вероятность типа врага
         #region weight enemy index
-        const int bigStep = 150;
-        const int smallStep = 60;
+        const int bigStep = 250;
+        const int smallStep = 160;
         _lohWeight.Add(new WeightIntObject(EnemyIndexes.Loh1, 10 + (hardLevel123 == 1 ? bigStep : 0)));
         _lohWeight.Add(new WeightIntObject(EnemyIndexes.Loh2, 10 + (hardLevel123 == 1 ? bigStep : 0)));
         _lohWeight.Add(new WeightIntObject(EnemyIndexes.Loh3, 10 + (hardLevel123 == 2 ? bigStep : hardLevel123 == 3 ? smallStep : 0)));
         _lohWeight.Add(new WeightIntObject(EnemyIndexes.Loh4, 10 + (hardLevel123 == 2 ? bigStep : hardLevel123 == 3 ? smallStep : 0)));
         _lohWeight.Add(new WeightIntObject(EnemyIndexes.Loh5, 10 + (hardLevel123 == 3 ? bigStep : 0)));
         _lohWeight.Add(new WeightIntObject(EnemyIndexes.Loh6, 10 + (hardLevel123 == 3 ? bigStep : 0)));
+        //foreach(var lw in _lohWeight)
+        //{
+        //    Debug.Log(lw.Obj + ": " + lw.Weight + " (вес)");
+        //}
 
         _penWeight.Add(new WeightIntObject(EnemyIndexes.Pen1, 10 + (hardLevel123 == 1 ? bigStep : 0)));
         _penWeight.Add(new WeightIntObject(EnemyIndexes.Pen2, 10 + (hardLevel123 == 1 ? bigStep : 0)));
@@ -262,7 +265,9 @@ public class EnemyBrunchProvider
     #region enemy type
     private EnemyIndexes GetLoh()
     {
-        return (EnemyIndexes) MathHelpers.GetByWeight(_lohWeight);
+        var w = MathHelpers.GetByWeight(_lohWeight);
+        //Debug.Log(w);
+        return (EnemyIndexes) w;
     }
     private EnemyIndexes GetPen()
     {
