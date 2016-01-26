@@ -165,23 +165,24 @@ public class LevelController : MonoBehaviour
         _enemyBoss2Prefab = Resources.Load("Prefabs/Level/Enemies/EnemyBoss2Pref", typeof(GameObject)) as GameObject;
         _enemyBoss3Prefab = Resources.Load("Prefabs/Level/Enemies/EnemyBoss3Pref", typeof(GameObject)) as GameObject;
 
-        _bomm1Prefab = Resources.Load("Prefabs/Level/Boom1Pref", typeof(GameObject)) as GameObject;
-
         _parentBulletShipPrefab = GameObject.Find("BulletShipParent") as GameObject;
         _bombPrefab = Resources.Load("Prefabs/Level/BulletShip/BombPref", typeof(GameObject)) as GameObject;
         _bulletShip1Prefab = Resources.Load("Prefabs/Level/BulletShip/BulletShip1Pref", typeof(GameObject)) as GameObject;
         _bulletShip2Prefab = Resources.Load("Prefabs/Level/BulletShip/BulletShip2Pref", typeof(GameObject)) as GameObject;
         _bulletShip3Prefab = Resources.Load("Prefabs/Level/BulletShip/BulletShip3Pref", typeof(GameObject)) as GameObject;
+
+        //- взрывы врагов
+        _bomm1Prefab = Resources.Load("Prefabs/Level/Boom1Pref", typeof(GameObject)) as GameObject;
+        //- снаярды врагов
         _bulletEnemy1Prefab = Resources.Load("Prefabs/Level/BulletEnemy/BulletEnemy1Pref", typeof(GameObject)) as GameObject;
         _bulletEnemy2Prefab = Resources.Load("Prefabs/Level/BulletEnemy/BulletEnemy2Pref", typeof(GameObject)) as GameObject;
         _bulletEnemy3Prefab = Resources.Load("Prefabs/Level/BulletEnemy/BulletEnemy3Pref", typeof(GameObject)) as GameObject;
         _bulletEnemy10Prefab = Resources.Load("Prefabs/Level/BulletEnemy/BulletEnemy10Pref", typeof(GameObject)) as GameObject;
         _bulletEnemy11Prefab = Resources.Load("Prefabs/Level/BulletEnemy/BulletEnemy11Pref", typeof(GameObject)) as GameObject;
 
+
         //+ ways
         InitRoutes();
-
-
     }
 
     #region Init routes
@@ -216,12 +217,40 @@ public class LevelController : MonoBehaviour
         }
         Destroy(_mainWaypoints.gameObject);
 
-        //! без интерполяции
+        ////! без интерполяции
+        //indx = 0;
+        //_waypointsBoss = new Dictionary<int, ParentWaypointModel>();
+        //var mainBoosWaypoints = GameObject.Find("EnemyBossRoutes").transform;
+        //foreach (Transform child in mainBoosWaypoints)
+        //{
+        //    var w = new ParentWaypointModel();
+        //    _waypointsBoss.Add(indx, w);
+
+        //    //- parent data
+        //    var mainWl = child.GetComponent<WaypointLogic>();
+        //    if (mainWl != null)
+        //    {
+        //        w.LoopStartIndex = mainWl.LoopStartIndexWay;
+        //    }
+
+        //    foreach (Transform way in child)
+        //    {
+        //        //var t = 0.0f;
+        //        var wl = way.GetComponent<WaypointLogic>();
+        //        //if (wl != null) t = wl.Timer;
+        //        //ways.Add(new WaypointModel(way, t, wl.WithoutRotate));
+        //        w.Waypoints.Add(new WaypointModel(wl));
+        //    }
+        //    //- next
+        //    indx++;
+        //}
+        //! с интерполяцией без остановок
         indx = 0;
         _waypointsBoss = new Dictionary<int, ParentWaypointModel>();
         var mainBoosWaypoints = GameObject.Find("EnemyBossRoutes").transform;
         foreach (Transform child in mainBoosWaypoints)
         {
+            //x var ways = new List<WaypointModel>();
             var w = new ParentWaypointModel();
             _waypointsBoss.Add(indx, w);
 
@@ -231,14 +260,20 @@ public class LevelController : MonoBehaviour
             {
                 w.LoopStartIndex = mainWl.LoopStartIndexWay;
             }
-            
+
+            var ws = new List<Vector3>();
+            //+ перебираем с редактора метки
             foreach (Transform way in child)
             {
-                //var t = 0.0f;
-                var wl = way.GetComponent<WaypointLogic>();
-                //if (wl != null) t = wl.Timer;
-                //ways.Add(new WaypointModel(way, t, wl.WithoutRotate));
-                w.Waypoints.Add(new WaypointModel(wl));
+                ws.Add(way.position);
+            }
+            //+ интерполируем (становится гораздо больше точек)
+            var nws = Intepolator.NewCatmullRom(ws.ToArray(), ws.Count(), false);
+            //+ суем в модель
+            foreach (var way in nws)
+            {
+                const float t = 0.0f;
+                w.Waypoints.Add(new WaypointModel(way, t));
             }
             //- next
             indx++;
@@ -389,6 +424,7 @@ public class LevelController : MonoBehaviour
         GameObject gob = null;
         //var isBoss = false;
         float offsetZ = 0.0f;
+        var scale = new Vector3(0.4f, 0.4f, 0.4f);
 
         switch (enemyIndex) //! типы врагов в Enemy.cs
         {
@@ -399,12 +435,12 @@ public class LevelController : MonoBehaviour
             case EnemyIndexes.Loh5: gob = _enemy5Prefab; offsetZ = 0.0f; break;
             case EnemyIndexes.Loh6: gob = _enemy6Prefab; offsetZ = 0.0f; break;
 
-            case EnemyIndexes.Pen1: gob = _enemyPen1Prefab; offsetZ = 0.0f; break;
-            case EnemyIndexes.Pen2: gob = _enemyPen2Prefab; offsetZ = 0.0f; break;
-            case EnemyIndexes.Pen3: gob = _enemyPen3Prefab; offsetZ = 0.0f; break;
-            case EnemyIndexes.Pen4: gob = _enemyPen4Prefab; offsetZ = 0.0f; break;
-            case EnemyIndexes.Pen5: gob = _enemyPen5Prefab; offsetZ = 0.0f; break;
-            case EnemyIndexes.Pen6: gob = _enemyPen6Prefab; offsetZ = 0.0f; break;
+            case EnemyIndexes.Pen1: gob = _enemyPen1Prefab; scale = new Vector3(0.4f, 0.4f, 0.4f); offsetZ = 0.0f; break;
+            case EnemyIndexes.Pen2: gob = _enemyPen2Prefab; scale = new Vector3(0.7f, 0.7f, 0.7f); offsetZ = 0.0f; break;
+            case EnemyIndexes.Pen3: gob = _enemyPen3Prefab; scale = new Vector3(0.4f, 0.4f, 0.4f); offsetZ = 0.0f; break;
+            case EnemyIndexes.Pen4: gob = _enemyPen4Prefab; scale = new Vector3(0.7f, 0.7f, 0.7f); offsetZ = 0.0f; break;
+            case EnemyIndexes.Pen5: gob = _enemyPen5Prefab; scale = new Vector3(0.4f, 0.4f, 0.4f); offsetZ = 0.0f; break;
+            case EnemyIndexes.Pen6: gob = _enemyPen6Prefab; scale = new Vector3(0.7f, 0.7f, 0.7f); offsetZ = 0.0f; break;
 
             case EnemyIndexes.Boss1: gob = _enemyBoss1Prefab; offsetZ = 1.0f; break;
             case EnemyIndexes.Boss2: gob = _enemyBoss2Prefab; offsetZ = 0.0f; break;
@@ -418,7 +454,7 @@ public class LevelController : MonoBehaviour
         GameObject pref = Instantiate(gob, _parentEenemyPrefab.transform.position, Quaternion.identity) as GameObject;
         pref.transform.SetParent(_parentEenemyPrefab.transform);
         pref.transform.localPosition = new Vector3(pos.x, pos.y, offsetZ);
-        pref.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+        pref.transform.localScale = scale;// new Vector3(0.4f, 0.4f, 0.4f);
 
         //- logic
         if (enemyIndex == EnemyIndexes.Boss1)
@@ -550,6 +586,7 @@ public class LevelController : MonoBehaviour
 
         GameObject pref = null;
         Vector3 gunOffsetPos = Vector3.zero;
+        // boss 1
         if (gunIndex == 0)
         {
             pref = Instantiate(_bulletEnemy1Prefab, _parentBulletShipPrefab.transform.position, Quaternion.identity) as GameObject;
@@ -571,6 +608,9 @@ public class LevelController : MonoBehaviour
             pref.transform.localPosition = pos;
             pref.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
         }
+        // TODO: gun boss 2
+
+        // TODO: gun boss 3
 
 
         // pens
@@ -588,8 +628,6 @@ public class LevelController : MonoBehaviour
             pref.transform.localPosition = pos;
             pref.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         }
-        // TODO gunIndex
-
 
         //- logic
         var bullet = pref.GetComponent<BulletEnemyLogic>();
