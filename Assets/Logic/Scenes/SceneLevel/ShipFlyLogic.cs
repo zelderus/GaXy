@@ -269,6 +269,11 @@ public class ShipFlyLogic : MonoBehaviour
         // анимация взрыва
         ShipObj.gameObject.SetActive(false);
         LoseBoom.gameObject.SetActive(true);
+
+        Gun1Left.gameObject.SetActive(false);
+        Gun1Right.gameObject.SetActive(false);
+        Gun3Left.gameObject.SetActive(false);
+        Gun3Right.gameObject.SetActive(false);
     }
 
     private float _dmgTimer = 0.5f;

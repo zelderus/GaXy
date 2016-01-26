@@ -80,6 +80,8 @@ public class LevelController : MonoBehaviour
     private GameObject _bulletEnemy1Prefab;
     private GameObject _bulletEnemy2Prefab;
     private GameObject _bulletEnemy3Prefab;
+    private GameObject _bulletEnemy10Prefab;
+    private GameObject _bulletEnemy11Prefab;
 
     private Transform _mainWaypoints;
     private Dictionary<Int32, ParentWaypointModel> _waypoints;
@@ -173,6 +175,8 @@ public class LevelController : MonoBehaviour
         _bulletEnemy1Prefab = Resources.Load("Prefabs/Level/BulletEnemy/BulletEnemy1Pref", typeof(GameObject)) as GameObject;
         _bulletEnemy2Prefab = Resources.Load("Prefabs/Level/BulletEnemy/BulletEnemy2Pref", typeof(GameObject)) as GameObject;
         _bulletEnemy3Prefab = Resources.Load("Prefabs/Level/BulletEnemy/BulletEnemy3Pref", typeof(GameObject)) as GameObject;
+        _bulletEnemy10Prefab = Resources.Load("Prefabs/Level/BulletEnemy/BulletEnemy10Pref", typeof(GameObject)) as GameObject;
+        _bulletEnemy11Prefab = Resources.Load("Prefabs/Level/BulletEnemy/BulletEnemy11Pref", typeof(GameObject)) as GameObject;
 
         //+ ways
         InitRoutes();
@@ -567,7 +571,24 @@ public class LevelController : MonoBehaviour
             pref.transform.localPosition = pos;
             pref.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
         }
-        // TODO: gunIndex
+
+
+        // pens
+        if (gunIndex == 10)
+        {
+            pref = Instantiate(_bulletEnemy10Prefab, _parentBulletShipPrefab.transform.position, Quaternion.identity) as GameObject;
+            pref.transform.SetParent(_parentBulletShipPrefab.transform);
+            pref.transform.localPosition = pos;
+            pref.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        }
+        if (gunIndex == 11)
+        {
+            pref = Instantiate(_bulletEnemy11Prefab, _parentBulletShipPrefab.transform.position, Quaternion.identity) as GameObject;
+            pref.transform.SetParent(_parentBulletShipPrefab.transform);
+            pref.transform.localPosition = pos;
+            pref.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        }
+        // TODO gunIndex
 
 
         //- logic

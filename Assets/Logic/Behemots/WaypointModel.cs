@@ -12,6 +12,8 @@ public class WaypointModel
     public bool HasTime = false;
     public bool WithoutRotate = false;
 
+    public bool IsDirectWay = false;
+
     public WaypointModel()
     {
         
@@ -49,7 +51,7 @@ public class WaypointModel
         //var rx = 6.0f;
         //var pos = Waypoint.position;
         //var x = pos.x < 0.0f ? 
-        var dir = inversed ? -1 : 1;
+        var dir = inversed && !IsDirectWay ? -1 : 1;
         //return new Vector3(Waypoint.position.x * dir, Waypoint.position.y, Waypoint.position.z);
         return new Vector3(Pos.x * dir, Pos.y, Pos.z);
     }

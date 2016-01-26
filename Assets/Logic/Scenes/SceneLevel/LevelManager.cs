@@ -143,6 +143,7 @@ public class LevelManager
         //_enemies.Add(new EnemyLaunch(EnemyIndexes.Boss1, 0, 1.0f));
 
 
+
         //foreach (var en in _enemies)
         //{
         //    Debug.Log(String.Format("Time: {0}; Index: {1}; Side: {2}", en.TimeToStart, en.EnemyIndex, en.RouteInversed));

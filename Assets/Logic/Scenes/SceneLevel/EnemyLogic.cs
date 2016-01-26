@@ -99,13 +99,14 @@ public class EnemyLogic : MonoBehaviour {
             newRotation.y = 0.0f;
             transform.rotation = newRotation;
         }
+        _lastPos = transform.position;
 
         //+ simple fire
         SetFireRateTime();
     }
 
 
-    private const float MaxFactor = 5.5f;
+    private const float MaxFactor = 1.6f;   //?+ максимальный фактор от города (факторы для скорости и мощности снарядов)
     private float GetCityFactor(Int32 cityIndex)
     {
         var p = MathHelpers.Percent(0, 16, cityIndex);
@@ -171,7 +172,7 @@ public class EnemyLogic : MonoBehaviour {
         _currentWayIndex = Controller.GetRouteStartIndex(_routeIndex, BossRouteNum);
     }
 
-
+    private Vector3 _lastPos = Vector3.zero;
     /// <summary>
     /// Вращаем в сторону точки.
     /// </summary>
@@ -219,6 +220,7 @@ public class EnemyLogic : MonoBehaviour {
             {
                 _megaFireInStay = false;
                 // pos
+                _lastPos = transform.position;
                 transform.position = Vector3.MoveTowards(transform.position, currentWaypointPos, Speed * Time.deltaTime);
                 // rot
                 RotateByWaypoint(_currentWaypoint, currentWaypointPos, true);
@@ -238,6 +240,7 @@ public class EnemyLogic : MonoBehaviour {
                         _stayPosOffset = new Vector3(UnityEngine.Random.Range(-omf, omf), UnityEngine.Random.Range(-omf, omf), 0);
                     }
                     var osp = 0.2f;
+                    _lastPos = transform.position;
                     transform.position = Vector3.MoveTowards(transform.position, currentWaypointPos + _stayPosOffset, osp * Time.deltaTime);
 
                     // wait
@@ -308,7 +311,7 @@ public class EnemyLogic : MonoBehaviour {
         {
             _megaFireInStay = true;
             // mega f
-            Controller.PlaceBulletEnemy(GunIndex, this.transform.position, _cityFactor, _cityFactor/2);
+            Controller.PlaceBulletEnemy(GunIndex, this.transform.position, _cityFactor, _cityFactor);
         }
     }
     /// <summary>
@@ -316,7 +319,7 @@ public class EnemyLogic : MonoBehaviour {
     /// </summary>
     private void SimpleFire()
     {
-        Controller.PlaceBulletEnemy(GunIndex, this.transform.position, _cityFactor, _cityFactor / 2);
+        Controller.PlaceBulletEnemy(GunIndex, this.transform.position, _cityFactor, _cityFactor);
     }
 
     private void SetFireRateTime()
@@ -373,6 +376,13 @@ public class EnemyLogic : MonoBehaviour {
 
             if (!_disabled)
             {
+                // ставим следующий чекпоинт далеко по прямой (избавляемся от поворотов при кончине)
+                var farAwayPos = this.transform.position - _lastPos; //x  _currentWaypoint.Pos - this.transform.position;
+                farAwayPos.Normalize();
+                farAwayPos = farAwayPos * 100;
+                _currentWaypoint = new WaypointModel(farAwayPos, 0.0f, false);
+                _currentWaypoint.IsDirectWay = true;
+
                 AnimToLose();
                 //Controller.PlaceMaterial(this.transform.position, UnityEngine.Random.Range(MinMaterials, MaxMaterials+1));
                 var matCount = (Int32) MathHelpers.GetByWeight(_materialWeight);

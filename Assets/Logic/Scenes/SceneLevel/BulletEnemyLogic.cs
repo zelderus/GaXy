@@ -17,6 +17,8 @@ public class BulletEnemyLogic : MonoBehaviour {
 
     public Boolean InTarget = false;
 
+    public Boolean WithRotate = false;
+    public Transform ModelTransform;
     //public Bullet Bullet { get; private set; }
 
 
@@ -31,6 +33,7 @@ public class BulletEnemyLogic : MonoBehaviour {
 
     }
 
+    private Int32 _rotDir = 1;
 
     public void Init(LevelController controller, Vector3 pos, float damageFactor, float speedFactor)
     {
@@ -39,6 +42,11 @@ public class BulletEnemyLogic : MonoBehaviour {
 
         Damage = Damage*damageFactor;
         Speed = Speed * speedFactor;
+
+        //- вращение
+        var r = UnityEngine.Random.Range(0, 10);
+        _rotDir = r >= 5 ? 1 : -1;
+
 
         //- направление полета
         _direction = new Vector3(0, -1, 0);
@@ -84,6 +92,9 @@ public class BulletEnemyLogic : MonoBehaviour {
         //var def = -(Time.deltaTime * Speed);    // вниз
         //var nextY = this.transform.position.y + def;
         //this.transform.position = new Vector3(this.transform.position.x, nextY, 0);
+
+        if (WithRotate)
+            ModelTransform.transform.Rotate(0, 0, 500.0f * _rotDir * Time.deltaTime);
 
         // летим по направлению
         var def = _direction * (Time.deltaTime * Speed);
