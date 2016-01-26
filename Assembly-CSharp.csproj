@@ -50,6 +50,7 @@
      <Compile Include="Assets\Logic\Behemots\LevelParalaxLogic.cs" />
      <Compile Include="Assets\Logic\Behemots\MaterialCountLogic.cs" />
      <Compile Include="Assets\Logic\Behemots\MaterialLogic.cs" />
+     <Compile Include="Assets\Logic\Behemots\TrashObjLogic.cs" />
      <Compile Include="Assets\Logic\Behemots\WaypointLogic.cs" />
      <Compile Include="Assets\Logic\Behemots\WaypointModel.cs" />
      <Compile Include="Assets\Logic\Behemots\WithShipColliderLogic.cs" />

@@ -70,7 +70,7 @@ public class FarStrings
         //! +++
         //+ MAIN
         //AddText(FarText.Main_Title, "Игра полностью бесплатная и открытая. Используйте ее в равлекательных или позновательных целях, или как вам вздумается", "Full free, open game for fun, for education or what you want for");
-        AddText(FarText.Main_Title, "Космическая леталка", "Space fly");
+        AddText(FarText.Main_Title, "космическая леталка", "space fly");
         AddText(FarText.Main_ResetText, "Нажмите и держите, чтобы сбросить прогресс игры.", "Hold the AtomButton to Reset the game progress.");
         AddText(FarText.Main_ResetEndText, "Прогресс игры сброшен.", "The game progress has been reseted.");
         AddText(FarText.Main_Sound, "ЗВУК", "SOUND");

@@ -11,6 +11,8 @@ public class WaypointLogic : MonoBehaviour
     public float Timer = 0.0f;
     public bool WithoutRotate = false;
 
+    public bool WithDebug = false;
+
     public Int32 LoopStartIndexWay = 1;
 
 

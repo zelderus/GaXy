@@ -83,6 +83,8 @@ public class LevelController : MonoBehaviour
     private GameObject _bulletEnemy10Prefab;
     private GameObject _bulletEnemy11Prefab;
 
+    private GameObject _trashPrefab;
+
     private Transform _mainWaypoints;
     private Dictionary<Int32, ParentWaypointModel> _waypoints;
     private Dictionary<Int32, ParentWaypointModel> _waypointsBoss;
@@ -180,7 +182,7 @@ public class LevelController : MonoBehaviour
         _bulletEnemy10Prefab = Resources.Load("Prefabs/Level/BulletEnemy/BulletEnemy10Pref", typeof(GameObject)) as GameObject;
         _bulletEnemy11Prefab = Resources.Load("Prefabs/Level/BulletEnemy/BulletEnemy11Pref", typeof(GameObject)) as GameObject;
 
-
+        _trashPrefab = Resources.Load("Prefabs/Level/TrashPref", typeof(GameObject)) as GameObject;
         //+ ways
         InitRoutes();
     }
@@ -270,15 +272,26 @@ public class LevelController : MonoBehaviour
             //+ интерполируем (становится гораздо больше точек)
             var nws = Intepolator.NewCatmullRom(ws.ToArray(), ws.Count(), false);
             //+ суем в модель
+            Int32 iid = 0;
             foreach (var way in nws)
             {
                 const float t = 0.0f;
                 w.Waypoints.Add(new WaypointModel(way, t));
+
+                ////?++ DEBUG
+                //if (mainWl.WithDebug)
+                //{
+                //    GameObject pref = Instantiate(_trashPrefab, mainBoosWaypoints.gameObject.transform.position, Quaternion.identity) as GameObject;
+                //    pref.transform.SetParent(mainBoosWaypoints.gameObject.transform);
+                //    pref.transform.localPosition = new Vector3(way.x, way.y, way.z);
+                //    var trl = pref.GetComponent<TrashObjLogic>();
+                //    trl.Index = iid++;
+                //}
             }
             //- next
             indx++;
         }
-        Destroy(mainBoosWaypoints.gameObject);
+        //Destroy(mainBoosWaypoints.gameObject);
 
         //! без интерполяции с остановками
         indx = 0;
@@ -301,6 +314,7 @@ public class LevelController : MonoBehaviour
                 var wl = way.GetComponent<WaypointLogic>();
                 w.Waypoints.Add(new WaypointModel(wl));
             }
+            
             //- next
             indx++;
         }

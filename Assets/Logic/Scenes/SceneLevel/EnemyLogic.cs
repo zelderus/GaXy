@@ -161,7 +161,14 @@ public class EnemyLogic : MonoBehaviour {
     }
     private WaypointModel GetHomeWaypoint()
     {
-        _currentWaypoint = Controller.GetCurrentWaypoint(_routeIndex, 0, BossRouteNum);
+        // ставим следующий чекпоинт далеко по прямой
+        var farAwayPos = this.transform.position - _lastPos;
+        farAwayPos.Normalize();
+        farAwayPos = farAwayPos * 30;
+        _currentWaypoint = new WaypointModel(farAwayPos, 0.0f, false);
+        _currentWaypoint.IsDirectWay = true;
+
+        //_currentWaypoint = Controller.GetCurrentWaypoint(_routeIndex, 0, BossRouteNum);
         _currentWayIndex = 0;
         _inWaypointTime = 0.0f;
         return _currentWaypoint;
@@ -435,6 +442,18 @@ public class EnemyLogic : MonoBehaviour {
     }
     #endregion
 
+    private bool _inFloated;
+    public bool IsFloated()
+    {
+        //if (_inFloated) return true;
+        //if (this.gameObject.transform.position.x <= -6.0f) _inFloated = true;
+        //if (this.gameObject.transform.position.x >= 6.0f) _inFloated = true;
+        //if (this.gameObject.transform.position.y <= -5.0f) _inFloated = true;
+        //if (this.gameObject.transform.position.y >= 9.0f) _inFloated = true;
+        //return _inFloated;
+        return _isLastWaypoint; // улетая, улетаем молча
+    }
+
 
 	// Update is called once per frame
 	void Update ()
@@ -455,8 +474,12 @@ public class EnemyLogic : MonoBehaviour {
 	            if (!_inStay) _fireRate -= Time.deltaTime;
 	            if (_fireRate <= 0.0f)
 	            {
-	                SetFireRateTime();
-	                SimpleFire();
+                    //- если в рамках, то стреляем (совсем далеко не стреляем, уже улетаем с экрана)
+                    if (!IsFloated())
+                    {
+                        SetFireRateTime();
+                        SimpleFire();
+                    }
 	            }
 	        }
 	    }
