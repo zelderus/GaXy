@@ -59,6 +59,7 @@
      <Compile Include="Assets\Logic\Cities\CityModel.cs" />
      <Compile Include="Assets\Logic\Cities\WorldMap.cs" />
      <Compile Include="Assets\Logic\Factories\FactoryManager.cs" />
+     <Compile Include="Assets\Logic\FarBalance.cs" />
      <Compile Include="Assets\Logic\FarLife.cs" />
      <Compile Include="Assets\Logic\FarSkill.cs" />
      <Compile Include="Assets\Logic\FarStat.cs" />

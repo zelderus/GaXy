@@ -49,6 +49,7 @@ public class EnemyLogic : MonoBehaviour {
     private bool _routeInversed = false;
     private float _inWaypointTime = 0.0f;
 
+    private float _citySpeedFactor = 1.0f;
     private float _cityFactor = 1.0f;
     private float _fireRate = 0.0f;
 
@@ -72,11 +73,14 @@ public class EnemyLogic : MonoBehaviour {
 
         //+ by ship, cityIndex: 0-16
         _cityFactor = GetCityFactor(cityIndex);
+        _citySpeedFactor = GetCitySpeedFactor(cityIndex);
 
         Health = MaxHealth * _cityFactor;
         BodyDamage = BodyDamage * _cityFactor;
+        Speed = Speed * _citySpeedFactor;
         ResistantAir = ResistantAir * (1 / _cityFactor);
         ResistantRocket = ResistantRocket * (1 / _cityFactor);
+        SimpleFireRate = SimpleFireRate * (1 / _cityFactor);
 
         //- materials
         if (BossRouteNum <= 1) _materialWeight.Add(new WeightObject(0, 8.0f));  //! вероятность НЕ выпадания
@@ -106,7 +110,7 @@ public class EnemyLogic : MonoBehaviour {
     }
 
 
-    private const float MaxFactor = 1.6f;   //?+ максимальный фактор от города (факторы для скорости и мощности снарядов)
+    private const float MaxFactor = 1.7f;   //?+ максимальный фактор от города (мощности снарядов)
     private float GetCityFactor(Int32 cityIndex)
     {
         var p = MathHelpers.Percent(0, 16, cityIndex);
@@ -114,7 +118,14 @@ public class EnemyLogic : MonoBehaviour {
         f = f + 1.0f;   // сдвигаем от 0
         return f;
     }
-
+    private const float MaxSpeedFactor = 1.2f;   //?+ максимальный фактор от города (фактор для скорости)
+    private float GetCitySpeedFactor(Int32 cityIndex)
+    {
+        var p = MathHelpers.Percent(0, 16, cityIndex);
+        var f = MathHelpers.ByPercent(MaxSpeedFactor - 1.0f, p);
+        f = f + 1.0f;   // сдвигаем от 0
+        return f;
+    }
 
     
     private void AnimToLose()
@@ -318,7 +329,7 @@ public class EnemyLogic : MonoBehaviour {
         {
             _megaFireInStay = true;
             // mega f
-            Controller.PlaceBulletEnemy(GunIndex, this.transform.position, _cityFactor, _cityFactor);
+            Controller.PlaceBulletEnemy(GunIndex, this.transform.position, _cityFactor, 1.0f);
         }
     }
     /// <summary>
@@ -326,12 +337,12 @@ public class EnemyLogic : MonoBehaviour {
     /// </summary>
     private void SimpleFire()
     {
-        Controller.PlaceBulletEnemy(GunIndex, this.transform.position, _cityFactor, _cityFactor);
+        Controller.PlaceBulletEnemy(GunIndex, this.transform.position, _cityFactor, 1.0f);
     }
 
     private void SetFireRateTime()
     {
-        _fireRate = UnityEngine.Random.Range(SimpleFireRate - (SimpleFireRate / 3.0f), SimpleFireRate + (SimpleFireRate / 3.0f));
+        _fireRate = UnityEngine.Random.Range(SimpleFireRate - (SimpleFireRate / 4.0f), SimpleFireRate + (SimpleFireRate / 4.0f));
         _fireRate = _fireRate < 1.0f ? 1.0f : _fireRate;
     }
 

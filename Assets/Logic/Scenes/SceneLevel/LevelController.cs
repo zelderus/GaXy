@@ -291,7 +291,7 @@ public class LevelController : MonoBehaviour
             //- next
             indx++;
         }
-        //Destroy(mainBoosWaypoints.gameObject);
+        Destroy(mainBoosWaypoints.gameObject);
 
         //! без интерполяции с остановками
         indx = 0;
@@ -985,6 +985,12 @@ public class LevelController : MonoBehaviour
         HideWeaponPanel();
         ShipLogic.AnimToLose();
         ShowEndMessage(false);
+
+        //+ счетчик текущей попытки полета
+        if (FarLife.GlobalData.LastRunCity == FarLife.MapLife.NextCity.Model.Id)
+        {
+            FarLife.GlobalData.LastCityCountOfRuns++;
+        }
     }
 
     public void LevelLose()

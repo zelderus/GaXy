@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class PanelInfoMissionPanel : MonoBehaviour
 {
     public Text DayTitle;
+    public Text RatingTitle;
     public Text MustResourceTitle;
     public Text ProductTitle;
 
@@ -34,6 +35,7 @@ public class PanelInfoMissionPanel : MonoBehaviour
     public Text Res1Txt;
     public Text Res2Txt;
     public Text DaysLeftTxt;
+    public Text RatingTxt;
     public Text ProductCountTxt;
 
 
@@ -74,6 +76,7 @@ public class PanelInfoMissionPanel : MonoBehaviour
     public void Init()
     {
         DayTitle.text = FarLife.GetText(FarText.Map_InfoWnd_DayTitle);
+        RatingTitle.text = FarLife.GetText(FarText.Map_InfoWnd_RatingTitle);
         MustResourceTitle.text = FarLife.GetText(FarText.Map_InfoWnd_ResTitle);
         ProductTitle.text = FarLife.GetText(FarText.Map_InfoWnd_ProdTitle);
     }
@@ -248,6 +251,9 @@ public class PanelInfoMissionPanel : MonoBehaviour
             DaysLeftTxt.text = _city.Model.ResourceProduct.ProductDays.ToString();
             //ProductCountTxt.gameObject.SetActive(false);
         }
+
+        RatingTxt.text = _city.Model.Rating.ToString();
+
 
         var mapLife = _city.CityMap.MainLogicObject.GetMapLife();
 

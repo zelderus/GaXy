@@ -694,7 +694,7 @@ public class MapController : MonoBehaviour
         //+ счетчик текущей попытки полета
         if (FarLife.GlobalData.LastRunCity == FarLife.MapLife.NextCity.Model.Id)
         {
-            FarLife.GlobalData.LastCityCountOfRuns++;
+            //FarLife.GlobalData.LastCityCountOfRuns++; //! считать будет только при поражении
         }
         else
         {
