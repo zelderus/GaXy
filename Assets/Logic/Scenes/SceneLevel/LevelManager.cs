@@ -121,7 +121,7 @@ public class LevelManager
 
         //_enemies.Add(new EnemyLaunch(EnemyIndexes.Loh1, 0, 1.0f));
         //_enemies.Add(new EnemyLaunch(EnemyIndexes.Pen6, 1, 1.0f, false));
-        //_enemies.Add(new EnemyLaunch(EnemyIndexes.Boss1, 3, 1.0f, false));
+        //_enemies.Add(new EnemyLaunch(EnemyIndexes.Boss1, 0, 1.0f, false));
 
 
 
@@ -164,9 +164,14 @@ public class LevelManager
     private float _timeMaterialInt = 10.0f;
     private float _timeMaterialGo = 0.0f;
     private Int32 _materialCount = 15;
+    private Int32 _materialMaxIncomes = 5;
+    private Int32 _materialIncomed = 0;
+    private bool _materialEnded = false;
 
     private void MaterialUpdate(float deltaTime)
     {
+        if (_materialEnded) return;
+
         _timeMaterialGo += deltaTime;
         if (_timeMaterialGo >= _timeMaterialInt)
         {
@@ -176,6 +181,9 @@ public class LevelManager
             if (matCount > 0)
             {
                 _controller.PlaceMaterial(new Vector2(UnityEngine.Random.Range(-3.0f, 3.0f), 7.0f), matCount);
+                _materialIncomed++;
+                if (_materialIncomed >= _materialMaxIncomes)
+                    _materialEnded = true;
             }
         }
     }
