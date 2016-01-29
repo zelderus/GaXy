@@ -16,6 +16,7 @@ public class Boss1Gun1Logic : MonoBehaviour
     
     public float Health { get; private set; }
 
+    public ParticleSystem GunBoomParts;
 
     private LevelController _controller;
     private float _cityFactor;
@@ -99,7 +100,12 @@ public class Boss1Gun1Logic : MonoBehaviour
 
     private void BoomDestroy()
     {
-        // TODO: anim boom
+        // anim boom
+        if (GunBoomParts != null)
+        {
+            GunBoomParts.gameObject.SetActive(true);
+            Destroy(GunBoomParts.gameObject, 2.0f);
+        }
         Destroy(this.gameObject);
     }
 

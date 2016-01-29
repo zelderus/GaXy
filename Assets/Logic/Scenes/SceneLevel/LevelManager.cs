@@ -54,7 +54,7 @@ public class LevelManager
     /// <summary>
     /// При каком количестве произведенного планетой - повышается уровень.
     /// </summary>
-    public static List<Int32> LevelUpRatings = new List<Int32>() { 5, 15, 30, 40 };  // TODO: city level //?++ CITY LEVELS
+    public static List<Int32> LevelUpRatings = new List<Int32>() { 2, 4, 8, 10 };  // TODO: city level //?++ CITY LEVELS
 
     private void InitLevelObjects()
     {
@@ -63,22 +63,22 @@ public class LevelManager
         var cityIndex = 0; // 0 - 16
         #region city index
         // TODO: CityRating //?++ CityRating
-        if (cityRating >= 3) cityIndex = 1;
-        if (cityRating >= 6) cityIndex = 2;
-        if (cityRating >= 9) cityIndex = 3;
-        if (cityRating >= 12) cityIndex = 4;
-        if (cityRating >= 15) cityIndex = 5;
-        if (cityRating >= 18) cityIndex = 6;
-        if (cityRating >= 21) cityIndex = 7;
-        if (cityRating >= 24) cityIndex = 8;
-        if (cityRating >= 27) cityIndex = 9;
-        if (cityRating >= 30) cityIndex = 10;
-        if (cityRating >= 33) cityIndex = 11;
-        if (cityRating >= 36) cityIndex = 12;
-        if (cityRating >= 39) cityIndex = 13;
-        if (cityRating >= 42) cityIndex = 14;
-        if (cityRating >= 45) cityIndex = 15;
-        if (cityRating >= 50) cityIndex = 16;
+        if (cityRating >= 1) cityIndex = 1;
+        if (cityRating >= 2) cityIndex = 2;
+        if (cityRating >= 3) cityIndex = 3;
+        if (cityRating >= 4) cityIndex = 4;
+        if (cityRating >= 5) cityIndex = 5;
+        if (cityRating >= 6) cityIndex = 6;
+        if (cityRating >= 7) cityIndex = 7;
+        if (cityRating >= 8) cityIndex = 8;
+        if (cityRating >= 9) cityIndex = 9;
+        if (cityRating >= 10) cityIndex = 10;
+        if (cityRating >= 11) cityIndex = 11;
+        if (cityRating >= 12) cityIndex = 12;
+        if (cityRating >= 13) cityIndex = 13;
+        if (cityRating >= 14) cityIndex = 14;
+        if (cityRating >= 15) cityIndex = 15;
+        if (cityRating >= 16) cityIndex = 16;
         _cityIndex = cityIndex;
         //! если слишком много раз пытается пройти уровень один и тотже - помогаем ему, ставим легкую сложность (за упоротость)
         if (FarLife.GlobalData.LastCityCountOfRuns >= FarBalance.NumLastCityCountOfRuns)
@@ -121,7 +121,7 @@ public class LevelManager
 
         //_enemies.Add(new EnemyLaunch(EnemyIndexes.Loh1, 0, 1.0f));
         //_enemies.Add(new EnemyLaunch(EnemyIndexes.Pen6, 1, 1.0f, false));
-        //_enemies.Add(new EnemyLaunch(EnemyIndexes.Boss1, 0, 1.0f, false));
+        //_enemies.Add(new EnemyLaunch(EnemyIndexes.Boss1, 1, 1.0f, false));
 
 
 

@@ -606,25 +606,26 @@ public class LevelController : MonoBehaviour
             pref = Instantiate(_bulletEnemy1Prefab, _parentBulletShipPrefab.transform.position, Quaternion.identity) as GameObject;
             pref.transform.SetParent(_parentBulletShipPrefab.transform);
             pref.transform.localPosition = pos;
-            pref.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+            pref.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            gunOffsetPos = new Vector3(0, 0, -1);
         }
         if (gunIndex == 1)
         {
             pref = Instantiate(_bulletEnemy2Prefab, _parentBulletShipPrefab.transform.position, Quaternion.identity) as GameObject;
             pref.transform.SetParent(_parentBulletShipPrefab.transform);
             pref.transform.localPosition = pos;
-            pref.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+            pref.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+            gunOffsetPos = new Vector3(0, 0, -1);
         }
         if (gunIndex == 2)
         {
             pref = Instantiate(_bulletEnemy3Prefab, _parentBulletShipPrefab.transform.position, Quaternion.identity) as GameObject;
             pref.transform.SetParent(_parentBulletShipPrefab.transform);
             pref.transform.localPosition = pos;
-            pref.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+            pref.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+            gunOffsetPos = new Vector3(0, 0, -1);
         }
-        // TODO: gun boss 2
 
-        // TODO: gun boss 3
 
 
         // pens

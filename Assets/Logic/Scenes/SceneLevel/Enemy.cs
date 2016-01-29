@@ -204,9 +204,9 @@ public class EnemyBrunchProvider
         _penWeight.Add(new WeightIntObject(EnemyIndexes.Pen5, 10 + (hardLevel123 == 3 ? bigStep : 0)));
         _penWeight.Add(new WeightIntObject(EnemyIndexes.Pen6, 10 + (hardLevel123 == 3 ? bigStep : 0)));
 
-        _bossWeight.Add(new WeightIntObject(EnemyIndexes.Boss1, 10 + (hardLevel123 == 1 ? 200 : 0)));
-        _bossWeight.Add(new WeightIntObject(EnemyIndexes.Boss2, 10 + (hardLevel123 == 2 ? 200 : hardLevel123 == 3 ? 50 : 0)));
-        _bossWeight.Add(new WeightIntObject(EnemyIndexes.Boss3, 10 + (hardLevel123 == 3 ? 200 : 0)));
+        _bossWeight.Add(new WeightIntObject(EnemyIndexes.Boss1, 10 + (hardLevel123 == 1 ? 250 : 0)));
+        _bossWeight.Add(new WeightIntObject(EnemyIndexes.Boss2, 10 + (hardLevel123 == 2 ? 250 : hardLevel123 == 3 ? 100 : 0)));
+        _bossWeight.Add(new WeightIntObject(EnemyIndexes.Boss3, 10 + (hardLevel123 == 3 ? 250 : 0)));
         #endregion
         
         // тип врага
@@ -234,7 +234,7 @@ public class EnemyBrunchProvider
 
         _sayWeightTime6.Add(new WeightIntObject(EnemySay.Loh, 100));
         _sayWeightTime6.Add(new WeightIntObject(EnemySay.Pen, 300));
-        _sayWeightTime6.Add(new WeightIntObject(EnemySay.Boss, 600 + (hardLevel123 == 3 ? 500 : 0)));
+        _sayWeightTime6.Add(new WeightIntObject(EnemySay.Boss, 300 + (hardLevel123 == 3 ? 800 : hardLevel123 == 2 ? 400 : 0)));
         _sayWeightTimeWithoutBoss6.Add(new WeightIntObject(EnemySay.Loh, 100));
         _sayWeightTimeWithoutBoss6.Add(new WeightIntObject(EnemySay.Pen, 300));
 

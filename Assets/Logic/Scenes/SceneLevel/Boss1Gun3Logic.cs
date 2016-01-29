@@ -22,6 +22,7 @@ public class Boss1Gun3Logic : MonoBehaviour
 
     public float Health { get; private set; }
 
+    public ParticleSystem GunBoomParts;
     public BoxCollider ColliderObj;
 
     private LevelController _controller;
@@ -56,19 +57,39 @@ public class Boss1Gun3Logic : MonoBehaviour
     }
 
 
+    private bool _showing = false;
+    private float _showingCurrAngle = 0.0f;
+    private float _showingEndAngle = 180.0f;
+    private float _showingSpeed = 60.0f;
+    private void Showing()
+    {
+        if (!_showing) return;
+
+        var angle = Time.deltaTime * _showingSpeed;
+        _showingCurrAngle += angle;
+        if (_showingCurrAngle >= _showingEndAngle)
+        {
+            _showing = false;
+            _isEnabled = true;
+            ColliderObj.enabled = true;
+
+            angle = _showingCurrAngle - _showingEndAngle;   //- выравниваем градус
+        }
+        this.gameObject.transform.Rotate(new Vector3(0, 1, 0), angle);
+    }
     /// <summary>
     /// Включение оружия.
     /// </summary>
     public void Show()
     {
-        if (ColliderObj == null) return;
         //this.gameObject.transform.position 
-        ColliderObj.enabled = true;
-        _isEnabled = true;
+        //ColliderObj.gameObject.collider.gameObject.SetActive(); = true;//.SetActive(true);
+        if (ColliderObj == null) return;
 
-        var zo = -0.5f;
-        this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z + zo);
+        _showing = true;
     }
+
+
 
 
     private void SetFireRateTime()
@@ -147,17 +168,21 @@ public class Boss1Gun3Logic : MonoBehaviour
     private bool _boomAnimation = false;
     private void BoomDestroy()
     {
-        _boomAnimation = true;
-        Destroy(this.gameObject, 3.0f);
+        // anim boom
+        if (GunBoomParts != null)
+        {
+            GunBoomParts.gameObject.SetActive(true);
+            Destroy(GunBoomParts.gameObject, 2.0f);
+        }
+        Destroy(this.gameObject);
     }
 
-    private void BoomAnimation()
-    {
-        if (!_boomAnimation) return;
-        // TODO: float
-        var rot = 50.0f * Time.deltaTime;
-        this.transform.Rotate(0, 0, rot);
-    }
+    //private void BoomAnimation()
+    //{
+    //    if (!_boomAnimation) return;
+    //    var rot = 50.0f * Time.deltaTime;
+    //    this.transform.Rotate(0, 0, rot);
+    //}
 
 
     #region Collider
@@ -200,6 +225,11 @@ public class Boss1Gun3Logic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!IsDied)
+        {
+            Showing();
+        }
+
         if (_isEnabled && !IsDied)
         {
             _fireRate -= Time.deltaTime;
@@ -214,7 +244,7 @@ public class Boss1Gun3Logic : MonoBehaviour
                 Firing();
             }
         }
-        BoomAnimation();
+        //BoomAnimation();
 
 
     }
