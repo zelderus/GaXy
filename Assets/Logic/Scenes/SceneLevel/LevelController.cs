@@ -478,12 +478,12 @@ public class LevelController : MonoBehaviour
         }
         else if (enemyIndex == EnemyIndexes.Boss2)
         {
-            var bl = pref.GetComponent<EnemyLogic>();
+            var bl = pref.GetComponent<Boss1Logic>();
             bl.Init(this, routeIndex, routeInversed, _manager.GetCityIndex());
         }
         else if (enemyIndex == EnemyIndexes.Boss3)
         {
-            var bl = pref.GetComponent<EnemyLogic>();
+            var bl = pref.GetComponent<Boss1Logic>();
             bl.Init(this, routeIndex, routeInversed, _manager.GetCityIndex());
         }
         else

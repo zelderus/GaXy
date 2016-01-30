@@ -143,7 +143,7 @@ public class ShipFlyLogic : MonoBehaviour
     {
         if (!_isFlying) return;
 
-        const float maxCren = 40.0f;
+        const float maxCren = 60.0f;// 40.0f;
         const float minCren = 0.01f;
 
         var rot = _crenX > minCren ? maxCren : _crenX < -minCren ? -maxCren : 0.0f;

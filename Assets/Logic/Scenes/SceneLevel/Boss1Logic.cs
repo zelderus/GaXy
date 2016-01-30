@@ -52,7 +52,8 @@ public class Boss1Logic : MonoBehaviour {
     private bool _isGun2Died = false;
     private bool _isGun3Died = false;
 
-
+    public bool IsBoss2;
+    public Transform Boss2Rot;
 
     // Use this for initialization
     void Start()
@@ -370,6 +371,12 @@ public class Boss1Logic : MonoBehaviour {
     void Update()
     {
         if (Controller.Manager.IsPaused) return;
+
+        //
+        if (IsBoss2)
+        {
+            Boss2Rot.transform.Rotate(new Vector3(1, 0, 0), Time.deltaTime * 80);
+        }
 
         if (IsDied)
         {
