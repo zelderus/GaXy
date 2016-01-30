@@ -54,6 +54,8 @@ public class Boss1Logic : MonoBehaviour {
 
     public bool IsBoss2;
     public Transform Boss2Rot;
+    public bool IsBoss3;
+    public Transform Boss3Rot;
 
     // Use this for initialization
     void Start()
@@ -372,10 +374,14 @@ public class Boss1Logic : MonoBehaviour {
     {
         if (Controller.Manager.IsPaused) return;
 
-        //
+        // вращаем всякое
         if (IsBoss2)
         {
             Boss2Rot.transform.Rotate(new Vector3(1, 0, 0), Time.deltaTime * 80);
+        }
+        if (IsBoss3)
+        {
+            Boss3Rot.transform.Rotate(new Vector3(0, 0, 1), Time.deltaTime * 50);
         }
 
         if (IsDied)

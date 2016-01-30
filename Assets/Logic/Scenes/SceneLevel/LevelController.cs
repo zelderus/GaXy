@@ -457,8 +457,8 @@ public class LevelController : MonoBehaviour
             case EnemyIndexes.Pen6: gob = _enemyPen6Prefab; scale = new Vector3(0.7f, 0.7f, 0.7f); offsetZ = 0.0f; break;
 
             case EnemyIndexes.Boss1: gob = _enemyBoss1Prefab; offsetZ = 1.0f; break;
-            case EnemyIndexes.Boss2: gob = _enemyBoss2Prefab; offsetZ = 0.0f; break;
-            case EnemyIndexes.Boss3: gob = _enemyBoss3Prefab; offsetZ = 0.0f; break;
+            case EnemyIndexes.Boss2: gob = _enemyBoss2Prefab; offsetZ = 1.0f; break;
+            case EnemyIndexes.Boss3: gob = _enemyBoss3Prefab; offsetZ = 1.0f; break;
         }
 
         //var firstWay = GetCurrentWaypoint(route, 0, isBoss);

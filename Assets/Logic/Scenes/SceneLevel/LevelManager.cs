@@ -121,7 +121,7 @@ public class LevelManager
 
         //_enemies.Add(new EnemyLaunch(EnemyIndexes.Loh1, 0, 1.0f));
         //_enemies.Add(new EnemyLaunch(EnemyIndexes.Pen6, 1, 1.0f, false));
-        //_enemies.Add(new EnemyLaunch(EnemyIndexes.Boss2, 1, 1.0f, false));
+        //_enemies.Add(new EnemyLaunch(EnemyIndexes.Boss3, 1, 1.0f, false));
 
 
 
