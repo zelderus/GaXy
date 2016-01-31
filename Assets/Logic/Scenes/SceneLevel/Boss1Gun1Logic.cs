@@ -86,12 +86,14 @@ public class Boss1Gun1Logic : MonoBehaviour
 
         // boom anim
         _controller.PlaceBoomEnemy(0, this.transform.position);
+        _controller.SoundEnemyTick();
 
         if (Health <= 0)
         {
             IsDied = true;
             Boss.Gun1Die();
             BoomDestroy();
+            _controller.SoundTechStop();
         }
 
         return oldHealth - Health; // разница

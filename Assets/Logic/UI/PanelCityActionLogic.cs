@@ -95,6 +95,7 @@ public class PanelCityActionLogic : MonoBehaviour
         mapLife.CityStart(_city.Model);
         //- обновляем все зависящее внешне
         _city.CityMap.MainLogicObject.UpdateMathPanels();
+        _city.CityMap.MainLogicObject.SoundUp();
         //mapLife.UpdateViewDay();
         //_city.CityMap.MainLogicObject.WorkPanelUpdate();
         ////x _actionPanel.UpdateView();

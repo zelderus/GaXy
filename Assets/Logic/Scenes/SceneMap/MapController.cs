@@ -55,6 +55,9 @@ public class MapController : MonoBehaviour
     public Material GexCurrentMat;
     public Material GexBadMat;
 
+    private AudioSource _audio;
+
+
     void Awake()
     {
         FarLife.Init();
@@ -64,6 +67,7 @@ public class MapController : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
+        _audio = this.GetComponent<AudioSource>();
         // загрузка данных игрока
         _mapLife = FarLife.MapLife;
         _shipLife = FarLife.ShipLife;
@@ -153,6 +157,37 @@ public class MapController : MonoBehaviour
     {
         return _shipLife;
     }
+
+
+
+    #region Sound
+    public AudioClip AudioClick;
+    public AudioClip AudioBow;
+    public AudioClip AudioUp;
+    public AudioClip AudioFig;
+
+    private void SoundClick()
+    {
+        //AudioSource.PlayClipAtPoint(AudioClick, new Vector3(0, 0, -10));
+        _audio.PlayOneShot(AudioClick);
+    }
+    public void SoundBow()
+    {
+        //AudioSource.PlayClipAtPoint(AudioBow, new Vector3(0, 0, -10));
+        _audio.PlayOneShot(AudioBow);
+    }
+    public void SoundUp()
+    {
+        //AudioSource.PlayClipAtPoint(AudioBow, new Vector3(0, 0, -10));
+        _audio.PlayOneShot(AudioUp);
+    }
+    public void SoundFig()
+    {
+        //AudioSource.PlayClipAtPoint(AudioBow, new Vector3(0, 0, -10));
+        _audio.PlayOneShot(AudioFig);
+    }
+    #endregion
+
 
 
     
@@ -523,6 +558,7 @@ public class MapController : MonoBehaviour
     {
         if (!_mapInTouchControl) return;
         DeselectCities();
+        SoundClick();
 
         _mapInTouchControl = false;
         _mapDoInTouch = false;
@@ -535,6 +571,7 @@ public class MapController : MonoBehaviour
         _mapDoInTouch = true;
         PanelOption.Hide();
         HideBackPanel();
+        SoundClick();
     }
 
     //public void ShowShipPanel()
@@ -558,6 +595,7 @@ public class MapController : MonoBehaviour
         PanelAction.Hide(); //- 
         _mapDoInTouch = true;
         HideBackPanel();
+        //SoundClick();
     }
     public void ShowCityPanel()
     {
@@ -568,6 +606,7 @@ public class MapController : MonoBehaviour
 
         PanelAction.Show(_currenctSelectCity, IsCityCurrent(_currenctSelectCity));
         ShowBackPanel();
+        SoundClick();
     }
 
 
@@ -579,6 +618,7 @@ public class MapController : MonoBehaviour
         PanelHelp.Hide(); //- 
         _mapDoInTouch = true;
         HideBackPanel();
+        //SoundClick();
     }
     public void ShowHelpPanel(Int32 tag)
     {
@@ -589,6 +629,7 @@ public class MapController : MonoBehaviour
 
         PanelHelp.Show(tag);
         ShowBackPanel();
+        SoundClick();
     }
 
 
@@ -598,12 +639,14 @@ public class MapController : MonoBehaviour
     private void HideActionPanel()
     {
         PanelCityAction.Hide();
+        //SoundClick();
     }
     private void ShowActionPanel()
     {
        //- PanelAction.Show(_currenctCity);
         PanelCityAction.Show(_currenctSelectCity, IsCityCurrent(_currenctSelectCity));
         //ShowBackPanel();
+        //SoundClick();
     }
 
     private bool _mapDoInTouch = false;
@@ -672,6 +715,7 @@ public class MapController : MonoBehaviour
     public void PlayLevelFromMap()
     {
         if (!IsMapInTouch) return;
+        SoundClick();
         PlayLevel();
     }
 

@@ -387,6 +387,7 @@ public class EnemyLogic : MonoBehaviour {
 
         // boom anim
         Controller.PlaceBoomEnemy(0, this.transform.position);
+        Controller.SoundEnemyTick();
 
         if (Health <= 0)
         {
@@ -407,6 +408,7 @@ public class EnemyLogic : MonoBehaviour {
                 Controller.PlaceMaterial(this.transform.position, matCount);
 
                 Controller.EnemyDied();
+                Controller.SoundTechStop();
                 Destroy(this.gameObject, 1.9f); // взрыв должен уложиться в 2 сек
             }
         }

@@ -16,6 +16,7 @@ public class MenuOptionPanelLogic : MonoBehaviour {
     public UIToggleSpriteSwap LanguageRuToggle;
     public UIToggleSpriteSwap LanguageEnToggle;
 
+    private MenuController _controller;
 
     // Use this for initialization
     void Start()
@@ -27,6 +28,10 @@ public class MenuOptionPanelLogic : MonoBehaviour {
         SetLanguage(FarLife.Language);
     }
 
+    public void Init(MenuController controller)
+    {
+        _controller = controller;
+    }
 
 
     public void Hide()
@@ -110,6 +115,7 @@ public class MenuOptionPanelLogic : MonoBehaviour {
         ResetBtn.gameObject.SetActive(false);
         //ResetTxt.gameObject.SetActive(false);
         UpdateLanguage();
+        _controller.SoundBow();
     }
 
 	

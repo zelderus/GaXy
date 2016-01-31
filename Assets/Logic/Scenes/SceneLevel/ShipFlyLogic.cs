@@ -346,6 +346,7 @@ public class ShipFlyLogic : MonoBehaviour
             if (!mat.IsFloated)
             {
                 this.Controller.AddMaterial(mat.Count);
+                this.Controller.SoundCoins();
                 mat.IsFloated = true;
                 this.Controller.PlaceMaterialFloat(mat.transform.position, mat.Count, mat.Speed);
 
@@ -382,6 +383,7 @@ public class ShipFlyLogic : MonoBehaviour
             {
                 bullet.TimeToGoWorking = 0.0f;
                 Controller.PlaceBulletShip(bullet.GunIndex);
+                Controller.SoundTick();
             }
         }
 

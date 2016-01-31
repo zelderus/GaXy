@@ -21,6 +21,12 @@ public class MenuController : MonoBehaviour
     public Text ResetTxt;
     public Text SoundTxt;
 
+
+    private AudioSource _audio;
+    public AudioClip AudioClick;
+    public AudioClip AudioBow;
+
+
     void Awake()
     {
         FarLife.Init();
@@ -29,8 +35,9 @@ public class MenuController : MonoBehaviour
 
 
 	// Use this for initialization
-	void Start () {
-
+	void Start () 
+    {
+        _audio = this.GetComponent<AudioSource>();
         //+ сохраняем (если не начальная загрузка игры)
 	    if (!FarLife.GameOnRun)
 	    {
@@ -42,6 +49,7 @@ public class MenuController : MonoBehaviour
         
         
         // preload
+        OptionPanel.Init(this);
         OptionPanel.Show();
         OptionPanel.Hide();
 
@@ -85,17 +93,20 @@ public class MenuController : MonoBehaviour
     public void OptionSoundToggle(bool isOn)
     {
         FarLife.SetSound(isOn);
+        SoundClick();
     }
 
 
     public void OptionLanguageRusToggle(bool isOn)
     {
+        SoundClick();
         OptionPanel.SetLanguage(GameLanguages.Russian);
         FarLife.SetLanguage(GameLanguages.Russian);
         UpdateLanguage();
     }
     public void OptionLanguageEngToggle(bool isOn)
     {
+        SoundClick();
         OptionPanel.SetLanguage(GameLanguages.English);
         FarLife.SetLanguage(GameLanguages.English);
         UpdateLanguage();
@@ -117,6 +128,7 @@ public class MenuController : MonoBehaviour
         PlayBtn.enabled = false;
         OptionBtn.enabled = false;
         StatBtn.enabled = false;
+        SoundClick();
         OptionPanel.Show();
     }
     public void HideOptionPanel()
@@ -124,6 +136,7 @@ public class MenuController : MonoBehaviour
         PlayBtn.enabled = true;
         OptionBtn.enabled = true;
         StatBtn.enabled = true;
+        SoundClick();
         OptionPanel.Hide();
     }
 
@@ -133,6 +146,7 @@ public class MenuController : MonoBehaviour
         PlayBtn.enabled = false;
         OptionBtn.enabled = false;
         StatBtn.enabled = false;
+        SoundClick();
         StatPanel.Show();
     }
     public void HideStatPanel()
@@ -140,21 +154,33 @@ public class MenuController : MonoBehaviour
         PlayBtn.enabled = true;
         OptionBtn.enabled = true;
         StatBtn.enabled = true;
+        SoundClick();
         StatPanel.Hide();
     }
 
 
     public void GoToMap()
     {
+        SoundClick();
         FarLife.GoToMap();
     }
 
+    #region Sound
+    private void SoundClick()
+    {
+        //AudioSource.PlayClipAtPoint(AudioClick, Vector3.zero);
+        _audio.PlayOneShot(AudioClick);
+    }
+    public void SoundBow()
+    {
+        //AudioSource.PlayClipAtPoint(AudioBow, Vector3.zero);
+        _audio.PlayOneShot(AudioBow);
+    }
+    #endregion
 
-    
 
 
-	
-	// Update is called once per frame
+    // Update is called once per frame
 	void Update () {
         FarLife.Update();
 

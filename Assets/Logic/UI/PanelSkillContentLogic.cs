@@ -135,6 +135,8 @@ public class PanelSkillContentLogic : MonoBehaviour {
 
         _skillBtn.Activation();
         UpdateBuyBtn();
+
+        MapController.SoundFig();
         MapController.UpdateMathPanels();
     }
 

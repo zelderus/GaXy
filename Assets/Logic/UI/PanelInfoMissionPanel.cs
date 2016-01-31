@@ -209,6 +209,7 @@ public class PanelInfoMissionPanel : MonoBehaviour
         //_actionPanel.UpdateView();
         //_city.CityMap.MainLogicObject.PanelCitySmall.UpdateView();
         _city.CityMap.MainLogicObject.UpdateMathPanels();
+        _city.CityMap.MainLogicObject.SoundUp();
     }
 
     private void UpdateStatStartProductBtn()

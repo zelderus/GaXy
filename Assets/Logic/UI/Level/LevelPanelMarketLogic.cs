@@ -28,6 +28,7 @@ public class LevelPanelMarketLogic : MonoBehaviour {
     //private RectTransform _body;
     private EaseAnimations _animHide;
     private ShipLife _ship;
+    private LevelController _controller;
 
 	// Use this for initialization
 	void Start () 
@@ -41,9 +42,10 @@ public class LevelPanelMarketLogic : MonoBehaviour {
 	}
 
 
-    public void Init(ShipLife ship)
+    public void Init(ShipLife ship, LevelController controller)
     {
         _ship = ship;
+        _controller = controller;
 
         TitleText.text = FarLife.GetText(FarText.Level_MarketTitle);
 
@@ -65,6 +67,7 @@ public class LevelPanelMarketLogic : MonoBehaviour {
 
         UpdateView();
         ShipPanel.UpdateCounters();
+        _controller.SoundUp();
     }
     public void OnBuyShield()
     {
@@ -75,6 +78,7 @@ public class LevelPanelMarketLogic : MonoBehaviour {
 
         UpdateView();
         ShipPanel.UpdateCounters();
+        _controller.SoundUp();
     }
     public void OnBuyTree()
     {
@@ -85,6 +89,7 @@ public class LevelPanelMarketLogic : MonoBehaviour {
 
         UpdateView();
         ShipPanel.UpdateCounters();
+        _controller.SoundUp();
     }
     
 

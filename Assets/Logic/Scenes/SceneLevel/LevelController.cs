@@ -91,6 +91,8 @@ public class LevelController : MonoBehaviour
     private Dictionary<Int32, ParentWaypointModel> _waypointsBossTime;
     //private Int32 _currentWayIndex = -1;
     //private Transform _currentWaypoint = null;
+    private AudioSource _audio;
+
 
     void Awake()
     {
@@ -100,6 +102,8 @@ public class LevelController : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+        _audio = this.GetComponent<AudioSource>();
+
         _statusLevel = FarStatusLevel.LevelLose;
         _mapLife = FarLife.MapLife;
 	    _ship = FarLife.ShipLife;
@@ -125,7 +129,7 @@ public class LevelController : MonoBehaviour
         PanelOption.Init();
         PanelWork.Init(_ship);
         PanelShip.Init(_ship);
-        PanelMarket.Init(_ship);
+        PanelMarket.Init(_ship, this);
         //
         WinText.Init(FarLife.GetText(FarText.Level_Win));
         LoseText.Init(FarLife.GetText(FarText.Level_Lose));
@@ -382,6 +386,74 @@ public class LevelController : MonoBehaviour
     {
         BigBack.GetComponent<Renderer>().material.color = BigBackJopedColor;
     }
+
+
+
+    #region Sound
+    public AudioClip AudioClick;
+    public AudioClip AudioBow;
+    public AudioClip AudioUp;
+    public AudioClip AudioFig;
+    public AudioClip AudioStart;
+    public AudioClip AudioCoins;
+    public AudioClip AudioGameOver;
+    public AudioClip AudioGameWin;
+    public AudioClip AudioBomb;
+    public AudioClip AudioTechStop;
+    public AudioClip AudioTick;
+    public AudioClip AudioTick2;
+
+    private void SoundClick()
+    {
+        _audio.PlayOneShot(AudioClick);
+    }
+    public void SoundBow()
+    {
+        _audio.PlayOneShot(AudioBow);
+    }
+    public void SoundUp()
+    {
+        _audio.PlayOneShot(AudioUp);
+    }
+    public void SoundFig()
+    {
+        _audio.PlayOneShot(AudioFig);
+    }
+    public void SoundStart()
+    {
+        _audio.PlayOneShot(AudioStart);
+    }
+    public void SoundCoins()
+    {
+        _audio.PlayOneShot(AudioCoins);
+    }
+    public void SoundGameOver()
+    {
+        _audio.PlayOneShot(AudioGameOver);
+    }
+    public void SoundGameWin()
+    {
+        _audio.PlayOneShot(AudioGameWin);
+    }
+    public void SoundBomb()
+    {
+        _audio.PlayOneShot(AudioBomb);
+    }
+    public void SoundTechStop()
+    {
+        _audio.PlayOneShot(AudioTechStop);
+    }
+    public void SoundTick()
+    {
+        _audio.PlayOneShot(AudioTick);
+    }
+    public void SoundEnemyTick()
+    {
+        _audio.PlayOneShot(AudioTick2);
+    }
+    #endregion
+
+
 
 
     #region materials
@@ -742,7 +814,11 @@ public class LevelController : MonoBehaviour
         var dif = _ship.AddHealth(-damage);
         ShipLogic.Damage(dif);
 
-        if (dif > 0.0f) BoomAnimStart();
+        if (dif > 0.0f)
+        {
+            BoomAnimStart();
+            SoundBow();
+        }
 
         // panel health
         PanelWork.UpdateHealth();
@@ -808,6 +884,7 @@ public class LevelController : MonoBehaviour
         if (PanelShip.CanAddHealth())
         {
             _ship.UseBonusHealth();
+            SoundUp();
             PanelShip.HealthUse();
             AddHealth(_ship.ShipBonusHealth);
         }
@@ -821,6 +898,7 @@ public class LevelController : MonoBehaviour
         {
             ShipLogic.EnableShield(_ship.ShipBonusShield);
             _ship.UseBonusShield();
+            SoundUp();
             //
             PanelShip.ShieldUse();
             PanelShip.UpdateShieldBtn();
@@ -834,6 +912,7 @@ public class LevelController : MonoBehaviour
         if (PanelShip.CanAddTree())
         {
             PlaceBomb();
+            SoundBomb();
             _ship.UseBonusTree();
             //
             PanelShip.TreeUse();
@@ -881,10 +960,16 @@ public class LevelController : MonoBehaviour
     {
         _inTouchControl = true;
         PanelMarket.Hide();
+        SoundStart();
         SetPause(false);
     }
 
 
+    public void ShowOptionPanelFromGame()
+    {
+        ShowOptionPanel();
+        SoundClick();
+    }
     public void ShowOptionPanel()
     {
         _inTouchControl = false;
@@ -895,6 +980,7 @@ public class LevelController : MonoBehaviour
     {
         _inTouchControl = true;
         PanelOption.Hide();
+        SoundClick();
         SetPause(false);
     }
 
@@ -978,6 +1064,7 @@ public class LevelController : MonoBehaviour
         HideWeaponPanel();
         ShipLogic.AnimToWin();
         ShowEndMessage(true);
+        SoundGameWin();
     }
     private void OnStartLevelLose()
     {
@@ -986,6 +1073,7 @@ public class LevelController : MonoBehaviour
         HideWeaponPanel();
         ShipLogic.AnimToLose();
         ShowEndMessage(false);
+        SoundGameOver();
 
         //+ счетчик текущей попытки полета
         if (FarLife.GlobalData.LastRunCity == FarLife.MapLife.NextCity.Model.Id)
