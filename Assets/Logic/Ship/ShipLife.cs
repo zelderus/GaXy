@@ -151,70 +151,71 @@ public class ShipLife : FileManagedClass
         */
         //- skills
         Skills.Add(new FarSkill(1, true, FarSkillTypes.Gun1));
-        Skills.Add(new FarSkill(2, FarSkillTypes.Gun1, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(3, FarSkillTypes.Gun1, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(4, FarSkillTypes.Gun1, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(5, FarSkillTypes.Gun1, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(6, FarSkillTypes.Gun1, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(7, FarSkillTypes.Gun1, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(8, FarSkillTypes.Gun1, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(9, FarSkillTypes.Gun1, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(10, FarSkillTypes.Gun1, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(2, FarSkillTypes.Gun1, 200, 0, 0, 0, 0));
 
-        Skills.Add(new FarSkill(11, FarSkillTypes.Gun2, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(12, FarSkillTypes.Gun2, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(13, FarSkillTypes.Gun2, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(14, FarSkillTypes.Gun2, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(15, FarSkillTypes.Gun2, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(16, FarSkillTypes.Gun2, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(17, FarSkillTypes.Gun2, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(18, FarSkillTypes.Gun2, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(19, FarSkillTypes.Gun2, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(20, FarSkillTypes.Gun2, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(3, FarSkillTypes.Gun1, 500, 5, 0, 0, 0));
+        Skills.Add(new FarSkill(4, FarSkillTypes.Gun1, 300, 50, 10, 0, 0));
+        Skills.Add(new FarSkill(5, FarSkillTypes.Gun1, 300, 60, 50, 1, 0));
+        Skills.Add(new FarSkill(6, FarSkillTypes.Gun1, 300, 80, 60, 10, 0));
+        Skills.Add(new FarSkill(7, FarSkillTypes.Gun1, 300, 20, 20, 30, 0));
+        Skills.Add(new FarSkill(8, FarSkillTypes.Gun1, 300, 60, 30, 10, 1));
+        Skills.Add(new FarSkill(9, FarSkillTypes.Gun1, 300, 70, 50, 20, 10));
+        Skills.Add(new FarSkill(10, FarSkillTypes.Gun1, 300, 100, 60, 50, 30));
 
-        Skills.Add(new FarSkill(21, FarSkillTypes.Gun3, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(22, FarSkillTypes.Gun3, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(23, FarSkillTypes.Gun3, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(24, FarSkillTypes.Gun3, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(25, FarSkillTypes.Gun3, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(26, FarSkillTypes.Gun3, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(27, FarSkillTypes.Gun3, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(28, FarSkillTypes.Gun3, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(29, FarSkillTypes.Gun3, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(30, FarSkillTypes.Gun3, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(11, FarSkillTypes.Gun2, 500, 10, 0, 0, 0));        // line 2
+        Skills.Add(new FarSkill(12, FarSkillTypes.Gun2, 300, 30, 5, 5, 0));         // line 2
+        Skills.Add(new FarSkill(13, FarSkillTypes.Gun2, 300, 40, 10, 0, 0));
+        Skills.Add(new FarSkill(14, FarSkillTypes.Gun2, 300, 50, 30, 10, 0));
+        Skills.Add(new FarSkill(15, FarSkillTypes.Gun2, 300, 60, 50, 3, 1));
+        Skills.Add(new FarSkill(16, FarSkillTypes.Gun2, 300, 80, 60, 10, 0));
+        Skills.Add(new FarSkill(17, FarSkillTypes.Gun2, 300, 20, 20, 30, 0));
+        Skills.Add(new FarSkill(18, FarSkillTypes.Gun2, 300, 60, 30, 10, 1));
+        Skills.Add(new FarSkill(19, FarSkillTypes.Gun2, 300, 70, 50, 20, 10));
+        Skills.Add(new FarSkill(20, FarSkillTypes.Gun2, 300, 100, 60, 50, 30));
+
+        Skills.Add(new FarSkill(21, FarSkillTypes.Gun3, 500, 10, 10, 0, 0));        // line 2
+        Skills.Add(new FarSkill(22, FarSkillTypes.Gun3, 300, 30, 5, 5, 0));         // line 2
+        Skills.Add(new FarSkill(23, FarSkillTypes.Gun3, 300, 40, 10, 0, 0));
+        Skills.Add(new FarSkill(24, FarSkillTypes.Gun3, 300, 50, 30, 10, 0));
+        Skills.Add(new FarSkill(25, FarSkillTypes.Gun3, 300, 60, 50, 3, 1));
+        Skills.Add(new FarSkill(26, FarSkillTypes.Gun3, 300, 80, 60, 10, 0));
+        Skills.Add(new FarSkill(27, FarSkillTypes.Gun3, 300, 20, 20, 30, 0));
+        Skills.Add(new FarSkill(28, FarSkillTypes.Gun3, 300, 60, 30, 10, 1));
+        Skills.Add(new FarSkill(29, FarSkillTypes.Gun3, 300, 70, 50, 20, 10));
+        Skills.Add(new FarSkill(30, FarSkillTypes.Gun3, 300, 100, 60, 50, 30));
 
 
-        Skills.Add(new FarSkill(51, FarSkillTypes.Block, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(52, FarSkillTypes.Block, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(53, FarSkillTypes.Block, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(54, FarSkillTypes.Block, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(55, FarSkillTypes.Block, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(56, FarSkillTypes.Speed, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(57, FarSkillTypes.Speed, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(58, FarSkillTypes.Speed, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(59, FarSkillTypes.Speed, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(60, FarSkillTypes.Speed, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(61, FarSkillTypes.Parsek, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(62, FarSkillTypes.Parsek, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(63, FarSkillTypes.Parsek, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(64, FarSkillTypes.Parsek, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(65, FarSkillTypes.Parsek, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(51, FarSkillTypes.Block, 300, 10, 0, 0, 0));
+        Skills.Add(new FarSkill(52, FarSkillTypes.Block, 300, 10, 0, 0, 0));
+        Skills.Add(new FarSkill(53, FarSkillTypes.Block, 300, 20, 5, 0, 0));
+        Skills.Add(new FarSkill(54, FarSkillTypes.Block, 300, 20, 10, 4, 0));
+        Skills.Add(new FarSkill(55, FarSkillTypes.Block, 300, 50, 30, 10, 5));
+        Skills.Add(new FarSkill(56, FarSkillTypes.Speed, 300, 10, 0, 0, 0));
+        Skills.Add(new FarSkill(57, FarSkillTypes.Speed, 300, 10, 0, 0, 0));
+        Skills.Add(new FarSkill(58, FarSkillTypes.Speed, 300, 20, 5, 0, 0));
+        Skills.Add(new FarSkill(59, FarSkillTypes.Speed, 300, 20, 10, 4, 0));
+        Skills.Add(new FarSkill(60, FarSkillTypes.Speed, 300, 50, 30, 10, 5));
+        Skills.Add(new FarSkill(61, FarSkillTypes.Parsek, 300, 10, 0, 0, 0));              // line 2
+        Skills.Add(new FarSkill(62, FarSkillTypes.Parsek, 300, 10, 0, 0, 0));              // line 2
+        Skills.Add(new FarSkill(63, FarSkillTypes.Parsek, 300, 20, 5, 0, 0));
+        Skills.Add(new FarSkill(64, FarSkillTypes.Parsek, 300, 20, 10, 3, 0));
+        Skills.Add(new FarSkill(65, FarSkillTypes.Parsek, 300, 50, 30, 10, 2));
 
-        Skills.Add(new FarSkill(101, FarSkillTypes.BonusHealth, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(102, FarSkillTypes.BonusHealth, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(103, FarSkillTypes.BonusHealth, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(104, FarSkillTypes.BonusHealth, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(105, FarSkillTypes.BonusHealth, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(106, FarSkillTypes.BonusShield, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(107, FarSkillTypes.BonusShield, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(108, FarSkillTypes.BonusShield, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(109, FarSkillTypes.BonusShield, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(110, FarSkillTypes.BonusShield, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(111, FarSkillTypes.BonusBomb, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(112, FarSkillTypes.BonusBomb, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(113, FarSkillTypes.BonusBomb, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(114, FarSkillTypes.BonusBomb, 1, 0, 0, 0, 0));
-        Skills.Add(new FarSkill(115, FarSkillTypes.BonusBomb, 1, 0, 0, 0, 0));
+        Skills.Add(new FarSkill(101, FarSkillTypes.BonusHealth, 300, 1, 0, 0, 0));        // line 2
+        Skills.Add(new FarSkill(102, FarSkillTypes.BonusHealth, 300, 10, 0, 0, 0));
+        Skills.Add(new FarSkill(103, FarSkillTypes.BonusHealth, 300, 30, 20, 5, 0));
+        Skills.Add(new FarSkill(104, FarSkillTypes.BonusHealth, 300, 50, 40, 10, 0));
+        Skills.Add(new FarSkill(105, FarSkillTypes.BonusHealth, 300, 50, 50, 50, 10));
+        Skills.Add(new FarSkill(106, FarSkillTypes.BonusShield, 300, 1, 0, 0, 0));        // line 2
+        Skills.Add(new FarSkill(107, FarSkillTypes.BonusShield, 300, 30, 20, 0, 0));
+        Skills.Add(new FarSkill(108, FarSkillTypes.BonusShield, 300, 50, 30, 3, 0));
+        Skills.Add(new FarSkill(109, FarSkillTypes.BonusShield, 300, 50, 40, 10, 0));
+        Skills.Add(new FarSkill(110, FarSkillTypes.BonusShield, 300, 50, 50, 50, 10));
+        Skills.Add(new FarSkill(111, FarSkillTypes.BonusBomb, 300, 1, 0, 0, 0));          // line 2
+        Skills.Add(new FarSkill(112, FarSkillTypes.BonusBomb, 300, 30, 20, 0, 0));
+        Skills.Add(new FarSkill(113, FarSkillTypes.BonusBomb, 300, 50, 30, 1, 0));
+        Skills.Add(new FarSkill(114, FarSkillTypes.BonusBomb, 300, 50, 40, 10, 0));
+        Skills.Add(new FarSkill(115, FarSkillTypes.BonusBomb, 300, 50, 50, 50, 10));
 
 
     }

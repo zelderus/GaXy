@@ -21,6 +21,8 @@ public class MenuController : MonoBehaviour
     public Text ResetTxt;
     public Text SoundTxt;
 
+    public Transform AutoWinBtn;
+
 
     private AudioSource _audio;
     public AudioClip AudioClick;
@@ -156,6 +158,13 @@ public class MenuController : MonoBehaviour
         StatBtn.enabled = true;
         SoundClick();
         StatPanel.Hide();
+    }
+
+
+    public void EnableAutoWinLevel()
+    {
+        FarBalance.LevelAutoCompleteWithWin = true;
+        AutoWinBtn.gameObject.SetActive(false);
     }
 
 

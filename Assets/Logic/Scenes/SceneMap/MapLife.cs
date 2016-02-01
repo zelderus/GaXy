@@ -131,11 +131,11 @@ public class MapLife : FileManagedClass
     private void InitResources()
     {
         Resources = new List<CityResourceShip>();
-        Resources.Add(new CityResourceShip() { Type = CityRecources.Material, CurrentCount = 120 });
-        Resources.Add(new CityResourceShip() { Type = CityRecources.Res1, CurrentCount = 5 });
-        Resources.Add(new CityResourceShip() { Type = CityRecources.Res2, CurrentCount = 0 });
-        Resources.Add(new CityResourceShip() { Type = CityRecources.Res3, CurrentCount = 0 });
-        Resources.Add(new CityResourceShip() { Type = CityRecources.Res4, CurrentCount = 0 });
+        Resources.Add(new CityResourceShip() { Type = CityRecources.Material, CurrentCount = FarBalance.StartResMat });
+        Resources.Add(new CityResourceShip() { Type = CityRecources.Res1, CurrentCount = FarBalance.StartRes1 });
+        Resources.Add(new CityResourceShip() { Type = CityRecources.Res2, CurrentCount = FarBalance.StartRes2 });
+        Resources.Add(new CityResourceShip() { Type = CityRecources.Res3, CurrentCount = FarBalance.StartRes3 });
+        Resources.Add(new CityResourceShip() { Type = CityRecources.Res4, CurrentCount = FarBalance.StartRes4 });
     }
     
     /// <summary>
@@ -160,7 +160,7 @@ public class MapLife : FileManagedClass
         AddCity(list, "Laja", 8, 8, provider.CreateFiendCity(CityRecources.Res3, 5));
         AddCity(list, "Laja", 6, 8, provider.CreateFiendCity(CityRecources.Res2, 1));
         AddCity(list, "Opa", 7, 10, provider.CreateFiendCity(CityRecources.Res4, 1));
-        AddCity(list, "Laja", 4, 9, provider.CreateNeutralCity(CityRecources.Res1, 1, 0, 0, 0));
+        AddCity(list, "Laja", 4, 9, provider.CreateNeutralCity(CityRecources.Res1));
         AddCity(list, "Laja", 10, 6, provider.CreateNeutralCity(CityRecources.Res3));
 
         AddCity(list, "Asd", 2, 3, provider.CreateFiendCity(CityRecources.Res2));

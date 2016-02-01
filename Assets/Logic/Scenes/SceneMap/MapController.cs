@@ -746,13 +746,19 @@ public class MapController : MonoBehaviour
             FarLife.GlobalData.LastCityCountOfRuns = 1;
         }
 
-        //debugStartLevel(); // TODO: debug
-        FarLife.GoToLevel();
+        if (FarBalance.LevelAutoCompleteWithWin)
+        {
+            debugStartLevel();
+        }
+        else
+        {
+            FarLife.GoToLevel();
+        }
     }
     private void debugStartLevel()
     {
         _mapLife.SetLevelStatus(FarStatusLevel.LevelWin);
-        _mapLife.AddMaterial(120);
+        _mapLife.AddMaterial(UnityEngine.Random.Range(FarBalance.MaterialCountOnAutoLevelWin-25, FarBalance.MaterialCountOnAutoLevelWin+10));
         //FarLife.SaveGame(); // сохраняем по завершении миссии
         FarLife.GoToMap();
     }

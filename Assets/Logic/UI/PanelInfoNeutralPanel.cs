@@ -89,6 +89,7 @@ public class PanelInfoNeutralPanel : MonoBehaviour
             mapLife.QuestCityStart(_city.Model);
             //+ строим новый тип
             _city.SetFriendCityType(cityResource);
+            _city.CityMap.MainLogicObject.SoundUp();
         }
         else    //! JOP
         {
@@ -97,6 +98,7 @@ public class PanelInfoNeutralPanel : MonoBehaviour
             mapLife.QuestJopStart(_city.Model);
             //+ следующий
             _city.SetJopQuestCompleted();
+            _city.CityMap.MainLogicObject.SoundUp();
             //+ если выполнено все
             if (_city.Model.IsJopCompleted)
             {

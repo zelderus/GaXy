@@ -263,10 +263,10 @@ public class CityModelProvider
         Int32 res4 = 0;
         switch(res)
         {
-            case CityRecources.Res1: res1 = 10; break;
-            case CityRecources.Res2: res1 = 20; res2 = 10; break;
-            case CityRecources.Res3: res1 = 30; res2 = 20; res3 = 10; break;
-            case CityRecources.Res4: res1 = 100; res2 = 50; res3 = 25; res4 = 1; break;
+            case CityRecources.Res1: res1 = FarBalance.NeutralPlanet1MustRes1; res2 = FarBalance.NeutralPlanet1MustRes2; res3 = FarBalance.NeutralPlanet1MustRes3; res4 = FarBalance.NeutralPlanet1MustRes4; break;
+            case CityRecources.Res2: res1 = FarBalance.NeutralPlanet2MustRes1; res2 = FarBalance.NeutralPlanet2MustRes2; res3 = FarBalance.NeutralPlanet2MustRes3; res4 = FarBalance.NeutralPlanet2MustRes4; break;
+            case CityRecources.Res3: res1 = FarBalance.NeutralPlanet3MustRes1; res2 = FarBalance.NeutralPlanet3MustRes2; res3 = FarBalance.NeutralPlanet3MustRes3; res4 = FarBalance.NeutralPlanet3MustRes4; break;
+            case CityRecources.Res4: res1 = FarBalance.NeutralPlanet4MustRes1; res2 = FarBalance.NeutralPlanet4MustRes2; res3 = FarBalance.NeutralPlanet4MustRes3; res4 = FarBalance.NeutralPlanet4MustRes4; break;
         }
         return CreateCity(CityType.Neutral, res, 0, res1, res2, res3, res4);
     }
@@ -294,8 +294,36 @@ public class CityModelProvider
         // TODO: JOP quests //?++ JOP QUESTs
         model.AddJopQuestes(1, 0, 0, 0);
         model.AddJopQuestes(2, 0, 0, 0);
-        //model.AddJopQuestes(100, 10, 10, 0);
-        //model.AddJopQuestes(100, 10, 10, 10);
+        model.AddJopQuestes(0, 1, 0, 0);
+        model.AddJopQuestes(0, 2, 0, 0);
+        model.AddJopQuestes(0, 0, 1, 0);
+        model.AddJopQuestes(0, 0, 2, 0);
+        model.AddJopQuestes(0, 0, 0, 1);
+        model.AddJopQuestes(0, 0, 0, 2);
+        model.AddJopQuestes(10, 0, 0, 0);
+        model.AddJopQuestes(20, 0, 0, 0);
+        model.AddJopQuestes(10, 10, 0, 0);
+        model.AddJopQuestes(20, 10, 0, 0);
+        model.AddJopQuestes(10, 10, 5, 0);
+        model.AddJopQuestes(20, 10, 10, 0);
+        model.AddJopQuestes(20, 10, 10, 0);
+        model.AddJopQuestes(20, 20, 10, 0);
+        model.AddJopQuestes(20, 20, 20, 10);
+        model.AddJopQuestes(20, 20, 20, 20);
+        model.AddJopQuestes(1, 0, 30, 0);
+        model.AddJopQuestes(2, 40, 0, 0);
+        model.AddJopQuestes(1, 30, 0, 0);
+        model.AddJopQuestes(2, 0, 40, 0);
+        model.AddJopQuestes(5, 0, 0, 10);
+        model.AddJopQuestes(6, 0, 0, 20);
+        model.AddJopQuestes(100, 50, 30, 5);
+        model.AddJopQuestes(200, 40, 20, 10);
+        model.AddJopQuestes(100, 100, 50, 10);
+        model.AddJopQuestes(200, 100, 60, 20);
+        model.AddJopQuestes(200, 200, 100, 50);
+        model.AddJopQuestes(300, 200, 20, 100);
+        model.AddJopQuestes(600, 600, 300, 200);
+
 
         //
         model.SizeScale = 1.0f;
