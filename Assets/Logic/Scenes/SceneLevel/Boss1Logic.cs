@@ -374,7 +374,8 @@ public class Boss1Logic : MonoBehaviour {
     {
         if (Controller.Manager.IsPaused) return;
 
-        // вращаем всякое
+        //+ вращаем всякое
+        //- наследование объектов MonoBehaviour в unity3D печальное, а создавать аналогичные объекты для каждого босса отдельно, проблемно для малейших изменений
         if (IsBoss2)
         {
             Boss2Rot.transform.Rotate(new Vector3(1, 0, 0), Time.deltaTime * 80);
@@ -383,6 +384,7 @@ public class Boss1Logic : MonoBehaviour {
         {
             Boss3Rot.transform.Rotate(new Vector3(0, 0, 1), Time.deltaTime * 50);
         }
+
 
         if (IsDied)
         {

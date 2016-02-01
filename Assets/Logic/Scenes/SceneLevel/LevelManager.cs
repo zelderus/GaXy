@@ -113,7 +113,7 @@ public class LevelManager
         //x lastTime = provider.CreateBrunch(4, lastTime, _cityIndex, _citFactor, Ship);
         lastTime = provider.CreateBrunch(5, lastTime, _cityIndex, _citFactor, Ship);
         lastTime = provider.CreateBrunch(6, lastTime, _cityIndex, _citFactor, Ship);
-        // берем необходимое из всего этого
+        //берем необходимое из всего этого
         foreach (var brunch in provider.Brunches)
         {
             _enemies.AddRange(brunch.Enemies);
@@ -121,7 +121,7 @@ public class LevelManager
 
         //_enemies.Add(new EnemyLaunch(EnemyIndexes.Loh1, 0, 1.0f));
         //_enemies.Add(new EnemyLaunch(EnemyIndexes.Pen6, 1, 1.0f, false));
-        //_enemies.Add(new EnemyLaunch(EnemyIndexes.Boss3, 1, 1.0f, false));
+        //_enemies.Add(new EnemyLaunch(EnemyIndexes.Boss1, 1, 1.0f, false));
 
 
 
