@@ -159,10 +159,13 @@ public class CityModel
         Rating++;
         Rating = Rating > 900 ? 900 : Rating;
         // check new level
-        var mustForLevel = LevelManager.LevelUpRatings[Level - 1];
-        if (Rating >= mustForLevel)
+        if (Level <= LevelManager.LevelUpRatings.Count())
         {
-            LevelUp();
+            var mustForLevel = LevelManager.LevelUpRatings[Level - 1];
+            if (Rating >= mustForLevel)
+            {
+                LevelUp();
+            }
         }
     }
 
