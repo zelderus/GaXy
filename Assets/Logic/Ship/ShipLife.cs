@@ -113,12 +113,12 @@ public class ShipLife : FileManagedClass
         ShipBonusShield = 3.0f;
         ShipBonusShieldCount = 4;
         ShipBonusShieldTime = 40.0f;
-        ShipBonusShieldCost = 300;
+        ShipBonusShieldCost = 200;
 
         ShipBonusTree = 10.0f;
         ShipBonusTreeCount = 1;
         ShipBonusTreeTime = 60.0f;
-        ShipBonusTreeCost = 1500;
+        ShipBonusTreeCost = 500;
         // skills
         Skills = new List<FarSkill>();
     }
